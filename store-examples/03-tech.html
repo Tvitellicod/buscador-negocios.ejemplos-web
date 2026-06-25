@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOLT — Tecnología y Gadgets</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Poppins', sans-serif; background: #0a0a12; color: #e8e8f0; }
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 6%; position: sticky; top:0; background: rgba(10,10,18,.92); backdrop-filter: blur(8px); z-index: 10;
+    border-bottom: 1px solid #1c1c2e;
+  }
+  .logo { font-weight: 800; font-size: 1.5rem; }
+  .logo span { color: #00f0c0; }
+  nav a { color: #c4c4d6; text-decoration: none; margin: 0 18px; font-size: .9rem; font-weight: 500; }
+  nav a:hover { color: #00f0c0; }
+  .header-icons { display: flex; gap: 18px; align-items: center; font-size: 1.1rem; }
+  .cart-icon { position: relative; color: #e8e8f0; text-decoration: none; }
+  .cart-count { position: absolute; top: -8px; right: -10px; background: #ff2d78; color: #fff; font-size: .65rem; padding: 1px 6px; border-radius: 50%; }
+
+  .flash-bar {
+    background: linear-gradient(90deg,#ff2d78,#7b2ff7); text-align: center; padding: 10px; font-size: .85rem; font-weight: 600;
+  }
+
+  .hero {
+    text-align: center; padding: 90px 6% 80px; position: relative; overflow: hidden;
+    background: radial-gradient(circle at 30% 20%, rgba(123,47,247,.25), transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(0,240,192,.18), transparent 50%);
+  }
+  .hero h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 18px; line-height: 1.15; }
+  .hero h1 span { background: linear-gradient(135deg,#00f0c0,#7b2ff7); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { color: #a8a8c0; max-width: 520px; margin: 0 auto 36px; }
+  .btn {
+    display: inline-block; padding: 16px 38px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: .92rem;
+  }
+  .btn-primary { background: linear-gradient(135deg,#00f0c0,#7b2ff7); color: #0a0a12; }
+
+  .cat-strip { display: flex; justify-content: center; gap: 16px; padding: 0 6% 60px; flex-wrap: wrap; }
+  .cat-strip a {
+    color: #c4c4d6; text-decoration: none; font-size: .85rem; padding: 10px 22px; border: 1px solid #2a2a40; border-radius: 30px;
+  }
+  .cat-strip a:hover, .cat-strip a.active { background: #1a1a2e; border-color: #00f0c0; color: #00f0c0; }
+
+  .productos { padding: 0 6% 100px; max-width: 1200px; margin: 0 auto; }
+  .productos h2 { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 50px; }
+  .grid-productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .producto-card {
+    background: #12121f; border: 1px solid #1f1f33; border-radius: 16px; padding: 18px; position: relative; overflow: hidden;
+  }
+  .producto-card:hover { border-color: #00f0c0; }
+  .badge-off {
+    position: absolute; top: 14px; left: 14px; background: #ff2d78; color: #fff; font-size: .72rem; font-weight: 700;
+    padding: 4px 10px; border-radius: 6px; z-index: 1;
+  }
+  .producto-card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; margin-bottom: 14px; }
+  .producto-card .cat { font-size: .72rem; color: #6e6e8a; text-transform: uppercase; letter-spacing: .5px; }
+  .producto-card h3 { font-size: 1rem; font-weight: 600; margin: 6px 0 10px; }
+  .precio { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }
+  .precio .new { font-size: 1.2rem; font-weight: 800; color: #00f0c0; }
+  .precio .old { font-size: .85rem; color: #6e6e8a; text-decoration: line-through; }
+  .add-btn {
+    width: 100%; padding: 11px; background: #1f1f33; border: none; border-radius: 8px; color: #fff; font-weight: 600;
+    font-size: .85rem; cursor: pointer; transition: background .2s;
+  }
+  .add-btn:hover { background: linear-gradient(135deg,#00f0c0,#7b2ff7); color: #0a0a12; }
+
+  .banner-medio {
+    text-align: center; padding: 70px 6%;
+    background: linear-gradient(135deg, rgba(123,47,247,.15), rgba(0,240,192,.1));
+    border-top: 1px solid #1f1f33; border-bottom: 1px solid #1f1f33;
+  }
+  .banner-medio h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+  .banner-medio p { color: #a8a8c0; margin-bottom: 26px; }
+
+  footer { padding: 50px 6% 30px; text-align: center; }
+  .pago-icons { display: flex; justify-content: center; gap: 14px; margin: 22px 0; flex-wrap: wrap; }
+  .pago-icons span { border: 1px solid #2a2a40; padding: 8px 16px; border-radius: 6px; font-size: .8rem; color: #a8a8c0; }
+  footer p.copy { font-size: .8rem; color: #5e5e78; margin-top: 16px; }
+</style>
+</head>
+<body>
+
+  <div class="flash-bar">⚡ FLASH SALE — Hasta 35% OFF solo por hoy ⚡</div>
+
+  <header>
+    <div class="logo">VOLT<span>.</span></div>
+    <nav>
+      <a href="#">Celulares</a>
+      <a href="#">Audio</a>
+      <a href="#">Gaming</a>
+      <a href="#">Accesorios</a>
+    </nav>
+    <div class="header-icons">
+      <span>🔍</span>
+      <a class="cart-icon" href="03-tech-checkout.html">🛒<span class="cart-count">3</span></a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>El futuro <span>en tus manos</span></h1>
+    <p>Gadgets de última generación con envío express y garantía oficial. Pagás como quieras.</p>
+    <a class="btn btn-primary" href="#productos">Ver ofertas</a>
+  </section>
+
+  <div class="cat-strip">
+    <a href="#" class="active">Todo</a>
+    <a href="#">Celulares</a>
+    <a href="#">Audio</a>
+    <a href="#">Gaming</a>
+    <a href="#">Smart Home</a>
+    <a href="#">Accesorios</a>
+  </div>
+
+  <section class="productos" id="productos">
+    <h2>Más vendidos esta semana</h2>
+    <div class="grid-productos">
+      <div class="producto-card">
+        <span class="badge-off">-20%</span>
+        <img src="https://picsum.photos/seed/volt1/400/400" alt="Auriculares">
+        <div class="cat">Audio</div>
+        <h3>Auriculares inalámbricos Pro</h3>
+        <div class="precio"><span class="old">$89.999</span><span class="new">$71.999</span></div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/volt2/400/400" alt="Smartwatch">
+        <div class="cat">Wearables</div>
+        <h3>Smartwatch Series X</h3>
+        <div class="precio"><span class="new">$129.999</span></div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <span class="badge-off">-35%</span>
+        <img src="https://picsum.photos/seed/volt3/400/400" alt="Teclado gamer">
+        <div class="cat">Gaming</div>
+        <h3>Teclado mecánico RGB</h3>
+        <div class="precio"><span class="old">$54.999</span><span class="new">$35.999</span></div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/volt4/400/400" alt="Parlante">
+        <div class="cat">Audio</div>
+        <h3>Parlante Bluetooth 360°</h3>
+        <div class="precio"><span class="new">$42.500</span></div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <span class="badge-off">-15%</span>
+        <img src="https://picsum.photos/seed/volt5/400/400" alt="Cargador">
+        <div class="cat">Accesorios</div>
+        <h3>Cargador GaN 65W</h3>
+        <div class="precio"><span class="old">$24.999</span><span class="new">$21.250</span></div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/volt6/400/400" alt="Mouse gamer">
+        <div class="cat">Gaming</div>
+        <h3>Mouse gamer 16000 DPI</h3>
+        <div class="precio"><span class="new">$28.900</span></div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="banner-medio">
+    <h2>3, 6 y 12 cuotas sin interés con Mercado Pago</h2>
+    <p>Y todos los medios de pago habituales. Envío a todo el país.</p>
+    <a class="btn btn-primary" href="#productos">Comprar ahora</a>
+  </div>
+
+  <footer>
+    <div class="logo" style="font-size:1.2rem; justify-content:center; display:flex;">VOLT<span>.</span></div>
+    <div class="pago-icons">
+      <span>💳 Visa</span>
+      <span>💳 Mastercard</span>
+      <span>🅿️ Mercado Pago</span>
+      <span>🏦 Transferencia</span>
+      <span>📱 Billeteras virtuales</span>
+    </div>
+    <p class="copy">© 2026 VOLT. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplos de Tiendas Online</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f4f6;
+    color: #222;
+    padding: 60px 20px;
+  }
+  h1 { text-align: center; font-size: 2.2rem; margin-bottom: 10px; }
+  p.sub { text-align: center; color: #666; margin-bottom: 50px; max-width: 600px; margin-left:auto; margin-right:auto; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .card {
+    border-radius: 14px;
+    padding: 40px 25px;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    transition: transform .2s ease, box-shadow .2s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 10px 24px rgba(0,0,0,0.2); }
+  .card h2 { font-size: 1.4rem; margin-bottom: 8px; }
+  .card p { font-size: .95rem; opacity: .9; }
+  .card span { margin-top: 20px; font-weight: bold; font-size: .85rem; letter-spacing: .5px; }
+  .badge { display:inline-block; background:rgba(255,255,255,.2); padding:4px 10px; border-radius:20px; font-size:.75rem; margin-bottom:14px; width:fit-content; }
+
+  .c1 { background: linear-gradient(135deg,#0d1b2a,#1b3a5c); }
+  .c2 { background: linear-gradient(135deg,#2b2b2b,#6b6b6b); }
+  .c3 { background: linear-gradient(135deg,#0a0a12,#5c1aff); }
+</style>
+</head>
+<body>
+  <h1>3 ejemplos de Tienda Online</h1>
+  <p class="sub">Mockups visuales para mostrarle al cliente — flujo de vidriera + checkout con métodos de pago simulados (tarjeta, Mercado Pago, transferencia).</p>
+  <div class="grid">
+    <a class="card c1" href="https://clickpuntoar.com.ar" target="_blank">
+      <div>
+        <span class="badge">TIENDA REAL Y FUNCIONAL</span>
+        <h2>1. ClickPunto AR</h2>
+        <p>Multi-categoría estilo marketplace, con carrito, login, checkout y pasarela real conectada a Firebase. Ya está en producción.</p>
+      </div>
+      <span>VER SITIO →</span>
+    </a>
+    <a class="card c2" href="02-boutique.html">
+      <div>
+        <span class="badge">MOCKUP DEMO</span>
+        <h2>2. Boutique Minimalista</h2>
+        <p>Tienda de moda editorial, blanco y crema, fotos grandes, tipografía elegante. Pensada para marcas de ropa/accesorios.</p>
+      </div>
+      <span>VER DEMO →</span>
+    </a>
+    <a class="card c3" href="03-tech.html">
+      <div>
+        <span class="badge">MOCKUP DEMO</span>
+        <h2>3. Tech / Gadgets Bold</h2>
+        <p>Tienda oscura con acentos neón, flash sale y banners agresivos. Pensada para electrónica, gaming o accesorios tech.</p>
+      </div>
+      <span>VER DEMO →</span>
+    </a>
+  </div>
+</body>
+</html>

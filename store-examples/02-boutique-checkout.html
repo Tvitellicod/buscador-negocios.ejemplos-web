@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORA — Checkout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Lato', sans-serif; background: #faf7f2; color: #2a2a2a; }
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 7%; border-bottom: 1px solid #e8e1d6;
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; letter-spacing: 3px; text-decoration: none; color: #2a2a2a; }
+  .steps { font-size: .8rem; letter-spacing: .5px; color: #999; }
+  .steps span.active { color: #2a2a2a; font-weight: 600; }
+
+  .checkout-wrap {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 7% 100px;
+  }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin-bottom: 20px; }
+
+  .form-group { margin-bottom: 18px; }
+  label { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; color: #5c5c5c; }
+  input {
+    width: 100%; padding: 12px 14px; border: 1px solid #d8d0c2; border-radius: 4px; font-size: .95rem; background: #fff;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .pago-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0 30px; }
+  .pago-option {
+    display: flex; align-items: center; gap: 12px; border: 1px solid #d8d0c2; border-radius: 6px; padding: 14px 16px; cursor: pointer;
+  }
+  .pago-option.selected { border-color: #2a2a2a; background: #fff; }
+  .pago-option input { width: auto; }
+  .pago-option .info strong { display: block; font-size: .92rem; }
+  .pago-option .info span { font-size: .78rem; color: #999; }
+
+  .card-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; padding-left: 30px; }
+  .card-fields .full { grid-column: 1 / -1; }
+
+  .resumen {
+    background: #fff; border: 1px solid #e8e1d6; border-radius: 8px; padding: 30px; align-self: start;
+  }
+  .resumen-item { display: flex; gap: 14px; margin-bottom: 18px; align-items: center; }
+  .resumen-item img { width: 60px; height: 75px; object-fit: cover; border-radius: 4px; }
+  .resumen-item .info { flex: 1; font-size: .88rem; }
+  .resumen-item .info strong { display: block; margin-bottom: 4px; }
+  .resumen-total { border-top: 1px solid #e8e1d6; margin-top: 16px; padding-top: 16px; }
+  .resumen-total .row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: .92rem; color: #5c5c5c; }
+  .resumen-total .row.total { color: #2a2a2a; font-weight: 700; font-size: 1.1rem; margin-top: 10px; }
+
+  .btn-confirm {
+    width: 100%; margin-top: 20px; padding: 16px; background: #2a2a2a; color: #fff; border: none;
+    font-size: .85rem; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+  }
+  .btn-confirm:hover { opacity: .85; }
+  .seguro { text-align: center; font-size: .75rem; color: #999; margin-top: 14px; }
+</style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="02-boutique.html">NORA</a>
+    <div class="steps">Carrito → <span class="active">Datos y pago</span> → Confirmación</div>
+  </header>
+
+  <div class="checkout-wrap">
+    <div>
+      <h2>Datos de envío</h2>
+      <div class="form-row">
+        <div class="form-group"><label>Nombre</label><input type="text" placeholder="Juana"></div>
+        <div class="form-group"><label>Apellido</label><input type="text" placeholder="Pérez"></div>
+      </div>
+      <div class="form-group"><label>Dirección</label><input type="text" placeholder="Calle y número"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Ciudad</label><input type="text" placeholder="Buenos Aires"></div>
+        <div class="form-group"><label>Código Postal</label><input type="text" placeholder="1425"></div>
+      </div>
+      <div class="form-group"><label>Teléfono</label><input type="text" placeholder="+54 9 11 0000-0000"></div>
+
+      <h2 style="margin-top:40px;">Método de pago</h2>
+      <div class="pago-options">
+        <label class="pago-option selected">
+          <input type="radio" name="pago" checked>
+          <div class="info"><strong>💳 Tarjeta de crédito / débito</strong><span>Visa, Mastercard, Amex</span></div>
+        </label>
+        <div class="card-fields">
+          <div class="form-group full"><label>Número de tarjeta</label><input type="text" placeholder="0000 0000 0000 0000"></div>
+          <div class="form-group"><label>Vencimiento</label><input type="text" placeholder="MM/AA"></div>
+          <div class="form-group"><label>CVV</label><input type="text" placeholder="123"></div>
+        </div>
+
+        <label class="pago-option">
+          <input type="radio" name="pago">
+          <div class="info"><strong>🅿️ Mercado Pago</strong><span>Cuotas sin interés disponibles</span></div>
+        </label>
+
+        <label class="pago-option">
+          <input type="radio" name="pago">
+          <div class="info"><strong>🏦 Transferencia bancaria</strong><span>Recibís los datos por email al confirmar</span></div>
+        </label>
+      </div>
+    </div>
+
+    <div class="resumen">
+      <h2>Tu pedido</h2>
+      <div class="resumen-item">
+        <img src="https://picsum.photos/seed/nora1/200/250" alt="Producto">
+        <div class="info"><strong>Vestido de lino crudo</strong>Talle M · Cant. 1</div>
+        <div>$48.900</div>
+      </div>
+      <div class="resumen-item">
+        <img src="https://picsum.photos/seed/nora3/200/250" alt="Producto">
+        <div class="info"><strong>Pantalón sastrero recto</strong>Talle 38 · Cant. 1</div>
+        <div>$52.500</div>
+      </div>
+      <div class="resumen-total">
+        <div class="row"><span>Subtotal</span><span>$101.400</span></div>
+        <div class="row"><span>Envío</span><span>Gratis</span></div>
+        <div class="row total"><span>Total</span><span>$101.400</span></div>
+      </div>
+      <button class="btn-confirm">Confirmar pedido</button>
+      <p class="seguro">🔒 Pago 100% seguro y encriptado</p>
+    </div>
+  </div>
+
+</body>
+</html>

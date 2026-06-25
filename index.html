@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplos de Páginas Web</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f4f6;
+    color: #222;
+    padding: 60px 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+  }
+  p.sub {
+    text-align: center;
+    color: #666;
+    font-size: 1.05rem;
+    margin-bottom: 60px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .card {
+    border-radius: 16px;
+    padding: 45px 30px;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    transition: transform .2s ease, box-shadow .2s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,0.2); }
+  .card .icon { font-size: 2.2rem; margin-bottom: 16px; }
+  .card h2 { font-size: 1.5rem; margin-bottom: 10px; }
+  .card p { font-size: .95rem; opacity: .9; line-height: 1.5; }
+  .card span { margin-top: 24px; font-weight: bold; font-size: .85rem; letter-spacing: .8px; }
+
+  .c1 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+  .c2 { background: linear-gradient(135deg, #0d1b2a, #1b3a5c); }
+  .c3 { background: linear-gradient(135deg, #1e3a8a, #3b5fd9); }
+</style>
+</head>
+<body>
+  <h1>Ejemplos de Páginas Web</h1>
+  <p class="sub">Demos reales para que elijas el estilo que más te gusta — después lo personalizamos con tu negocio.</p>
+
+  <div class="grid">
+    <a class="card c1" href="landing-examples/index.html">
+      <div>
+        <div class="icon">🎨</div>
+        <h2>Landing Pages</h2>
+        <p>5 estilos distintos: minimalista, moderna, rústica, elegante y bold. Para cualquier tipo de negocio.</p>
+      </div>
+      <span>VER EJEMPLOS →</span>
+    </a>
+    <a class="card c2" href="store-examples/index.html">
+      <div>
+        <div class="icon">🛒</div>
+        <h2>Tiendas Online</h2>
+        <p>Mockups de e-commerce con vidriera, carrito y checkout. Boutique de moda y tienda tech.</p>
+      </div>
+      <span>VER EJEMPLOS →</span>
+    </a>
+    <a class="card c3" href="ejemplos-especiales/index.html">
+      <div>
+        <div class="icon">⭐</div>
+        <h2>Casos Especiales</h2>
+        <p>Reserva de turnos, menú de restaurante, captación de leads y portfolio profesional.</p>
+      </div>
+      <span>VER EJEMPLOS →</span>
+    </a>
+  </div>
+</body>
+</html>

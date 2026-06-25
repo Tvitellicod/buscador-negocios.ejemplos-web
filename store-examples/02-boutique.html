@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORA — Tienda de Moda</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Lato', sans-serif;
+    background: #faf7f2;
+    color: #2a2a2a;
+    line-height: 1.6;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 26px 7%;
+    border-bottom: 1px solid #e8e1d6;
+    position: sticky; top: 0; background: #faf7f2; z-index: 10;
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 3px; }
+  nav a { color: #2a2a2a; text-decoration: none; margin: 0 22px; font-size: .85rem; letter-spacing: 1px; text-transform: uppercase; }
+  nav a:hover { border-bottom: 1px solid #2a2a2a; }
+  .header-icons { display: flex; gap: 22px; font-size: 1.1rem; align-items: center; }
+  .cart-icon { position: relative; text-decoration: none; color: #2a2a2a; }
+  .cart-count { position: absolute; top: -8px; right: -10px; background:#2a2a2a; color:#fff; font-size:.65rem; padding: 1px 6px; border-radius: 50%; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 70px 7%;
+    gap: 50px;
+  }
+  .hero-text h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; margin-bottom: 18px; line-height: 1.2; }
+  .hero-text p { color: #5c5c5c; margin-bottom: 30px; max-width: 420px; }
+  .btn {
+    display: inline-block;
+    padding: 15px 36px;
+    background: #2a2a2a;
+    color: #fff;
+    text-decoration: none;
+    font-size: .85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .8; }
+  .hero-img img { width: 100%; border-radius: 4px; display:block; aspect-ratio: 4/5; object-fit: cover; }
+
+  .cat-strip { display: flex; justify-content: center; gap: 60px; padding: 30px 7% 60px; flex-wrap: wrap; }
+  .cat-strip a { color: #2a2a2a; text-decoration: none; font-size: .9rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid transparent; padding-bottom: 6px; }
+  .cat-strip a:hover, .cat-strip a.active { border-color: #2a2a2a; }
+
+  .productos { padding: 0 7% 90px; }
+  .productos h2 { font-family: 'Cormorant Garamond', serif; text-align: center; font-size: 2.2rem; margin-bottom: 50px; }
+  .grid-productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 36px; }
+  .producto-card { text-align: left; }
+  .producto-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; margin-bottom: 14px; }
+  .producto-card .cat { font-size: .75rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+  .producto-card h3 { font-size: 1.05rem; font-weight: 600; margin: 6px 0 8px; }
+  .producto-card .precio { font-size: 1.05rem; font-weight: 700; }
+  .producto-card .precio .old { color: #999; text-decoration: line-through; font-weight: 400; font-size: .9rem; margin-right: 8px; }
+  .add-btn {
+    margin-top: 12px; width: 100%; padding: 12px; background: transparent; border: 1px solid #2a2a2a;
+    font-size: .8rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all .2s;
+  }
+  .add-btn:hover { background: #2a2a2a; color: #fff; }
+
+  .banner-medio {
+    background: #2a2a2a; color: #fff; text-align: center; padding: 60px 7%;
+  }
+  .banner-medio h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 14px; }
+  .banner-medio p { color: #ccc; margin-bottom: 28px; }
+
+  footer { padding: 50px 7% 30px; text-align: center; border-top: 1px solid #e8e1d6; }
+  .pago-icons { display: flex; justify-content: center; gap: 16px; margin: 20px 0; flex-wrap: wrap; }
+  .pago-icons span {
+    border: 1px solid #d8d0c2; padding: 8px 16px; border-radius: 6px; font-size: .8rem; color: #5c5c5c;
+  }
+  footer p.copy { font-size: .8rem; color: #999; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">NORA</div>
+    <nav>
+      <a href="#">Mujer</a>
+      <a href="#">Hombre</a>
+      <a href="#">Accesorios</a>
+      <a href="#">Sale</a>
+    </nav>
+    <div class="header-icons">
+      <span>🔍</span>
+      <span>♡</span>
+      <a class="cart-icon" href="02-boutique-checkout.html">🛍️<span class="cart-count">2</span></a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Nueva colección<br>Otoño 2026</h1>
+      <p>Prendas atemporales pensadas para durar, con materiales naturales y un diseño minimalista.</p>
+      <a class="btn" href="#productos">Ver colección</a>
+    </div>
+    <div class="hero-img">
+      <img src="https://picsum.photos/seed/nora-hero/800/1000" alt="Colección destacada">
+    </div>
+  </section>
+
+  <div class="cat-strip">
+    <a href="#" class="active">Todo</a>
+    <a href="#">Vestidos</a>
+    <a href="#">Camisas</a>
+    <a href="#">Pantalones</a>
+    <a href="#">Accesorios</a>
+  </div>
+
+  <section class="productos" id="productos">
+    <h2>Lo más reciente</h2>
+    <div class="grid-productos">
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/nora1/500/650" alt="Vestido lino">
+        <div class="cat">Vestidos</div>
+        <h3>Vestido de lino crudo</h3>
+        <div class="precio">$48.900</div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/nora2/500/650" alt="Camisa oversize">
+        <div class="cat">Camisas</div>
+        <h3>Camisa oversize algodón</h3>
+        <div class="precio"><span class="old">$39.900</span>$29.900</div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/nora3/500/650" alt="Pantalón sastrero">
+        <div class="cat">Pantalones</div>
+        <h3>Pantalón sastrero recto</h3>
+        <div class="precio">$52.500</div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/nora4/500/650" alt="Cartera cuero">
+        <div class="cat">Accesorios</div>
+        <h3>Cartera de cuero mini</h3>
+        <div class="precio">$64.000</div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/nora5/500/650" alt="Blazer">
+        <div class="cat">Sale</div>
+        <h3>Blazer estructurado</h3>
+        <div class="precio"><span class="old">$78.000</span>$55.900</div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+      <div class="producto-card">
+        <img src="https://picsum.photos/seed/nora6/500/650" alt="Pañuelo seda">
+        <div class="cat">Accesorios</div>
+        <h3>Pañuelo de seda estampado</h3>
+        <div class="precio">$18.500</div>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="banner-medio">
+    <h2>Envío gratis a partir de $60.000</h2>
+    <p>Cambios y devoluciones sin cargo dentro de los 30 días.</p>
+    <a class="btn" style="background:#fff;color:#2a2a2a;" href="#productos">Seguir comprando</a>
+  </div>
+
+  <footer>
+    <div class="logo" style="font-size:1.3rem;">NORA</div>
+    <div class="pago-icons">
+      <span>💳 Visa</span>
+      <span>💳 Mastercard</span>
+      <span>🅿️ Mercado Pago</span>
+      <span>🏦 Transferencia</span>
+    </div>
+    <p class="copy">© 2026 NORA. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

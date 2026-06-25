@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Más Ejemplos de Páginas</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f6; color: #222; padding: 60px 20px; }
+  h1 { text-align: center; font-size: 2.2rem; margin-bottom: 10px; }
+  p.sub { text-align: center; color: #666; margin-bottom: 50px; max-width: 600px; margin-left:auto; margin-right:auto; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+  .card {
+    border-radius: 14px; padding: 40px 25px; text-decoration: none; color: #fff;
+    display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;
+    transition: transform .2s ease, box-shadow .2s ease; box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 10px 24px rgba(0,0,0,0.2); }
+  .card h2 { font-size: 1.4rem; margin-bottom: 8px; }
+  .card p { font-size: .95rem; opacity: .9; }
+  .card span { margin-top: 20px; font-weight: bold; font-size: .85rem; letter-spacing: .5px; }
+  .c1 { background: linear-gradient(135deg,#c97b84,#8a4a55); }
+  .c2 { background: linear-gradient(135deg,#7a3b1d,#c9622e); }
+  .c3 { background: linear-gradient(135deg,#1e3a8a,#3b5fd9); }
+  .c4 { background: linear-gradient(135deg,#0f1c2e,#1f3a5f); }
+</style>
+</head>
+<body>
+  <h1>4 ejemplos más de página</h1>
+  <p class="sub">Otros formatos para mostrarle a negocios de rubros distintos a los anteriores.</p>
+  <div class="grid">
+    <a class="card c1" href="01-reservas.html">
+      <div><h2>1. Reserva de Turnos</h2><p>Para peluquerías, gimnasios, consultorios — servicios con precio/duración y formulario de turno.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+    <a class="card c2" href="02-menu-restaurante.html">
+      <div><h2>2. Menú de Restaurante</h2><p>Carta visual con categorías, fotos de platos y reserva de mesa.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+    <a class="card c3" href="03-leads.html">
+      <div><h2>3. Captación de Leads</h2><p>Una sola pantalla enfocada en conseguir el contacto: nombre, teléfono y email.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+    <a class="card c4" href="04-portfolio-profesional.html">
+      <div><h2>4. Portfolio Profesional</h2><p>Para abogados, contadores, arquitectos — credenciales, áreas y consulta.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+  </div>
+</body>
+</html>

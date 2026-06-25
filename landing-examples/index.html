@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplos de Landing Pages</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f4f6;
+    color: #222;
+    padding: 60px 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+  p.sub {
+    text-align: center;
+    color: #666;
+    margin-bottom: 50px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .card {
+    border-radius: 14px;
+    padding: 40px 25px;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    transition: transform .2s ease, box-shadow .2s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 10px 24px rgba(0,0,0,0.2); }
+  .card h2 { font-size: 1.4rem; margin-bottom: 8px; }
+  .card p { font-size: .95rem; opacity: .9; }
+  .card span { margin-top: 20px; font-weight: bold; font-size: .85rem; letter-spacing: .5px; }
+
+  .c1 { background: linear-gradient(135deg,#1a1a1a,#3a3a3a); }
+  .c2 { background: linear-gradient(135deg,#0f2027,#2c5364); }
+  .c3 { background: linear-gradient(135deg,#6b4226,#a9744f); }
+  .c4 { background: linear-gradient(135deg,#1a1a1a,#3d2e0a); border: 1px solid #d4af37; }
+  .c5 { background: linear-gradient(135deg,#ff416c,#ff8a00); }
+</style>
+</head>
+<body>
+  <h1>5 estilos de Landing Page</h1>
+  <p class="sub">Elegí el que más te represente — después lo personalizamos con tu info, fotos y datos de contacto.</p>
+  <div class="grid">
+    <a class="card c1" href="01-minimalista.html">
+      <div><h2>1. Minimalista</h2><p>Blanco y negro, tipografía limpia, foco total en el contenido.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+    <a class="card c2" href="02-moderna.html">
+      <div><h2>2. Moderna</h2><p>Estética tech, modo oscuro, efectos de vidrio y gradientes.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+    <a class="card c3" href="03-rustica.html">
+      <div><h2>3. Rústica</h2><p>Tonos tierra y madera, cálida, ideal para negocios artesanales.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+    <a class="card c4" href="04-elegante.html">
+      <div><h2>4. Elegante / Lujo</h2><p>Negro y dorado, serif, para marcas premium.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+    <a class="card c5" href="05-bold.html">
+      <div><h2>5. Bold / Colorida</h2><p>Vibrante y geométrica, para negocios jóvenes y dinámicos.</p></div>
+      <span>VER DEMO →</span>
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOMBRE DEL RESTAURANTE]</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Lato', sans-serif; background: #fff8f0; color: #2e2218; line-height: 1.6; }
+  header {
+    display: flex; justify-content: space-between; align-items: center; padding: 24px 7%;
+    background: #2e2218; color: #fff8f0;
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #e3a857; }
+  nav a { color: #f0e6d8; text-decoration: none; margin-left: 28px; font-size: .9rem; }
+  nav a:hover { color: #e3a857; }
+  .btn {
+    display: inline-block; padding: 13px 28px; background: #e3a857; color: #2e2218; text-decoration: none;
+    border-radius: 6px; font-weight: 700; font-size: .88rem;
+  }
+  .btn:hover { opacity: .88; }
+
+  .hero {
+    text-align: center; padding: 110px 7% 90px; color: #fff;
+    background: linear-gradient(rgba(20,14,8,.6), rgba(20,14,8,.6)), url('https://picsum.photos/seed/resto-hero/1600/700');
+    background-size: cover; background-position: center;
+  }
+  .hero span.tag { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #e3a857; display: block; margin-bottom: 14px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; margin-bottom: 22px; }
+  .hero p { max-width: 480px; margin: 0 auto 36px; color: #f0e6d8; }
+
+  .menu { padding: 90px 7%; max-width: 1100px; margin: 0 auto; }
+  .menu h2 { font-family: 'Playfair Display', serif; text-align: center; font-size: 2.2rem; margin-bottom: 16px; color: #5c3a1e; }
+  .menu .sub { text-align: center; color: #8a6e4e; margin-bottom: 50px; }
+  .menu-tabs { display: flex; justify-content: center; gap: 14px; margin-bottom: 50px; flex-wrap: wrap; }
+  .menu-tabs span {
+    padding: 10px 22px; border: 1px solid #e3a857; border-radius: 30px; font-size: .85rem; color: #5c3a1e;
+  }
+  .menu-tabs span.active { background: #e3a857; color: #2e2218; font-weight: 700; }
+
+  .categoria { margin-bottom: 60px; }
+  .categoria h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 26px; color: #5c3a1e; border-bottom: 2px solid #e3a857; padding-bottom: 8px; display: inline-block; }
+  .platos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+  .plato { display: flex; gap: 16px; }
+  .plato img { width: 90px; height: 90px; object-fit: cover; border-radius: 10px; flex-shrink: 0; }
+  .plato .info { flex: 1; }
+  .plato .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .plato h4 { font-size: 1.02rem; font-weight: 700; }
+  .plato .precio { font-weight: 700; color: #b9762f; white-space: nowrap; }
+  .plato p { font-size: .87rem; color: #8a6e4e; margin-top: 4px; }
+
+  .reserva-banner {
+    text-align: center; padding: 80px 7%; background: #2e2218; color: #fff;
+  }
+  .reserva-banner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 16px; }
+  .reserva-banner p { color: #d8c8b0; margin-bottom: 32px; }
+
+  footer { text-align: center; padding: 36px 7%; color: #8a6e4e; font-size: .85rem; background: #fff8f0; }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">[Nombre]</div>
+    <nav>
+      <a href="#menu">Menú</a>
+      <a href="#reservar">Reservas</a>
+    </nav>
+    <a class="btn" href="#reservar">Reservar mesa</a>
+  </header>
+
+  <section class="hero">
+    <span class="tag">Cocina de autor</span>
+    <h1>[Nombre del Restaurante]</h1>
+    <p>[Frase que describa la propuesta gastronómica: tipo de cocina, ingredientes, ambiente.]</p>
+    <a class="btn" href="#menu">Ver el menú</a>
+  </section>
+
+  <section class="menu" id="menu">
+    <h2>Nuestro Menú</h2>
+    <p class="sub">Platos elaborados con ingredientes frescos de estación</p>
+    <div class="menu-tabs">
+      <span class="active">Entradas</span>
+      <span>Principales</span>
+      <span>Postres</span>
+      <span>Bebidas</span>
+    </div>
+
+    <div class="categoria">
+      <h3>Entradas</h3>
+      <div class="platos">
+        <div class="plato">
+          <img src="https://picsum.photos/seed/plato1/200/200" alt="Entrada 1">
+          <div class="info">
+            <div class="top"><h4>[Nombre del plato]</h4><span class="precio">$8.500</span></div>
+            <p>Breve descripción de los ingredientes principales del plato.</p>
+          </div>
+        </div>
+        <div class="plato">
+          <img src="https://picsum.photos/seed/plato2/200/200" alt="Entrada 2">
+          <div class="info">
+            <div class="top"><h4>[Nombre del plato]</h4><span class="precio">$7.200</span></div>
+            <p>Breve descripción de los ingredientes principales del plato.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="categoria">
+      <h3>Principales</h3>
+      <div class="platos">
+        <div class="plato">
+          <img src="https://picsum.photos/seed/plato3/200/200" alt="Principal 1">
+          <div class="info">
+            <div class="top"><h4>[Nombre del plato]</h4><span class="precio">$16.900</span></div>
+            <p>Breve descripción de los ingredientes principales del plato.</p>
+          </div>
+        </div>
+        <div class="plato">
+          <img src="https://picsum.photos/seed/plato4/200/200" alt="Principal 2">
+          <div class="info">
+            <div class="top"><h4>[Nombre del plato]</h4><span class="precio">$18.500</span></div>
+            <p>Breve descripción de los ingredientes principales del plato.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="categoria">
+      <h3>Postres</h3>
+      <div class="platos">
+        <div class="plato">
+          <img src="https://picsum.photos/seed/plato5/200/200" alt="Postre 1">
+          <div class="info">
+            <div class="top"><h4>[Nombre del postre]</h4><span class="precio">$6.000</span></div>
+            <p>Breve descripción del postre.</p>
+          </div>
+        </div>
+        <div class="plato">
+          <img src="https://picsum.photos/seed/plato6/200/200" alt="Postre 2">
+          <div class="info">
+            <div class="top"><h4>[Nombre del postre]</h4><span class="precio">$5.500</span></div>
+            <p>Breve descripción del postre.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reserva-banner" id="reservar">
+    <h2>Reservá tu mesa</h2>
+    <p>[Dirección] · [Horario] · [Teléfono]</p>
+    <a class="btn" href="https://wa.me/5491123456789" target="_blank">Reservar por WhatsApp</a>
+  </section>
+
+  <footer>
+    © 2026 [Nombre del Restaurante]. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

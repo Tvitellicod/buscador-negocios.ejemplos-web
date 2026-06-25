@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio Lumen</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #fff8f0;
+    color: #1a1a1a;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #ff416c;
+  }
+  nav a {
+    color: #1a1a1a;
+    text-decoration: none;
+    margin-left: 28px;
+    font-weight: 500;
+    font-size: .95rem;
+  }
+  nav a:hover { color: #ff416c; }
+
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 110px 8% 100px;
+    background: linear-gradient(135deg,#ff416c,#ff8a00);
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero::before, .hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+  .hero::before { width: 260px; height: 260px; background: rgba(255,255,255,.15); top: -80px; left: -80px; }
+  .hero::after { width: 200px; height: 200px; background: rgba(255,255,255,.12); bottom: -60px; right: -40px; }
+  .hero h1 {
+    font-size: 3.3rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero p {
+    max-width: 540px;
+    margin: 0 auto 38px;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+  }
+  .btn {
+    display: inline-block;
+    padding: 17px 40px;
+    background: #1a1a1a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 8px 20px rgba(0,0,0,.25);
+    transition: transform .2s;
+  }
+  .btn:hover { transform: scale(1.05); }
+  .btn-alt { background: #fff; color: #ff416c; }
+
+  section.servicios {
+    padding: 90px 8%;
+    max-width: 1150px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  section.servicios h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 55px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+  }
+  .card {
+    border-radius: 20px;
+    padding: 38px 26px;
+    color: #fff;
+    text-align: left;
+  }
+  .card:nth-child(1) { background: linear-gradient(135deg,#ff416c,#ff8a00); }
+  .card:nth-child(2) { background: linear-gradient(135deg,#7b2ff7,#f107a3); }
+  .card:nth-child(3) { background: linear-gradient(135deg,#00c6ff,#0072ff); }
+  .card h3 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; }
+  .card p { font-size: .95rem; opacity: .92; }
+
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 0 8% 90px;
+    max-width: 1150px;
+    margin: 0 auto;
+  }
+  .galeria img {
+    aspect-ratio: 1;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 16px;
+  }
+
+  .contacto {
+    text-align: center;
+    padding: 90px 8%;
+    background: #1a1a1a;
+    color: #fff;
+  }
+  .contacto h2 { font-size: 2.1rem; font-weight: 800; margin-bottom: 16px; }
+  .contacto p { color: #c9c9c9; margin-bottom: 35px; }
+
+  footer {
+    text-align: center;
+    padding: 25px;
+    font-size: .85rem;
+    background: #fff8f0;
+    color: #999;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">LUMEN⚡</div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>¡Hacemos que tu marca brille!</h1>
+    <p>Branding, diseño web y contenido para marcas que quieren romperla en digital.</p>
+    <a class="btn btn-alt" href="https://wa.me/5491123456789" target="_blank">¡Quiero saber más! 🚀</a>
+  </section>
+
+  <section class="servicios" id="servicios">
+    <h2>Lo que te ofrecemos</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Branding</h3>
+        <p>Creamos una identidad visual con personalidad propia para tu marca.</p>
+      </div>
+      <div class="card">
+        <h3>Diseño Web</h3>
+        <p>Sitios web coloridos, rápidos y que generan clientes.</p>
+      </div>
+      <div class="card">
+        <h3>Redes Sociales</h3>
+        <p>Piezas gráficas que hacen que tu marca se destaque en el feed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="galeria" id="galeria">
+    <img src="https://picsum.photos/seed/lumen1/700/700" alt="Foto de referencia 1" loading="lazy">
+    <img src="https://picsum.photos/seed/lumen2/700/700" alt="Foto de referencia 2" loading="lazy">
+    <img src="https://picsum.photos/seed/lumen3/700/700" alt="Foto de referencia 3" loading="lazy">
+    <img src="https://picsum.photos/seed/lumen4/700/700" alt="Foto de referencia 4" loading="lazy">
+  </section>
+
+  <section class="contacto" id="contacto">
+    <h2>¡Dale, escribinos!</h2>
+    <p>+54 9 11 2345-6789 · Av. Corrientes 1234, CABA · @estudiolumen</p>
+    <a class="btn" href="https://wa.me/5491123456789" target="_blank">Contactar por WhatsApp</a>
+  </section>
+
+  <footer>© 2026 Estudio Lumen</footer>
+
+</body>
+</html>
