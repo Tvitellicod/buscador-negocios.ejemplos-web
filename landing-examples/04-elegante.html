@@ -3,190 +3,330 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estudio Lumen</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<title>Madeleine — Hair Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
+  :root { --black:#0a0a0a; --gold:#c8a96e; --gold2:#e8c97a; --cream:#f8f5ee; --gray:#9a9080; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Lato', sans-serif;
-    background: #0c0c0c;
-    color: #e8e2d4;
-    line-height: 1.7;
-  }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Montserrat',sans-serif; background:var(--black); color:var(--cream); line-height:1.7; }
+
+  /* CURSOR */
+  .cursor { width:12px; height:12px; border-radius:50%; background:var(--gold); position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .2s,height .2s,opacity .2s; mix-blend-mode:difference; }
+  .cursor-ring { width:36px; height:36px; border-radius:50%; border:1px solid var(--gold); position:fixed; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:left .08s,top .08s; }
+
+  /* NAV */
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 8%;
-    border-bottom: 1px solid #3a3526;
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:24px 7%; transition:background .4s, border .4s;
   }
-  .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.7rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #d4af37;
-  }
-  nav a {
-    color: #c9c2ad;
-    text-decoration: none;
-    margin-left: 35px;
-    font-size: .8rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-  nav a:hover { color: #d4af37; }
+  header.scrolled { background:rgba(10,10,10,.95); border-bottom:1px solid rgba(200,169,110,.15); backdrop-filter:blur(10px); }
+  .logo { font-family:'Cormorant Garamond',serif; font-size:1.8rem; letter-spacing:3px; color:var(--gold); font-weight:500; }
+  nav a { color:rgba(248,245,238,.6); text-decoration:none; margin-left:32px; font-size:.75rem; letter-spacing:2px; text-transform:uppercase; transition:color .2s; }
+  nav a:hover { color:var(--gold); }
+  .nav-cta { margin-left:32px; padding:10px 24px; border:1px solid var(--gold); color:var(--gold) !important; font-size:.7rem !important; letter-spacing:2px; border-radius:0; transition:all .25s !important; }
+  .nav-cta:hover { background:var(--gold); color:var(--black) !important; }
 
-  .hero {
-    text-align: center;
-    padding: 150px 8% 120px;
-    background:
-      radial-gradient(ellipse at center, rgba(212,175,55,.08), transparent 60%);
-  }
-  .hero .line {
-    width: 60px; height: 1px; background: #d4af37; margin: 0 auto 25px;
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.6rem;
-    font-weight: 600;
-    margin-bottom: 22px;
-    letter-spacing: 1px;
-  }
-  .hero p {
-    color: #b8af96;
-    max-width: 500px;
-    margin: 0 auto 45px;
-    font-size: 1.05rem;
-    font-weight: 300;
-  }
-  .btn {
-    display: inline-block;
-    padding: 16px 42px;
-    border: 1px solid #d4af37;
-    color: #d4af37;
-    text-decoration: none;
-    letter-spacing: 2px;
-    font-size: .8rem;
-    text-transform: uppercase;
-    transition: all .3s;
-  }
-  .btn:hover { background: #d4af37; color: #0c0c0c; }
+  /* HERO */
+  .hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; padding-top:80px; }
+  .hero-img { position:absolute; inset:0; }
+  .hero-img img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.45); }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(to right, rgba(10,10,10,.8) 40%, transparent 100%); }
+  .hero-content { position:relative; z-index:2; padding:0 7%; max-width:660px; }
+  .hero-line { width:50px; height:1px; background:var(--gold); margin-bottom:28px; }
+  .hero-label { font-size:.72rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; display:block; }
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,6vw,5rem); font-weight:500; line-height:1.1; margin-bottom:24px; }
+  .hero p { color:rgba(248,245,238,.7); font-size:.95rem; font-weight:300; max-width:420px; margin-bottom:44px; letter-spacing:.3px; }
+  .hero-btns { display:flex; gap:20px; }
+  .btn-gold { padding:16px 38px; background:var(--gold); color:var(--black); text-decoration:none; font-size:.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:background .25s, color .25s; }
+  .btn-gold:hover { background:var(--gold2); }
+  .btn-border { padding:16px 38px; border:1px solid rgba(248,245,238,.3); color:var(--cream); text-decoration:none; font-size:.75rem; letter-spacing:2px; text-transform:uppercase; transition:border-color .25s; }
+  .btn-border:hover { border-color:var(--gold); color:var(--gold); }
 
-  section.servicios {
-    padding: 100px 8%;
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
+  /* SERVICIOS */
+  .servicios { padding:110px 7%; max-width:1200px; margin:0 auto; }
+  .section-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:70px; }
+  .section-head h2 { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:500; }
+  .section-head p { color:var(--gray); font-size:.85rem; max-width:280px; text-align:right; line-height:1.8; }
+  .servicios-lista { display:flex; flex-direction:column; gap:0; }
+  .servicio-row {
+    display:grid; grid-template-columns:2fr 1fr 1fr auto; align-items:center;
+    padding:28px 0; border-bottom:1px solid rgba(248,245,238,.08);
+    transition:background .2s;
   }
-  section.servicios h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.3rem;
-    margin-bottom: 70px;
-    font-weight: 600;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 50px;
-  }
-  .card .line { width: 30px; height: 1px; background: #d4af37; margin: 0 auto 20px; }
-  .card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    margin-bottom: 14px;
-    color: #d4af37;
-  }
-  .card p { color: #b8af96; font-size: .92rem; font-weight: 300; }
+  .servicio-row:hover { background:rgba(200,169,110,.04); padding-left:16px; padding-right:16px; border-radius:6px; }
+  .servicio-row h3 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:500; }
+  .servicio-row .duracion { color:var(--gray); font-size:.82rem; letter-spacing:.5px; }
+  .servicio-row .precio { color:var(--gold); font-size:1rem; font-weight:600; }
+  .servicio-row .reservar { font-size:.72rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); text-decoration:none; border-bottom:1px solid transparent; padding-bottom:2px; transition:color .2s,border-color .2s; }
+  .servicio-row:hover .reservar { color:var(--gold); border-color:var(--gold); }
 
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-  .galeria img {
-    aspect-ratio: 1;
-    width: 100%;
-    object-fit: cover;
-    display: block;
-    border: 1px solid #2a2a2a;
-    filter: grayscale(15%) contrast(1.05);
-  }
+  /* GALERIA MOOD */
+  .galeria { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:auto auto; gap:3px; }
+  .galeria-item { overflow:hidden; position:relative; }
+  .galeria-item:first-child { grid-row:1/3; }
+  .galeria-item img { width:100%; height:100%; min-height:250px; object-fit:cover; display:block; filter:grayscale(20%) contrast(1.05); transition:transform .5s ease, filter .4s; }
+  .galeria-item:hover img { transform:scale(1.04); filter:grayscale(0) contrast(1); }
+  .galeria-caption { position:absolute; bottom:0; left:0; right:0; padding:20px; background:linear-gradient(transparent,rgba(0,0,0,.6)); opacity:0; transition:opacity .3s; }
+  .galeria-item:hover .galeria-caption { opacity:1; }
+  .galeria-caption span { font-size:.78rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); }
 
-  .contacto {
-    text-align: center;
-    padding: 110px 8%;
-  }
-  .contacto h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    margin-bottom: 18px;
-    font-weight: 600;
-  }
-  .contacto p { color: #b8af96; margin-bottom: 38px; font-weight: 300; }
+  /* STATS */
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(200,169,110,.15); border-bottom:1px solid rgba(200,169,110,.15); }
+  .stat-box { padding:60px 30px; text-align:center; border-right:1px solid rgba(200,169,110,.15); }
+  .stat-box:last-child { border-right:none; }
+  .stat-box .big { font-family:'Cormorant Garamond',serif; font-size:3.2rem; font-weight:600; color:var(--gold); display:block; }
+  .stat-box .lbl { font-size:.72rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); margin-top:6px; }
 
-  footer {
-    text-align: center;
-    padding: 30px;
-    font-size: .78rem;
-    letter-spacing: 1px;
-    color: #6b6650;
-    border-top: 1px solid #2a2a2a;
+  /* SOBRE */
+  .sobre { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:0; }
+  .sobre-img img { width:100%; aspect-ratio:4/5; object-fit:cover; display:block; }
+  .sobre-text { padding:80px 7%; }
+  .sobre-text .tag { font-size:.72rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:20px; }
+  .sobre-text h2 { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:500; margin-bottom:24px; }
+  .sobre-text p { color:var(--gray); font-size:.9rem; margin-bottom:18px; font-weight:300; }
+  .sobre-text .firma { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-style:italic; color:var(--gold); margin-top:28px; }
+
+  /* TESTIMONIOS */
+  .testimonios { padding:100px 7%; }
+  .testimonios h2 { font-family:'Cormorant Garamond',serif; font-size:2.4rem; text-align:center; margin-bottom:60px; font-weight:500; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+  .testi-card { padding:40px 32px; background:rgba(248,245,238,.03); border:1px solid rgba(248,245,238,.06); }
+  .stars { color:var(--gold); font-size:.8rem; margin-bottom:18px; letter-spacing:3px; }
+  .testi-card p { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; color:rgba(248,245,238,.75); line-height:1.8; margin-bottom:24px; }
+  .testi-autor { font-size:.78rem; letter-spacing:1px; text-transform:uppercase; color:var(--gray); }
+
+  /* BOOKING */
+  .booking { padding:110px 7%; text-align:center; background:radial-gradient(ellipse at center,rgba(200,169,110,.06) 0,transparent 70%); }
+  .booking .line { width:50px; height:1px; background:var(--gold); margin:0 auto 30px; }
+  .booking h2 { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:500; margin-bottom:18px; }
+  .booking p { color:var(--gray); margin-bottom:46px; font-size:.9rem; font-weight:300; letter-spacing:.3px; }
+
+  /* FOOTER */
+  footer { padding:40px 7%; border-top:1px solid rgba(200,169,110,.1); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .copy { font-size:.75rem; letter-spacing:.5px; color:var(--gray); }
+  footer nav a { color:var(--gray); font-size:.75rem; letter-spacing:1px; text-decoration:none; margin-left:24px; text-transform:uppercase; transition:color .2s; }
+  footer nav a:hover { color:var(--gold); }
+
+  /* WA */
+  .wabtn { position:fixed; bottom:28px; right:28px; z-index:200; width:56px; height:56px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(37,211,102,.4); text-decoration:none; transition:transform .2s; }
+  .wabtn:hover { transform:scale(1.1); }
+  .wabtn svg { width:28px; height:28px; fill:#fff; }
+
+  @media(max-width:900px) {
+    .section-head { flex-direction:column; gap:14px; }
+    .section-head p { text-align:left; }
+    .servicio-row { grid-template-columns:1fr 1fr; row-gap:8px; }
+    .servicio-row .reservar { display:none; }
+    .galeria { grid-template-columns:1fr; }
+    .galeria-item:first-child { grid-row:auto; }
+    .stats { grid-template-columns:1fr 1fr; }
+    .stat-box:nth-child(2) { border-right:none; }
+    .sobre { grid-template-columns:1fr; }
+    .testi-grid { grid-template-columns:1fr; }
+    nav a:not(.nav-cta) { display:none; }
+    footer { flex-direction:column; }
+    .cursor, .cursor-ring { display:none; }
   }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">LUMEN</div>
-    <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#galeria">Galería</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  <section class="hero">
-    <div class="line"></div>
-    <h1>Estudio Lumen</h1>
-    <p>Diseño y branding de alta gama para marcas que buscan distinción y elegancia atemporal.</p>
-    <a class="btn" href="https://wa.me/5491123456789" target="_blank">Solicitar contacto</a>
-  </section>
+<header id="navbar">
+  <div class="logo">MADELEINE</div>
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#nosotros">El estudio</a>
+    <a href="https://wa.me/5491123456789" target="_blank" class="nav-cta">Reservar turno</a>
+  </nav>
+</header>
 
-  <section class="servicios" id="servicios">
-    <h2>Experiencias</h2>
-    <div class="cards">
-      <div class="card">
-        <div class="line"></div>
-        <h3>Identidad de marca</h3>
-        <p>Desarrollo integral de marca: logo, paleta y manual de identidad.</p>
-      </div>
-      <div class="card">
-        <div class="line"></div>
-        <h3>Diseño web</h3>
-        <p>Sitios web sobrios y refinados, a la altura de tu marca.</p>
-      </div>
-      <div class="card">
-        <div class="line"></div>
-        <h3>Diseño editorial</h3>
-        <p>Piezas gráficas exclusivas para comunicación impresa y digital.</p>
-      </div>
+<section class="hero">
+  <div class="hero-img"><img src="https://picsum.photos/seed/salon-hero/1600/900" alt="Madeleine Hair Studio"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+    <div class="hero-line"></div>
+    <span class="hero-label">Hair Studio · Recoleta, Buenos Aires</span>
+    <h1>Tu cabello.<br>Tu identidad.</h1>
+    <p>Un espacio diseñado para que salgas sintiéndote exactamente como querés. Sin apuros. Sin plantillas.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5491123456789" target="_blank" class="btn-gold">Reservar turno</a>
+      <a href="#servicios" class="btn-border">Ver servicios</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="galeria" id="galeria">
-    <img src="https://picsum.photos/seed/lumen1/700/700" alt="Foto de referencia 1" loading="lazy">
-    <img src="https://picsum.photos/seed/lumen2/700/700" alt="Foto de referencia 2" loading="lazy">
-    <img src="https://picsum.photos/seed/lumen3/700/700" alt="Foto de referencia 3" loading="lazy">
-  </section>
+<section class="servicios" id="servicios">
+  <div class="section-head" data-aos="fade-up">
+    <h2>Servicios</h2>
+    <p>Todos los servicios incluyen consulta personalizada y productos de alta gama.</p>
+  </div>
+  <div class="servicios-lista">
+    <div class="servicio-row" data-aos="fade-up" data-aos-delay="0">
+      <h3>Corte + secado</h3>
+      <span class="duracion">60 min</span>
+      <span class="precio">$18.000</span>
+      <a href="https://wa.me/5491123456789" class="reservar">Reservar →</a>
+    </div>
+    <div class="servicio-row" data-aos="fade-up" data-aos-delay="60">
+      <h3>Coloración completa</h3>
+      <span class="duracion">90–120 min</span>
+      <span class="precio">desde $35.000</span>
+      <a href="https://wa.me/5491123456789" class="reservar">Reservar →</a>
+    </div>
+    <div class="servicio-row" data-aos="fade-up" data-aos-delay="120">
+      <h3>Balayage / Mechas</h3>
+      <span class="duracion">120–180 min</span>
+      <span class="precio">desde $48.000</span>
+      <a href="https://wa.me/5491123456789" class="reservar">Reservar →</a>
+    </div>
+    <div class="servicio-row" data-aos="fade-up" data-aos-delay="180">
+      <h3>Keratina brasileña</h3>
+      <span class="duracion">180 min</span>
+      <span class="precio">desde $55.000</span>
+      <a href="https://wa.me/5491123456789" class="reservar">Reservar →</a>
+    </div>
+    <div class="servicio-row" data-aos="fade-up" data-aos-delay="240">
+      <h3>Tratamiento nutritivo</h3>
+      <span class="duracion">45 min</span>
+      <span class="precio">$22.000</span>
+      <a href="https://wa.me/5491123456789" class="reservar">Reservar →</a>
+    </div>
+    <div class="servicio-row" data-aos="fade-up" data-aos-delay="300">
+      <h3>Peinado de evento</h3>
+      <span class="duracion">60–90 min</span>
+      <span class="precio">desde $28.000</span>
+      <a href="https://wa.me/5491123456789" class="reservar">Reservar →</a>
+    </div>
+  </div>
+</section>
 
-  <section class="contacto" id="contacto">
-    <h2>Reserve su lugar</h2>
-    <p>Av. Corrientes 1234, CABA · +54 9 11 2345-6789 · Lun a Vie 9 a 18 hs</p>
-    <a class="btn" href="https://wa.me/5491123456789" target="_blank">Contactar por WhatsApp</a>
-  </section>
+<section class="galeria" id="galeria">
+  <div class="galeria-item" data-aos="fade-right">
+    <img src="https://picsum.photos/seed/hair1/800/1100" alt="Resultado 1">
+    <div class="galeria-caption"><span>Balayage · Caramelo</span></div>
+  </div>
+  <div class="galeria-item" data-aos="fade-left" data-aos-delay="0">
+    <img src="https://picsum.photos/seed/hair2/800/540" alt="Resultado 2">
+    <div class="galeria-caption"><span>Coloración completa</span></div>
+  </div>
+  <div class="galeria-item" data-aos="fade-left" data-aos-delay="80">
+    <img src="https://picsum.photos/seed/hair3/800/540" alt="Resultado 3">
+    <div class="galeria-caption"><span>Corte + secado</span></div>
+  </div>
+</section>
 
-  <footer>© 2026 ESTUDIO LUMEN</footer>
+<div class="stats">
+  <div class="stat-box" data-aos="fade-up" data-aos-delay="0">
+    <span class="big counter" data-target="8">0</span>
+    <span class="lbl">años de experiencia</span>
+  </div>
+  <div class="stat-box" data-aos="fade-up" data-aos-delay="80">
+    <span class="big counter" data-target="2400">0</span>
+    <span class="lbl">clientas satisfechas</span>
+  </div>
+  <div class="stat-box" data-aos="fade-up" data-aos-delay="160">
+    <span class="big counter" data-target="4">0</span>
+    <span class="lbl">profesionales</span>
+  </div>
+  <div class="stat-box" data-aos="fade-up" data-aos-delay="240">
+    <span class="big">98%</span>
+    <span class="lbl">regresan</span>
+  </div>
+</div>
 
+<section class="sobre" id="nosotros">
+  <div class="sobre-img" data-aos="fade-right"><img src="https://picsum.photos/seed/salon-about/700/900" alt="El estudio"></div>
+  <div class="sobre-text" data-aos="fade-left">
+    <span class="tag">El estudio</span>
+    <h2>Un lugar para vos, no para las fotos.</h2>
+    <p>Madeleine nació en 2018 con una convicción: que un buen estudio de peluquería tiene que ser un lugar donde te sentís cómoda, escuchada y donde el resultado sea realmente el que querías.</p>
+    <p>Trabajamos con productos sin sulfatos ni parabenos, y cada servicio empieza con una consulta de 15 minutos para entender qué necesitás.</p>
+    <p>Nuestro equipo se forma continuamente en Buenos Aires, São Paulo y Madrid para traerte las últimas técnicas del mundo.</p>
+    <div class="firma">— Madeleine Laurent, directora</div>
+  </div>
+</section>
+
+<section class="testimonios">
+  <h2 data-aos="fade-up">Voces del estudio</h2>
+  <div class="testi-grid">
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="stars">★ ★ ★ ★ ★</div>
+      <p>"Hacía años que no encontraba un lugar donde realmente te escuchen. Me hicieron exactamente el balayage que quería y mi pelo quedó mejor que en ningún otro lado."</p>
+      <div class="testi-autor">— Valentina C., Recoleta</div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="stars">★ ★ ★ ★ ★</div>
+      <p>"La keratina que me hicieron duró 5 meses. Mi pelo quedó suave, sin frizz y sin ese olor raro de otros lugares. No voy a ir a ningún otro estudio."</p>
+      <div class="testi-autor">— Camila R., Palermo</div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="stars">★ ★ ★ ★ ★</div>
+      <p>"Me arreglaron el pelo para mi casamiento y fue todo perfecto. El peinado aguantó horas de baile y de fotos. Cero estrés ese día."</p>
+      <div class="testi-autor">— Agustina M., San Telmo</div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="contacto">
+  <div class="line" data-aos="fade-up"></div>
+  <h2 data-aos="fade-up">Reservá tu turno</h2>
+  <p data-aos="fade-up" data-aos-delay="100">Respondemos en menos de 2 horas en horario de atención.<br>Lun–Sáb · 9:00 a 19:00 · Av. Callao 1240, Recoleta</p>
+  <a href="https://wa.me/5491123456789" target="_blank" class="btn-gold" data-aos="fade-up" data-aos-delay="200">Escribir por WhatsApp</a>
+</section>
+
+<footer>
+  <div class="copy">© 2026 Madeleine Hair Studio. Av. Callao 1240, Recoleta · +54 9 11 5830-2241</div>
+  <nav>
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+  </nav>
+</footer>
+
+<a href="https://wa.me/5491123456789" target="_blank" class="wabtn">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, offset:60 });
+
+  // Sticky nav
+  const hdr = document.getElementById('navbar');
+  window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 60));
+
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  });
+
+  // Counters
+  const obs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    document.querySelectorAll('.counter').forEach(el => {
+      const target = +el.dataset.target;
+      let cur = 0;
+      const step = target / 80;
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = Math.floor(cur) + '+';
+        if (cur >= target) clearInterval(t);
+      }, 16);
+    });
+    obs.disconnect();
+  }, { threshold: .4 });
+  obs.observe(document.querySelector('.stats'));
+</script>
 </body>
 </html>

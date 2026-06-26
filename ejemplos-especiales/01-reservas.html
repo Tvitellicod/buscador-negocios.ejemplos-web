@@ -3,162 +3,344 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[NOMBRE DEL NEGOCIO]</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Bella Studio — Peluquería & Estética</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
+  :root { --rose:#9b4d5c; --rose-light:#c97b8a; --blush:#fbeaec; --dark:#4a2a2e; --gray:#8a6266; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: 'Lato', sans-serif; background: #fbeaec; color: #4a2a2e; line-height: 1.6; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Lato',sans-serif; background:var(--blush); color:var(--dark); line-height:1.65; }
+
+  /* NAV */
   header {
-    display: flex; justify-content: space-between; align-items: center; padding: 26px 7%;
-    background: #fff; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    position:sticky; top:0; z-index:100; background:#fff;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 7%; box-shadow:0 2px 20px rgba(0,0,0,.06);
   }
-  .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #8a4a55; }
-  nav a { color: #4a2a2e; text-decoration: none; margin-left: 30px; font-size: .92rem; }
-  nav a:hover { color: #8a4a55; }
-  .btn {
-    display: inline-block; padding: 14px 32px; background: #8a4a55; color: #fff; text-decoration: none;
-    border-radius: 30px; font-weight: 600; font-size: .9rem; transition: opacity .2s;
-  }
-  .btn:hover { opacity: .85; }
-  .btn-outline { background: transparent; border: 1px solid #8a4a55; color: #8a4a55; }
+  .logo { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--rose); font-weight:700; }
+  .logo em { font-style:italic; font-weight:600; }
+  nav { display:flex; align-items:center; gap:28px; }
+  nav a { color:var(--dark); text-decoration:none; font-size:.88rem; transition:color .2s; }
+  nav a:hover { color:var(--rose); }
+  .nav-btn { padding:11px 26px; background:var(--rose); color:#fff; border-radius:30px; font-size:.85rem; font-weight:600; transition:opacity .2s, transform .2s; }
+  .nav-btn:hover { opacity:.85; transform:translateY(-1px); }
 
-  .hero {
-    display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; padding: 80px 7%;
-  }
-  .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 18px; color: #6b333d; }
-  .hero-text p { color: #6b4d51; max-width: 440px; margin-bottom: 30px; }
-  .hero-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px; display: block; }
+  /* HERO */
+  .hero { display:grid; grid-template-columns:1fr 1fr; min-height:88vh; align-items:center; padding:80px 7%; gap:60px; }
+  .hero-text { max-width:500px; }
+  .hero-text .eyebrow { font-size:.72rem; letter-spacing:3px; text-transform:uppercase; color:var(--gray); margin-bottom:20px; display:block; }
+  .hero-text h1 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,4vw,3.2rem); line-height:1.2; margin-bottom:20px; }
+  .hero-text p { color:var(--gray); max-width:420px; margin-bottom:36px; }
+  .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-rose { padding:14px 32px; background:var(--rose); color:#fff; text-decoration:none; border-radius:30px; font-weight:600; font-size:.88rem; transition:transform .2s, box-shadow .2s; box-shadow:0 6px 18px rgba(155,77,92,.3); }
+  .btn-rose:hover { transform:translateY(-2px); box-shadow:0 10px 26px rgba(155,77,92,.4); }
+  .btn-outline { padding:14px 32px; border:1.5px solid var(--rose); color:var(--rose); text-decoration:none; border-radius:30px; font-size:.88rem; font-weight:600; transition:all .2s; }
+  .btn-outline:hover { background:var(--rose); color:#fff; }
+  .hero-img { position:relative; }
+  .hero-img img { width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:18px; display:block; }
+  .hero-rating { position:absolute; bottom:-20px; left:-24px; background:#fff; padding:16px 20px; border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,.1); display:flex; align-items:center; gap:12px; }
+  .hero-rating .stars { color:#e8a020; font-size:.9rem; }
+  .hero-rating .info .num { font-weight:700; font-size:.95rem; display:block; }
+  .hero-rating .info .sub { font-size:.75rem; color:var(--gray); }
 
-  .servicios { padding: 80px 7%; max-width: 1100px; margin: 0 auto; }
-  .servicios h2 { font-family: 'Playfair Display', serif; text-align: center; font-size: 2.1rem; margin-bottom: 50px; color: #6b333d; }
-  .lista-servicios { display: flex; flex-direction: column; gap: 16px; }
-  .servicio-item {
-    display: flex; justify-content: space-between; align-items: center; background: #fff; border-radius: 12px;
-    padding: 22px 28px; box-shadow: 0 2px 10px rgba(0,0,0,.04);
-  }
-  .servicio-item .nombre { font-weight: 600; font-size: 1.05rem; margin-bottom: 4px; }
-  .servicio-item .duracion { font-size: .85rem; color: #9a7a7e; }
-  .servicio-item .precio { font-weight: 700; font-size: 1.1rem; color: #8a4a55; margin-right: 20px; }
-  .servicio-item .right { display: flex; align-items: center; gap: 20px; }
+  /* STATS */
+  .stats-bar { background:#fff; padding:40px 7%; display:flex; justify-content:space-around; align-items:center; flex-wrap:wrap; gap:30px; border-bottom:1px solid #f0dde0; }
+  .stat-item { text-align:center; }
+  .stat-item .big { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--rose); display:block; font-weight:700; }
+  .stat-item .label { font-size:.78rem; color:var(--gray); text-transform:uppercase; letter-spacing:1px; }
 
-  .reserva {
-    background: #fff; padding: 80px 7%; margin: 0 7%; border-radius: 24px; margin-bottom: 80px;
+  /* SERVICIOS */
+  .servicios { padding:90px 7%; max-width:1100px; margin:0 auto; }
+  .servicios h2 { font-family:'Playfair Display',serif; font-size:2.2rem; text-align:center; margin-bottom:14px; }
+  .servicios .sub { text-align:center; color:var(--gray); margin-bottom:56px; font-size:.95rem; }
+  .lista { display:flex; flex-direction:column; gap:12px; }
+  .serv-item {
+    display:grid; grid-template-columns:1fr 90px 90px 130px; align-items:center;
+    background:#fff; border-radius:14px; padding:22px 28px;
+    box-shadow:0 2px 12px rgba(0,0,0,.05); transition:transform .2s, box-shadow .2s;
   }
-  .reserva-inner { max-width: 600px; margin: 0 auto; text-align: center; }
-  .reserva h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 14px; color: #6b333d; }
-  .reserva p { color: #6b4d51; margin-bottom: 36px; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; text-align: left; }
-  .form-group { margin-bottom: 16px; }
-  .form-group.full { grid-column: 1 / -1; }
-  label { display: block; font-size: .82rem; color: #8a6266; margin-bottom: 6px; }
-  input, select {
-    width: 100%; padding: 13px 14px; border: 1px solid #f0d9dc; border-radius: 8px; font-size: .92rem; background: #fffaf9;
-  }
-  .btn-submit {
-    width: 100%; margin-top: 10px; padding: 16px; background: #8a4a55; color: #fff; border: none; border-radius: 10px;
-    font-weight: 700; font-size: .95rem; cursor: pointer;
-  }
-  .btn-submit:hover { opacity: .9; }
+  .serv-item:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.1); }
+  .serv-nombre { font-weight:600; font-size:1rem; margin-bottom:3px; }
+  .serv-desc { font-size:.82rem; color:var(--gray); }
+  .serv-duracion { font-size:.85rem; color:var(--gray); text-align:center; }
+  .serv-precio { font-weight:700; font-size:1.05rem; color:var(--rose); text-align:center; }
+  .serv-btn { text-align:right; }
+  .serv-btn a { padding:9px 20px; background:var(--blush); color:var(--rose); text-decoration:none; border-radius:20px; font-size:.8rem; font-weight:600; border:1px solid #f0c8cc; transition:all .2s; }
+  .serv-btn a:hover { background:var(--rose); color:#fff; }
 
-  footer { text-align: center; padding: 40px 7%; color: #8a6266; font-size: .85rem; }
-  footer .datos { margin-bottom: 14px; }
+  /* PROFESIONALES */
+  .profesionales { padding:80px 7%; background:#fff; }
+  .profesionales h2 { font-family:'Playfair Display',serif; font-size:2.1rem; text-align:center; margin-bottom:50px; }
+  .prof-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:900px; margin:0 auto; }
+  .prof-card { text-align:center; }
+  .prof-card img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:50%; margin-bottom:16px; border:4px solid var(--blush); }
+  .prof-card h3 { font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:4px; }
+  .prof-card p { font-size:.82rem; color:var(--gray); }
+
+  /* FORMULARIO */
+  .reserva { padding:80px 7%; }
+  .reserva-box { max-width:680px; margin:0 auto; background:#fff; border-radius:24px; padding:56px 48px; box-shadow:0 8px 40px rgba(0,0,0,.08); }
+  .reserva-box h2 { font-family:'Playfair Display',serif; font-size:2rem; text-align:center; margin-bottom:10px; }
+  .reserva-box .sub { text-align:center; color:var(--gray); margin-bottom:40px; font-size:.9rem; }
+  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .form-group { display:flex; flex-direction:column; gap:6px; }
+  .form-group.full { grid-column:1/-1; }
+  label { font-size:.78rem; color:var(--gray); font-weight:600; letter-spacing:.3px; text-transform:uppercase; }
+  input, select { padding:13px 14px; border:1.5px solid #f0dde0; border-radius:10px; font-size:.92rem; font-family:'Lato',sans-serif; background:#fffaf9; transition:border-color .2s; color:var(--dark); }
+  input:focus, select:focus { outline:none; border-color:var(--rose-light); }
+  .btn-submit { grid-column:1/-1; padding:17px; background:var(--rose); color:#fff; border:none; border-radius:30px; font-size:.95rem; font-weight:700; font-family:'Lato',sans-serif; cursor:pointer; transition:opacity .2s, transform .2s; margin-top:8px; }
+  .btn-submit:hover { opacity:.88; transform:translateY(-1px); }
+  .form-note { grid-column:1/-1; text-align:center; font-size:.78rem; color:var(--gray); margin-top:4px; }
+
+  /* TESTIMONIOS */
+  .testimonios { padding:80px 7%; }
+  .testimonios h2 { font-family:'Playfair Display',serif; font-size:2.1rem; text-align:center; margin-bottom:50px; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:0 auto; }
+  .testi-card { background:#fff; border-radius:16px; padding:28px; box-shadow:0 2px 12px rgba(0,0,0,.05); }
+  .stars { color:#e8a020; margin-bottom:12px; font-size:.85rem; }
+  .testi-card p { font-size:.88rem; color:#5a4a4e; line-height:1.75; font-style:italic; margin-bottom:16px; }
+  .testi-autor { font-size:.8rem; font-weight:700; color:var(--dark); }
+  .testi-cargo { font-size:.75rem; color:var(--gray); }
+
+  /* FOOTER */
+  footer { background:var(--dark); padding:40px 7%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+  footer .copy { font-size:.8rem; color:#9a8082; }
+  footer nav a { color:#9a8082; text-decoration:none; font-size:.8rem; margin-left:22px; transition:color .2s; }
+  footer nav a:hover { color:var(--blush); }
+
+  /* WA FLOAT */
+  .wabtn { position:fixed; bottom:28px; right:28px; z-index:200; width:56px; height:56px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(37,211,102,.4); text-decoration:none; transition:transform .2s; }
+  .wabtn:hover { transform:scale(1.1); }
+  .wabtn svg { width:28px; height:28px; fill:#fff; }
+
+  @media(max-width:900px) {
+    .hero { grid-template-columns:1fr; padding:60px 7%; }
+    .hero-img { display:none; }
+    .serv-item { grid-template-columns:1fr 1fr; row-gap:8px; }
+    .serv-btn { display:none; }
+    .prof-grid { grid-template-columns:1fr; max-width:300px; }
+    .reserva-box { padding:36px 22px; }
+    .form-grid { grid-template-columns:1fr; }
+    .testi-grid { grid-template-columns:1fr; }
+    nav a:not(.nav-btn) { display:none; }
+    footer { flex-direction:column; }
+  }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">[Nombre]</div>
-    <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#reservar">Reservar</a>
-    </nav>
-    <a class="btn" href="#reservar">Reservar turno</a>
-  </header>
+<header>
+  <div class="logo"><em>Bella</em> Studio</div>
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#equipo">Equipo</a>
+    <a href="#reservar">Reservar</a>
+    <a href="#reservar" class="nav-btn">Reservar turno</a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Tu momento de cuidado, sin vueltas.</h1>
-      <p>[Frase que transmita relajación, profesionalismo y cuidado personal — lo que diferencia a este negocio.]</p>
-      <a class="btn" href="#reservar">Reservar mi turno</a>
+<section class="hero">
+  <div class="hero-text" data-aos="fade-right">
+    <span class="eyebrow">Peluquería & Estética · Caballito, CABA</span>
+    <h1>Tu momento de cuidado, sin apuros.</h1>
+    <p>Un espacio íntimo y profesional donde te escuchamos antes de cortar. Coloración, keratina, corte y estética en un solo lugar.</p>
+    <div class="hero-btns">
+      <a href="#reservar" class="btn-rose">Reservar mi turno</a>
+      <a href="#servicios" class="btn-outline">Ver servicios y precios</a>
     </div>
-    <div class="hero-img">
-      <img src="https://picsum.photos/seed/bella-hero/700/900" alt="Ambiente del local">
-    </div>
-  </section>
-
-  <section class="servicios" id="servicios">
-    <h2>Nuestros servicios</h2>
-    <div class="lista-servicios">
-      <div class="servicio-item">
-        <div>
-          <div class="nombre">[Servicio uno]</div>
-          <div class="duracion">45 min</div>
-        </div>
-        <div class="right">
-          <div class="precio">$15.000</div>
-          <a class="btn btn-outline" href="#reservar">Reservar</a>
-        </div>
-      </div>
-      <div class="servicio-item">
-        <div>
-          <div class="nombre">[Servicio dos]</div>
-          <div class="duracion">60 min</div>
-        </div>
-        <div class="right">
-          <div class="precio">$22.000</div>
-          <a class="btn btn-outline" href="#reservar">Reservar</a>
-        </div>
-      </div>
-      <div class="servicio-item">
-        <div>
-          <div class="nombre">[Servicio tres]</div>
-          <div class="duracion">30 min</div>
-        </div>
-        <div class="right">
-          <div class="precio">$10.000</div>
-          <a class="btn btn-outline" href="#reservar">Reservar</a>
-        </div>
-      </div>
-      <div class="servicio-item">
-        <div>
-          <div class="nombre">[Servicio cuatro]</div>
-          <div class="duracion">90 min</div>
-        </div>
-        <div class="right">
-          <div class="precio">$32.000</div>
-          <a class="btn btn-outline" href="#reservar">Reservar</a>
-        </div>
+  </div>
+  <div class="hero-img" data-aos="fade-left">
+    <img src="https://picsum.photos/seed/bella-hero/700/900" alt="Interior del estudio">
+    <div class="hero-rating">
+      <div class="stars">★★★★★</div>
+      <div class="info">
+        <span class="num">4.9 / 5</span>
+        <span class="sub">+340 reseñas en Google</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="reserva" id="reservar">
-    <div class="reserva-inner">
-      <h2>Reservá tu turno</h2>
-      <p>Completá tus datos y te confirmamos por WhatsApp en minutos.</p>
-      <div class="form-grid">
-        <div class="form-group"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
-        <div class="form-group"><label>Teléfono</label><input type="text" placeholder="+54 9 11 0000-0000"></div>
-        <div class="form-group full">
-          <label>Servicio</label>
-          <select>
-            <option>[Servicio uno]</option>
-            <option>[Servicio dos]</option>
-            <option>[Servicio tres]</option>
-            <option>[Servicio cuatro]</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Fecha</label><input type="date"></div>
-        <div class="form-group"><label>Hora</label><input type="time"></div>
-        <div class="form-group full"><button class="btn-submit">Confirmar turno</button></div>
-      </div>
+<div class="stats-bar">
+  <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+    <span class="big counter" data-target="9">0</span>
+    <span class="label">años de experiencia</span>
+  </div>
+  <div class="stat-item" data-aos="fade-up" data-aos-delay="80">
+    <span class="big counter" data-target="1200">0</span>
+    <span class="label">clientas satisfechas</span>
+  </div>
+  <div class="stat-item" data-aos="fade-up" data-aos-delay="160">
+    <span class="big">4.9</span>
+    <span class="label">estrellas en Google</span>
+  </div>
+  <div class="stat-item" data-aos="fade-up" data-aos-delay="240">
+    <span class="big counter" data-target="3">0</span>
+    <span class="label">profesionales</span>
+  </div>
+</div>
+
+<section class="servicios" id="servicios">
+  <h2 data-aos="fade-up">Nuestros servicios</h2>
+  <p class="sub" data-aos="fade-up" data-aos-delay="80">Todos incluyen consulta previa y productos profesionales Wella & Olaplex.</p>
+  <div class="lista">
+    <div class="serv-item" data-aos="fade-up" data-aos-delay="0">
+      <div><div class="serv-nombre">Corte + secado</div><div class="serv-desc">Lavado, corte personalizado y secado con brushing.</div></div>
+      <span class="serv-duracion">60 min</span>
+      <span class="serv-precio">$18.000</span>
+      <div class="serv-btn"><a href="#reservar">Reservar</a></div>
     </div>
-  </section>
+    <div class="serv-item" data-aos="fade-up" data-aos-delay="60">
+      <div><div class="serv-nombre">Coloración completa</div><div class="serv-desc">Coloración de raíz a puntas con marcas profesionales.</div></div>
+      <span class="serv-duracion">90 min</span>
+      <span class="serv-precio">desde $38.000</span>
+      <div class="serv-btn"><a href="#reservar">Reservar</a></div>
+    </div>
+    <div class="serv-item" data-aos="fade-up" data-aos-delay="120">
+      <div><div class="serv-nombre">Balayage / Mechas</div><div class="serv-desc">Técnica manual o con papel, efecto natural o dramático.</div></div>
+      <span class="serv-duracion">150 min</span>
+      <span class="serv-precio">desde $52.000</span>
+      <div class="serv-btn"><a href="#reservar">Reservar</a></div>
+    </div>
+    <div class="serv-item" data-aos="fade-up" data-aos-delay="180">
+      <div><div class="serv-nombre">Keratina brasileña</div><div class="serv-desc">Alisado progresivo, sin frizz por hasta 4 meses.</div></div>
+      <span class="serv-duracion">3 hs</span>
+      <span class="serv-precio">desde $58.000</span>
+      <div class="serv-btn"><a href="#reservar">Reservar</a></div>
+    </div>
+    <div class="serv-item" data-aos="fade-up" data-aos-delay="240">
+      <div><div class="serv-nombre">Tratamiento nutritivo</div><div class="serv-desc">Olaplex, botox capilar o hidratación profunda según tu necesidad.</div></div>
+      <span class="serv-duracion">45 min</span>
+      <span class="serv-precio">desde $22.000</span>
+      <div class="serv-btn"><a href="#reservar">Reservar</a></div>
+    </div>
+    <div class="serv-item" data-aos="fade-up" data-aos-delay="300">
+      <div><div class="serv-nombre">Manicura + gel</div><div class="serv-desc">Semipermanente con esmalte en gel, duración 3 semanas.</div></div>
+      <span class="serv-duracion">60 min</span>
+      <span class="serv-precio">$14.000</span>
+      <div class="serv-btn"><a href="#reservar">Reservar</a></div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <div class="datos">[Dirección] · [Horario de atención] · [Teléfono]</div>
-    © 2026 [Nombre del Negocio]. Todos los derechos reservados.
-  </footer>
+<section class="profesionales" id="equipo">
+  <h2 data-aos="fade-up">El equipo</h2>
+  <div class="prof-grid">
+    <div class="prof-card" data-aos="fade-up" data-aos-delay="0">
+      <img src="https://picsum.photos/seed/prof1/400/400" alt="Valentina">
+      <h3>Valentina Cruz</h3>
+      <p>Colorista · 9 años de experiencia</p>
+    </div>
+    <div class="prof-card" data-aos="fade-up" data-aos-delay="100">
+      <img src="https://picsum.photos/seed/prof2/400/400" alt="Sofía">
+      <h3>Sofía Molina</h3>
+      <p>Estilista · Especialista en keratinas</p>
+    </div>
+    <div class="prof-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://picsum.photos/seed/prof3/400/400" alt="Luciana">
+      <h3>Luciana Vega</h3>
+      <p>Manicurista · Nail artist</p>
+    </div>
+  </div>
+</section>
 
+<section class="reserva" id="reservar">
+  <div class="reserva-box" data-aos="fade-up">
+    <h2>Reservá tu turno</h2>
+    <p class="sub">Completá el formulario y te confirmamos por WhatsApp en menos de 2 horas.</p>
+    <div class="form-grid">
+      <div class="form-group"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+      <div class="form-group"><label>WhatsApp</label><input type="tel" placeholder="+54 9 11 0000-0000"></div>
+      <div class="form-group full">
+        <label>Servicio</label>
+        <select>
+          <option value="">Elegir servicio...</option>
+          <option>Corte + secado — $18.000</option>
+          <option>Coloración completa — desde $38.000</option>
+          <option>Balayage / Mechas — desde $52.000</option>
+          <option>Keratina brasileña — desde $58.000</option>
+          <option>Tratamiento nutritivo — desde $22.000</option>
+          <option>Manicura + gel — $14.000</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Profesional</label>
+        <select>
+          <option>Sin preferencia</option>
+          <option>Valentina Cruz</option>
+          <option>Sofía Molina</option>
+          <option>Luciana Vega</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Fecha preferida</label><input type="date"></div>
+      <div class="form-group full"><label>Horario preferido</label>
+        <select>
+          <option>Mañana (9:00 – 12:00)</option>
+          <option>Mediodía (12:00 – 15:00)</option>
+          <option>Tarde (15:00 – 18:00)</option>
+        </select>
+      </div>
+      <button class="btn-submit" onclick="alert('¡Perfecto! Pronto te confirmamos por WhatsApp. 💖')">Confirmar solicitud de turno</button>
+      <p class="form-note">📍 Av. Rivadavia 4520, Caballito · Lun–Sáb 9:00–19:00 · +54 9 11 4832-6170</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonios">
+  <h2 data-aos="fade-up">Lo que dicen ellas</h2>
+  <div class="testi-grid">
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="stars">★★★★★</div>
+      <p>"Fui con un balayage arruinado de otro lado y Valentina me lo reconstruyó desde cero. Quedé enamorada. No voy a ir a ningún otro lugar."</p>
+      <div class="testi-autor">Agustina Ramos</div>
+      <div class="testi-cargo">Clienta desde 2023 · Floresta</div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="stars">★★★★★</div>
+      <p>"La keratina que me hizo Sofía duró 4 meses y mi cabello quedó suave como nunca. Ya hice el turno para repetirla. Cien por ciento recomendada."</p>
+      <div class="testi-autor">Micaela Torres</div>
+      <div class="testi-cargo">Clienta desde 2022 · Caballito</div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="stars">★★★★★</div>
+      <p>"Me tratan con tiempo y me explican todo. El lugar es lindísimo y los precios son muy razonables para la calidad. Mis amigas ya van todas acá."</p>
+      <div class="testi-autor">Carolina Méndez</div>
+      <div class="testi-cargo">Clienta desde 2024 · Villa del Parque</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="copy">© 2026 Bella Studio · Av. Rivadavia 4520, Caballito · +54 9 11 4832-6170</div>
+  <nav>
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+  </nav>
+</footer>
+
+<a href="https://wa.me/5491123456789" target="_blank" class="wabtn">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, offset:60 });
+  const obs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    document.querySelectorAll('.counter').forEach(el => {
+      const target = +el.dataset.target;
+      let cur = 0;
+      const step = target / 80;
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = Math.floor(cur) + '+';
+        if (cur >= target) clearInterval(t);
+      }, 16);
+    });
+    obs.disconnect();
+  }, { threshold:.4 });
+  obs.observe(document.querySelector('.stats-bar'));
+</script>
 </body>
 </html>

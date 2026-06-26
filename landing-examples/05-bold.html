@@ -3,192 +3,317 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estudio Lumen</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+<title>Spin Studio — Fitness & Crossfit</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
+  :root { --orange:#ff5722; --yellow:#ffb300; --dark:#0f0f0f; --gray:#888; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #fff8f0;
-    color: #1a1a1a;
-  }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Poppins',sans-serif; background:var(--dark); color:#fff; overflow-x:hidden; }
+
+  /* NAV */
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 8%;
+    position:sticky; top:0; z-index:100; background:rgba(15,15,15,.95);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 6%; backdrop-filter:blur(12px);
+    border-bottom:2px solid rgba(255,87,34,.2);
   }
-  .logo {
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: #ff416c;
-  }
-  nav a {
-    color: #1a1a1a;
-    text-decoration: none;
-    margin-left: 28px;
-    font-weight: 500;
-    font-size: .95rem;
-  }
-  nav a:hover { color: #ff416c; }
+  .logo { font-size:1.5rem; font-weight:900; letter-spacing:1px; }
+  .logo span { color:var(--orange); }
+  nav { display:flex; align-items:center; gap:28px; }
+  nav a { color:#aaa; text-decoration:none; font-size:.85rem; font-weight:500; transition:color .2s; }
+  nav a:hover { color:#fff; }
+  .nav-btn { padding:11px 26px; background:var(--orange); color:#fff; text-decoration:none; font-size:.82rem; font-weight:700; border-radius:6px; transition:background .2s, transform .2s; }
+  .nav-btn:hover { background:#e64a19; transform:translateY(-1px); }
 
+  /* HERO */
   .hero {
-    position: relative;
-    text-align: center;
-    padding: 110px 8% 100px;
-    background: linear-gradient(135deg,#ff416c,#ff8a00);
-    color: #fff;
-    overflow: hidden;
+    position:relative; min-height:100vh; display:flex; align-items:center;
+    padding:100px 6% 60px;
+    background:linear-gradient(135deg,rgba(15,15,15,.95) 50%,rgba(255,87,34,.08) 100%),
+      url('https://picsum.photos/seed/gym-hero/1600/900') right center/cover;
   }
-  .hero::before, .hero::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-  }
-  .hero::before { width: 260px; height: 260px; background: rgba(255,255,255,.15); top: -80px; left: -80px; }
-  .hero::after { width: 200px; height: 200px; background: rgba(255,255,255,.12); bottom: -60px; right: -40px; }
-  .hero h1 {
-    font-size: 3.3rem;
-    font-weight: 800;
-    margin-bottom: 18px;
-    position: relative;
-    z-index: 1;
-  }
-  .hero p {
-    max-width: 540px;
-    margin: 0 auto 38px;
-    font-size: 1.1rem;
-    position: relative;
-    z-index: 1;
-    font-weight: 500;
-  }
-  .btn {
-    display: inline-block;
-    padding: 17px 40px;
-    background: #1a1a1a;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 700;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 8px 20px rgba(0,0,0,.25);
-    transition: transform .2s;
-  }
-  .btn:hover { transform: scale(1.05); }
-  .btn-alt { background: #fff; color: #ff416c; }
+  .hero::before { content:''; position:absolute; inset:0; background:rgba(15,15,15,.65); }
+  .hero-content { position:relative; z-index:1; max-width:700px; }
+  .hero-tag { display:inline-block; background:rgba(255,87,34,.15); border:1px solid rgba(255,87,34,.4); color:var(--orange); padding:8px 18px; border-radius:6px; font-size:.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:28px; }
+  .hero h1 { font-size:clamp(2.8rem,6vw,5.2rem); font-weight:900; line-height:1.05; margin-bottom:24px; text-transform:uppercase; }
+  .hero h1 span { color:var(--orange); display:block; }
+  .hero p { color:#ccc; font-size:1.05rem; max-width:480px; margin-bottom:44px; font-weight:400; }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:56px; }
+  .btn-fire { padding:17px 38px; background:linear-gradient(135deg,var(--orange),var(--yellow)); color:#fff; text-decoration:none; font-size:.9rem; font-weight:800; border-radius:8px; box-shadow:0 8px 24px rgba(255,87,34,.4); transition:transform .2s, box-shadow .2s; text-transform:uppercase; letter-spacing:.5px; }
+  .btn-fire:hover { transform:translateY(-3px); box-shadow:0 14px 32px rgba(255,87,34,.55); }
+  .btn-outline { padding:17px 38px; border:2px solid rgba(255,255,255,.25); color:#fff; text-decoration:none; font-size:.9rem; font-weight:600; border-radius:8px; transition:border-color .2s; text-transform:uppercase; }
+  .btn-outline:hover { border-color:var(--orange); }
+  .hero-stats { display:flex; gap:48px; flex-wrap:wrap; }
+  .hero-stat .num { font-size:2.2rem; font-weight:900; color:var(--orange); display:block; }
+  .hero-stat .lbl { font-size:.75rem; color:#888; font-weight:500; text-transform:uppercase; letter-spacing:1px; }
 
-  section.servicios {
-    padding: 90px 8%;
-    max-width: 1150px;
-    margin: 0 auto;
-    text-align: center;
+  /* CLASES */
+  .clases { padding:100px 6%; }
+  .section-title { margin-bottom:64px; }
+  .section-title .label { font-size:.72rem; letter-spacing:3px; text-transform:uppercase; color:var(--orange); font-weight:700; margin-bottom:12px; display:block; }
+  .section-title h2 { font-size:2.4rem; font-weight:900; text-transform:uppercase; }
+  .clases-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .clase-card {
+    border-radius:12px; overflow:hidden; position:relative; min-height:280px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    cursor:pointer;
   }
-  section.servicios h2 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 55px;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 28px;
-  }
-  .card {
-    border-radius: 20px;
-    padding: 38px 26px;
-    color: #fff;
-    text-align: left;
-  }
-  .card:nth-child(1) { background: linear-gradient(135deg,#ff416c,#ff8a00); }
-  .card:nth-child(2) { background: linear-gradient(135deg,#7b2ff7,#f107a3); }
-  .card:nth-child(3) { background: linear-gradient(135deg,#00c6ff,#0072ff); }
-  .card h3 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; }
-  .card p { font-size: .95rem; opacity: .92; }
+  .clase-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .4s; }
+  .clase-card:hover img { transform:scale(1.06); }
+  .clase-card .overlay { position:absolute; inset:0; background:linear-gradient(transparent 30%,rgba(0,0,0,.85)); }
+  .clase-info { position:relative; z-index:1; padding:28px; }
+  .clase-info .nivel { font-size:.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+  .clase-info h3 { font-size:1.4rem; font-weight:800; margin-bottom:6px; }
+  .clase-info p { font-size:.82rem; color:#bbb; }
+  .clase-badge { position:absolute; top:18px; right:18px; z-index:2; background:var(--orange); color:#fff; padding:5px 12px; border-radius:30px; font-size:.72rem; font-weight:700; }
 
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    padding: 0 8% 90px;
-    max-width: 1150px;
-    margin: 0 auto;
-  }
-  .galeria img {
-    aspect-ratio: 1;
-    width: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 16px;
-  }
+  /* HORARIOS */
+  .horarios-section { padding:80px 6%; background:#161616; }
+  .horarios-section h2 { font-size:2rem; font-weight:900; text-transform:uppercase; margin-bottom:40px; }
+  .horarios-tabs { display:flex; gap:12px; margin-bottom:32px; flex-wrap:wrap; }
+  .tab-btn { padding:10px 22px; border:1px solid #333; border-radius:6px; background:transparent; color:#aaa; font-family:'Poppins',sans-serif; font-size:.82rem; font-weight:600; cursor:pointer; transition:.2s; }
+  .tab-btn.active, .tab-btn:hover { border-color:var(--orange); color:var(--orange); background:rgba(255,87,34,.08); }
+  .horario-tabla { display:flex; flex-direction:column; gap:2px; }
+  .horario-row { display:grid; grid-template-columns:100px 1fr 120px 1fr; gap:20px; align-items:center; padding:18px 22px; background:#1a1a1a; border-radius:6px; transition:background .2s; }
+  .horario-row:hover { background:#222; }
+  .horario-row .hora { font-weight:700; color:var(--orange); font-size:.95rem; }
+  .horario-row .clase { font-weight:600; font-size:.92rem; }
+  .horario-row .prof { color:#888; font-size:.82rem; }
+  .horario-row .nivel-badge { justify-self:end; padding:4px 12px; border-radius:30px; font-size:.72rem; font-weight:700; background:rgba(255,87,34,.15); color:var(--orange); text-align:center; }
 
-  .contacto {
-    text-align: center;
-    padding: 90px 8%;
-    background: #1a1a1a;
-    color: #fff;
-  }
-  .contacto h2 { font-size: 2.1rem; font-weight: 800; margin-bottom: 16px; }
-  .contacto p { color: #c9c9c9; margin-bottom: 35px; }
+  /* PROMO */
+  .promo { margin:0 6%; border-radius:16px; padding:60px; background:linear-gradient(135deg,var(--orange),#e64a19,#c62828); text-align:center; position:relative; overflow:hidden; }
+  .promo::before { content:'🔥'; position:absolute; font-size:12rem; opacity:.06; top:-30px; right:-20px; line-height:1; }
+  .promo .tag { font-size:.75rem; letter-spacing:2px; text-transform:uppercase; font-weight:700; opacity:.8; margin-bottom:12px; display:block; }
+  .promo h2 { font-size:2.2rem; font-weight:900; text-transform:uppercase; margin-bottom:12px; }
+  .promo p { opacity:.9; margin-bottom:32px; font-size:1rem; }
+  .countdown { display:flex; gap:24px; justify-content:center; margin-bottom:36px; flex-wrap:wrap; }
+  .cd-box { background:rgba(0,0,0,.3); padding:16px 22px; border-radius:10px; min-width:80px; }
+  .cd-box .num { font-size:2.2rem; font-weight:900; display:block; }
+  .cd-box .lbl { font-size:.65rem; text-transform:uppercase; letter-spacing:1px; opacity:.7; }
+  .btn-dark { display:inline-block; padding:16px 38px; background:#0f0f0f; color:#fff; text-decoration:none; font-weight:800; border-radius:8px; font-size:.9rem; text-transform:uppercase; transition:transform .2s; }
+  .btn-dark:hover { transform:scale(1.04); }
 
-  footer {
-    text-align: center;
-    padding: 25px;
-    font-size: .85rem;
-    background: #fff8f0;
-    color: #999;
+  /* TESTIMONIOS */
+  .testimonios { padding:100px 6%; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; }
+  .testi-card { background:#1a1a1a; border-radius:12px; padding:28px; border:1px solid #222; transition:border-color .3s; }
+  .testi-card:hover { border-color:rgba(255,87,34,.3); }
+  .stars { color:var(--orange); font-size:.85rem; margin-bottom:14px; }
+  .testi-card p { color:#bbb; font-size:.88rem; line-height:1.75; margin-bottom:20px; }
+  .testi-autor { display:flex; align-items:center; gap:12px; }
+  .avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--orange),var(--yellow)); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; }
+  .autor-info .nombre { font-size:.88rem; font-weight:700; }
+  .autor-info .rol { font-size:.76rem; color:var(--gray); }
+
+  /* CTA FINAL */
+  .cta { padding:100px 6%; text-align:center; }
+  .cta h2 { font-size:2.8rem; font-weight:900; text-transform:uppercase; margin-bottom:16px; }
+  .cta p { color:#888; margin-bottom:42px; font-size:1rem; }
+
+  /* FOOTER */
+  footer { padding:36px 6%; border-top:1px solid #222; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .copy { font-size:.8rem; color:#555; }
+  footer nav a { color:#555; text-decoration:none; font-size:.8rem; margin-left:22px; transition:color .2s; }
+  footer nav a:hover { color:#fff; }
+
+  /* WA */
+  .wabtn { position:fixed; bottom:28px; right:28px; z-index:200; width:56px; height:56px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(37,211,102,.4); text-decoration:none; transition:transform .2s; }
+  .wabtn:hover { transform:scale(1.1); }
+  .wabtn svg { width:28px; height:28px; fill:#fff; }
+
+  @media(max-width:900px) {
+    .clases-grid { grid-template-columns:1fr; }
+    .horario-row { grid-template-columns:80px 1fr; }
+    .horario-row .prof, .horario-row .nivel-badge { display:none; }
+    .testi-grid { grid-template-columns:1fr; }
+    nav a:not(.nav-btn) { display:none; }
+    footer { flex-direction:column; }
+    .promo { padding:40px 24px; margin:0; border-radius:0; }
   }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">LUMEN⚡</div>
-    <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#galeria">Galería</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+<header>
+  <div class="logo">SPIN<span>.</span></div>
+  <nav>
+    <a href="#clases">Clases</a>
+    <a href="#horarios">Horarios</a>
+    <a href="#testimonios">Resultados</a>
+    <a href="https://wa.me/5491123456789" target="_blank" class="nav-btn">Clase de prueba gratis</a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <h1>¡Hacemos que tu marca brille!</h1>
-    <p>Branding, diseño web y contenido para marcas que quieren romperla en digital.</p>
-    <a class="btn btn-alt" href="https://wa.me/5491123456789" target="_blank">¡Quiero saber más! 🚀</a>
-  </section>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">🔥 Fitness · Crossfit · Spinning — Villa Crespo</div>
+    <h1>No más<span>excusas.</span></h1>
+    <p>Clases de alto rendimiento para todos los niveles. Entrenadores certificados, horarios flexibles y comunidad que te empuja.</p>
+    <div class="hero-btns" data-aos="fade-up">
+      <a href="https://wa.me/5491123456789" target="_blank" class="btn-fire">Clase de prueba GRATIS 🔥</a>
+      <a href="#clases" class="btn-outline">Ver clases</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">+800</span><span class="lbl">alumnos activos</span></div>
+      <div class="hero-stat"><span class="num">12</span><span class="lbl">tipos de clase</span></div>
+      <div class="hero-stat"><span class="num">6 AM</span><span class="lbl">primera clase del día</span></div>
+    </div>
+  </div>
+</section>
 
-  <section class="servicios" id="servicios">
-    <h2>Lo que te ofrecemos</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Branding</h3>
-        <p>Creamos una identidad visual con personalidad propia para tu marca.</p>
-      </div>
-      <div class="card">
-        <h3>Diseño Web</h3>
-        <p>Sitios web coloridos, rápidos y que generan clientes.</p>
-      </div>
-      <div class="card">
-        <h3>Redes Sociales</h3>
-        <p>Piezas gráficas que hacen que tu marca se destaque en el feed.</p>
+<section class="clases" id="clases">
+  <div class="section-title" data-aos="fade-up">
+    <span class="label">Nuestras clases</span>
+    <h2>Encontrá tu desafío</h2>
+  </div>
+  <div class="clases-grid">
+    <div class="clase-card" data-aos="fade-up" data-aos-delay="0">
+      <img src="https://picsum.photos/seed/crossfit/700/500" alt="Crossfit">
+      <div class="overlay"></div>
+      <span class="clase-badge">★ MÁS POPULAR</span>
+      <div class="clase-info">
+        <div class="nivel">Todos los niveles</div>
+        <h3>Crossfit</h3>
+        <p>Funcional de alta intensidad. Fuerza, resistencia y velocidad.</p>
       </div>
     </div>
-  </section>
+    <div class="clase-card" data-aos="fade-up" data-aos-delay="80">
+      <img src="https://picsum.photos/seed/spinning/700/500" alt="Spinning">
+      <div class="overlay"></div>
+      <div class="clase-info">
+        <div class="nivel">Principiantes a avanzados</div>
+        <h3>Spinning</h3>
+        <p>Cardio en bicicleta con música y entrenador en vivo. 45 minutos.</p>
+      </div>
+    </div>
+    <div class="clase-card" data-aos="fade-up" data-aos-delay="160">
+      <img src="https://picsum.photos/seed/hiit/700/500" alt="HIIT">
+      <div class="overlay"></div>
+      <div class="clase-info">
+        <div class="nivel">Intermedio / avanzado</div>
+        <h3>HIIT</h3>
+        <p>Intervalos de alta intensidad. Quemá calorías hasta 48 hs después.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="galeria" id="galeria">
-    <img src="https://picsum.photos/seed/lumen1/700/700" alt="Foto de referencia 1" loading="lazy">
-    <img src="https://picsum.photos/seed/lumen2/700/700" alt="Foto de referencia 2" loading="lazy">
-    <img src="https://picsum.photos/seed/lumen3/700/700" alt="Foto de referencia 3" loading="lazy">
-    <img src="https://picsum.photos/seed/lumen4/700/700" alt="Foto de referencia 4" loading="lazy">
-  </section>
+<section class="horarios-section" id="horarios">
+  <h2 data-aos="fade-up">Horarios de hoy</h2>
+  <div class="horarios-tabs" data-aos="fade-up" data-aos-delay="80">
+    <button class="tab-btn active">Lunes</button>
+    <button class="tab-btn">Martes</button>
+    <button class="tab-btn">Miércoles</button>
+    <button class="tab-btn">Jueves</button>
+    <button class="tab-btn">Viernes</button>
+    <button class="tab-btn">Sábados</button>
+  </div>
+  <div class="horario-tabla" data-aos="fade-up" data-aos-delay="120">
+    <div class="horario-row"><span class="hora">06:30</span><span class="clase">Crossfit</span><span class="prof">Nicolás R.</span><span class="nivel-badge">Todos los niveles</span></div>
+    <div class="horario-row"><span class="hora">07:30</span><span class="clase">Spinning</span><span class="prof">Camila V.</span><span class="nivel-badge">Principiantes</span></div>
+    <div class="horario-row"><span class="hora">09:00</span><span class="clase">HIIT</span><span class="prof">Marcos L.</span><span class="nivel-badge">Intermedio</span></div>
+    <div class="horario-row"><span class="hora">12:00</span><span class="clase">Crossfit</span><span class="prof">Nicolás R.</span><span class="nivel-badge">Avanzado</span></div>
+    <div class="horario-row"><span class="hora">18:00</span><span class="clase">Spinning</span><span class="prof">Camila V.</span><span class="nivel-badge">Todos los niveles</span></div>
+    <div class="horario-row"><span class="hora">19:30</span><span class="clase">HIIT + Crossfit</span><span class="prof">Marcos L.</span><span class="nivel-badge">Avanzado</span></div>
+    <div class="horario-row"><span class="hora">21:00</span><span class="clase">Spinning</span><span class="prof">Rodrigo M.</span><span class="nivel-badge">Todos los niveles</span></div>
+  </div>
+</section>
 
-  <section class="contacto" id="contacto">
-    <h2>¡Dale, escribinos!</h2>
-    <p>+54 9 11 2345-6789 · Av. Corrientes 1234, CABA · @estudiolumen</p>
-    <a class="btn" href="https://wa.me/5491123456789" target="_blank">Contactar por WhatsApp</a>
-  </section>
+<div class="promo" data-aos="fade-up" style="margin-bottom:80px">
+  <span class="tag">🔥 oferta por tiempo limitado</span>
+  <h2>Primer mes al 50%</h2>
+  <p>Para nuevos socios. Cancelás cuando quieras, sin permanencia.</p>
+  <div class="countdown">
+    <div class="cd-box"><span class="num" id="cdDias">00</span><span class="lbl">días</span></div>
+    <div class="cd-box"><span class="num" id="cdHoras">00</span><span class="lbl">horas</span></div>
+    <div class="cd-box"><span class="num" id="cdMins">00</span><span class="lbl">minutos</span></div>
+    <div class="cd-box"><span class="num" id="cdSecs">00</span><span class="lbl">segundos</span></div>
+  </div>
+  <a href="https://wa.me/5491123456789" target="_blank" class="btn-dark">Quiero el 50% de descuento</a>
+</div>
 
-  <footer>© 2026 Estudio Lumen</footer>
+<section class="testimonios" id="testimonios">
+  <div class="section-title" data-aos="fade-up">
+    <span class="label">Resultados reales</span>
+    <h2>Ellos ya dieron el paso</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="stars">★★★★★</div>
+      <p>"Empecé sin saber nada de crossfit. En 3 meses bajé 8 kilos, gané fuerza y encontré un grupo increíble. Los entrenadores te apoyan sin dejarte sin exigirte."</p>
+      <div class="testi-autor">
+        <div class="avatar">MP</div>
+        <div class="autor-info"><div class="nombre">Matías P.</div><div class="rol">Alumno desde 2024 · Crossfit</div></div>
+      </div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="stars">★★★★★</div>
+      <p>"Las clases de spinning son adictivas. La playlist, la energía de Camila y el ambiente te hacen olvidar que estás haciendo ejercicio. Llevo 8 meses sin faltar."</p>
+      <div class="testi-autor">
+        <div class="avatar">SR</div>
+        <div class="autor-info"><div class="nombre">Sofía R.</div><div class="rol">Alumna desde 2023 · Spinning</div></div>
+      </div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="stars">★★★★★</div>
+      <p>"Vine con el objetivo de perder peso, me quedé por la comunidad. Acá todos se conocen, te ayudan y te festejan los logros. Jamás me pasó eso en un gimnasio."</p>
+      <div class="testi-autor">
+        <div class="avatar">CL</div>
+        <div class="autor-info"><div class="nombre">Carlos L.</div><div class="rol">Alumno desde 2024 · HIIT</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="cta">
+  <h2 data-aos="fade-up">¿Empezamos hoy?</h2>
+  <p data-aos="fade-up" data-aos-delay="80">La primera clase es gratis. Sin excusas.</p>
+  <a href="https://wa.me/5491123456789" target="_blank" class="btn-fire" data-aos="fade-up" data-aos-delay="160">Reservar mi clase gratis 🔥</a>
+</section>
+
+<footer>
+  <div class="copy">© 2026 Spin Studio · Thames 1240, Villa Crespo · +54 9 11 6034-8821</div>
+  <nav>
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">YouTube</a>
+  </nav>
+</footer>
+
+<a href="https://wa.me/5491123456789" target="_blank" class="wabtn">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, offset:60 });
+
+  // Tabs horarios (demo visual)
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Countdown — expira en 3 días desde ahora
+  const end = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+  function tick() {
+    const diff = end - Date.now();
+    if (diff <= 0) return;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cdDias').textContent = String(d).padStart(2,'0');
+    document.getElementById('cdHoras').textContent = String(h).padStart(2,'0');
+    document.getElementById('cdMins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cdSecs').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+</script>
 </body>
 </html>

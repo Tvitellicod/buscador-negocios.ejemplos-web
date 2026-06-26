@@ -3,160 +3,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[NOMBRE DEL RESTAURANTE]</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<title>El Origen — Cocina Argentina de Autor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
+  :root { --bg:#fff9f0; --dark:#2e2218; --amber:#c8843a; --cream:#f5e8d0; --gray:#8a6e4e; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: 'Lato', sans-serif; background: #fff8f0; color: #2e2218; line-height: 1.6; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Lato',sans-serif; background:var(--bg); color:var(--dark); line-height:1.65; }
+
+  /* NAV */
   header {
-    display: flex; justify-content: space-between; align-items: center; padding: 24px 7%;
-    background: #2e2218; color: #fff8f0;
+    position:sticky; top:0; z-index:100; background:var(--dark);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 7%;
   }
-  .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #e3a857; }
-  nav a { color: #f0e6d8; text-decoration: none; margin-left: 28px; font-size: .9rem; }
-  nav a:hover { color: #e3a857; }
-  .btn {
-    display: inline-block; padding: 13px 28px; background: #e3a857; color: #2e2218; text-decoration: none;
-    border-radius: 6px; font-weight: 700; font-size: .88rem;
-  }
-  .btn:hover { opacity: .88; }
+  .logo { font-family:'Playfair Display',serif; font-size:1.6rem; color:#e8c97a; }
+  nav a { color:#f0e6d8; text-decoration:none; margin-left:26px; font-size:.88rem; transition:color .2s; }
+  nav a:hover { color:#e8c97a; }
+  .nav-btn { margin-left:26px; padding:11px 24px; background:#e8c97a; color:var(--dark); border-radius:6px; font-weight:700; font-size:.82rem; transition:opacity .2s; }
+  .nav-btn:hover { opacity:.85; }
 
+  /* HERO */
   .hero {
-    text-align: center; padding: 110px 7% 90px; color: #fff;
-    background: linear-gradient(rgba(20,14,8,.6), rgba(20,14,8,.6)), url('https://picsum.photos/seed/resto-hero/1600/700');
-    background-size: cover; background-position: center;
+    position:relative; min-height:92vh; display:flex; align-items:center;
+    background:linear-gradient(rgba(20,14,8,.65),rgba(20,14,8,.65)),
+      url('https://picsum.photos/seed/restaurant-hero/1600/900') center/cover;
+    padding:0 7%; text-align:left;
   }
-  .hero span.tag { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #e3a857; display: block; margin-bottom: 14px; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; margin-bottom: 22px; }
-  .hero p { max-width: 480px; margin: 0 auto 36px; color: #f0e6d8; }
+  .hero-content { max-width:620px; color:#fff; position:relative; z-index:1; }
+  .hero-tag { font-size:.75rem; letter-spacing:3px; text-transform:uppercase; color:#e8c97a; margin-bottom:18px; display:block; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,5vw,4.2rem); line-height:1.1; margin-bottom:22px; }
+  .hero p { color:#f0e6d8; font-size:1rem; max-width:480px; margin-bottom:38px; }
+  .hero-btns { display:flex; gap:16px; }
+  .btn-gold { padding:15px 34px; background:#e8c97a; color:var(--dark); text-decoration:none; font-weight:700; border-radius:6px; font-size:.88rem; transition:opacity .2s; }
+  .btn-gold:hover { opacity:.88; }
+  .btn-ghost { padding:15px 34px; border:1.5px solid rgba(255,255,255,.4); color:#fff; text-decoration:none; border-radius:6px; font-size:.88rem; transition:border-color .2s; }
+  .btn-ghost:hover { border-color:#e8c97a; }
 
-  .menu { padding: 90px 7%; max-width: 1100px; margin: 0 auto; }
-  .menu h2 { font-family: 'Playfair Display', serif; text-align: center; font-size: 2.2rem; margin-bottom: 16px; color: #5c3a1e; }
-  .menu .sub { text-align: center; color: #8a6e4e; margin-bottom: 50px; }
-  .menu-tabs { display: flex; justify-content: center; gap: 14px; margin-bottom: 50px; flex-wrap: wrap; }
-  .menu-tabs span {
-    padding: 10px 22px; border: 1px solid #e3a857; border-radius: 30px; font-size: .85rem; color: #5c3a1e;
+  /* INFO BAR */
+  .info-bar { background:var(--dark); padding:22px 7%; display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px; }
+  .info-item { text-align:center; }
+  .info-item .ico { font-size:1.3rem; display:block; margin-bottom:4px; }
+  .info-item .txt { font-size:.8rem; color:#e8c97a; font-weight:600; display:block; }
+  .info-item .sub { font-size:.75rem; color:#a0907a; }
+
+  /* MENU */
+  .menu { padding:90px 7%; max-width:1200px; margin:0 auto; }
+  .menu-header { text-align:center; margin-bottom:56px; }
+  .menu-header h2 { font-family:'Playfair Display',serif; font-size:2.4rem; margin-bottom:10px; }
+  .menu-header p { color:var(--gray); font-style:italic; }
+  .tabs { display:flex; justify-content:center; gap:12px; margin-bottom:54px; flex-wrap:wrap; }
+  .tab {
+    padding:10px 26px; border:1.5px solid #e8c97a; border-radius:30px; cursor:pointer;
+    font-size:.85rem; font-family:'Lato',sans-serif; background:transparent;
+    color:var(--dark); transition:all .2s; font-weight:600;
   }
-  .menu-tabs span.active { background: #e3a857; color: #2e2218; font-weight: 700; }
+  .tab.active, .tab:hover { background:#e8c97a; color:var(--dark); }
+  .category { display:none; }
+  .category.active { display:block; }
+  .cat-title { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--amber); border-bottom:2px solid var(--cream); padding-bottom:10px; margin-bottom:32px; display:inline-block; }
+  .platos-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  .plato { display:flex; gap:18px; background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,.05); transition:transform .2s, box-shadow .2s; }
+  .plato:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(0,0,0,.1); }
+  .plato img { width:88px; height:88px; object-fit:cover; border-radius:10px; flex-shrink:0; }
+  .plato-info { flex:1; }
+  .plato-top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:6px; }
+  .plato-top h4 { font-size:1rem; font-weight:700; color:var(--dark); }
+  .plato-top .precio { font-weight:700; color:var(--amber); white-space:nowrap; font-size:.95rem; }
+  .plato p { font-size:.82rem; color:var(--gray); line-height:1.6; }
+  .badge-plato { display:inline-block; margin-top:8px; padding:3px 10px; border-radius:20px; font-size:.7rem; font-weight:700; }
+  .badge-destacado { background:#fef3cd; color:#b8860b; }
+  .badge-vegano { background:#e8f5e9; color:#2e7d32; }
+  .badge-nuevo { background:#fce4ec; color:#c62828; }
 
-  .categoria { margin-bottom: 60px; }
-  .categoria h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 26px; color: #5c3a1e; border-bottom: 2px solid #e3a857; padding-bottom: 8px; display: inline-block; }
-  .platos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
-  .plato { display: flex; gap: 16px; }
-  .plato img { width: 90px; height: 90px; object-fit: cover; border-radius: 10px; flex-shrink: 0; }
-  .plato .info { flex: 1; }
-  .plato .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
-  .plato h4 { font-size: 1.02rem; font-weight: 700; }
-  .plato .precio { font-weight: 700; color: #b9762f; white-space: nowrap; }
-  .plato p { font-size: .87rem; color: #8a6e4e; margin-top: 4px; }
+  /* GALERIA AMBIENTE */
+  .ambiente { padding:0 0 90px; }
+  .ambiente-header { padding:0 7% 40px; display:flex; justify-content:space-between; align-items:baseline; }
+  .ambiente-header h2 { font-family:'Playfair Display',serif; font-size:2rem; }
+  .galeria { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .galeria img { width:100%; aspect-ratio:1; object-fit:cover; display:block; border-radius:8px; transition:transform .3s; }
+  .galeria img:hover { transform:scale(1.03); }
 
-  .reserva-banner {
-    text-align: center; padding: 80px 7%; background: #2e2218; color: #fff;
+  /* RESERVA */
+  .reserva { padding:80px 7%; background:var(--dark); color:#fff; }
+  .reserva-inner { max-width:800px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .reserva-text h2 { font-family:'Playfair Display',serif; font-size:2.2rem; margin-bottom:18px; }
+  .reserva-text p { color:#d8c8b0; margin-bottom:24px; font-size:.92rem; line-height:1.8; }
+  .reserva-datos { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .reserva-datos li { font-size:.88rem; color:#c8b090; display:flex; align-items:center; gap:10px; }
+  .form-card { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:36px; }
+  .form-card h3 { font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:24px; color:#e8c97a; }
+  .fg { margin-bottom:16px; }
+  .fg label { display:block; font-size:.75rem; color:#a0907a; margin-bottom:6px; text-transform:uppercase; letter-spacing:.5px; }
+  .fg input, .fg select { width:100%; padding:12px 14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:8px; color:#fff; font-size:.9rem; font-family:'Lato',sans-serif; }
+  .fg input::placeholder { color:#6a5a4a; }
+  .btn-reservar { width:100%; padding:15px; background:#e8c97a; color:var(--dark); border:none; border-radius:8px; font-weight:700; font-size:.92rem; font-family:'Lato',sans-serif; cursor:pointer; transition:opacity .2s; margin-top:8px; }
+  .btn-reservar:hover { opacity:.88; }
+
+  /* TESTIMONIOS */
+  .testimonios { padding:80px 7%; }
+  .testimonios h2 { font-family:'Playfair Display',serif; font-size:2.1rem; text-align:center; margin-bottom:50px; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:0 auto; }
+  .testi-card { background:#fff; border-radius:12px; padding:28px; box-shadow:0 2px 12px rgba(0,0,0,.05); }
+  .stars { color:#c8843a; font-size:.85rem; margin-bottom:12px; }
+  .testi-card p { font-size:.88rem; color:#6a5a4a; line-height:1.75; font-style:italic; margin-bottom:16px; }
+  .testi-autor { font-size:.82rem; font-weight:700; }
+  .testi-cargo { font-size:.76rem; color:var(--gray); }
+
+  /* FOOTER */
+  footer { background:#1a1006; padding:36px 7%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .copy { font-size:.8rem; color:#6a5a4a; }
+  footer nav a { color:#6a5a4a; text-decoration:none; font-size:.8rem; margin-left:20px; transition:color .2s; }
+  footer nav a:hover { color:#e8c97a; }
+
+  /* WA */
+  .wabtn { position:fixed; bottom:28px; right:28px; z-index:200; width:56px; height:56px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(37,211,102,.4); text-decoration:none; transition:transform .2s; }
+  .wabtn:hover { transform:scale(1.1); }
+  .wabtn svg { width:28px; height:28px; fill:#fff; }
+
+  @media(max-width:900px) {
+    .platos-grid { grid-template-columns:1fr; }
+    .galeria { grid-template-columns:repeat(2,1fr); }
+    .reserva-inner { grid-template-columns:1fr; }
+    .testi-grid { grid-template-columns:1fr; }
+    nav a:not(.nav-btn) { display:none; }
+    footer { flex-direction:column; }
   }
-  .reserva-banner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 16px; }
-  .reserva-banner p { color: #d8c8b0; margin-bottom: 32px; }
-
-  footer { text-align: center; padding: 36px 7%; color: #8a6e4e; font-size: .85rem; background: #fff8f0; }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">[Nombre]</div>
-    <nav>
-      <a href="#menu">Menú</a>
-      <a href="#reservar">Reservas</a>
-    </nav>
-    <a class="btn" href="#reservar">Reservar mesa</a>
-  </header>
+<header>
+  <div class="logo">El Origen</div>
+  <nav>
+    <a href="#menu">Menú</a>
+    <a href="#ambiente">Ambiente</a>
+    <a href="#reservar">Reservas</a>
+    <a href="#reservar" class="nav-btn">Reservar mesa</a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <span class="tag">Cocina de autor</span>
-    <h1>[Nombre del Restaurante]</h1>
-    <p>[Frase que describa la propuesta gastronómica: tipo de cocina, ingredientes, ambiente.]</p>
-    <a class="btn" href="#menu">Ver el menú</a>
-  </section>
-
-  <section class="menu" id="menu">
-    <h2>Nuestro Menú</h2>
-    <p class="sub">Platos elaborados con ingredientes frescos de estación</p>
-    <div class="menu-tabs">
-      <span class="active">Entradas</span>
-      <span>Principales</span>
-      <span>Postres</span>
-      <span>Bebidas</span>
+<section class="hero">
+  <div class="hero-content" data-aos="fade-right">
+    <span class="hero-tag">Cocina argentina de autor · Palermo Soho</span>
+    <h1>El sabor de acá, hecho con tiempo.</h1>
+    <p>Ingredientes de estación, productores locales y técnica de autor. Una propuesta honesta en el corazón de Palermo.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-gold">Ver el menú</a>
+      <a href="#reservar" class="btn-ghost">Reservar mesa</a>
     </div>
+  </div>
+</section>
 
-    <div class="categoria">
-      <h3>Entradas</h3>
-      <div class="platos">
-        <div class="plato">
-          <img src="https://picsum.photos/seed/plato1/200/200" alt="Entrada 1">
-          <div class="info">
-            <div class="top"><h4>[Nombre del plato]</h4><span class="precio">$8.500</span></div>
-            <p>Breve descripción de los ingredientes principales del plato.</p>
-          </div>
-        </div>
-        <div class="plato">
-          <img src="https://picsum.photos/seed/plato2/200/200" alt="Entrada 2">
-          <div class="info">
-            <div class="top"><h4>[Nombre del plato]</h4><span class="precio">$7.200</span></div>
-            <p>Breve descripción de los ingredientes principales del plato.</p>
-          </div>
-        </div>
+<div class="info-bar">
+  <div class="info-item"><span class="ico">📍</span><span class="txt">Thames 1640, Palermo</span><span class="sub">a 3 cuadras del subte D</span></div>
+  <div class="info-item"><span class="ico">🕐</span><span class="txt">Mar–Dom · 20:00–00:30</span><span class="sub">Sáb y Dom también al mediodía</span></div>
+  <div class="info-item"><span class="ico">📞</span><span class="txt">+54 9 11 5823-4410</span><span class="sub">Reservas hasta las 18:00</span></div>
+  <div class="info-item"><span class="ico">★</span><span class="txt">4.8 en Google</span><span class="sub">+280 reseñas</span></div>
+</div>
+
+<section class="menu" id="menu">
+  <div class="menu-header" data-aos="fade-up">
+    <h2>Nuestra carta</h2>
+    <p>Menú de temporada. Actualizamos platos según lo que nos dan las estaciones.</p>
+  </div>
+  <div class="tabs" data-aos="fade-up" data-aos-delay="80">
+    <button class="tab active" data-cat="entradas">Entradas</button>
+    <button class="tab" data-cat="principales">Principales</button>
+    <button class="tab" data-cat="postres">Postres</button>
+    <button class="tab" data-cat="bebidas">Bebidas</button>
+  </div>
+
+  <div class="category active" id="cat-entradas">
+    <h3 class="cat-title">Entradas</h3>
+    <div class="platos-grid">
+      <div class="plato" data-aos="fade-up"><img src="https://picsum.photos/seed/entry1/200/200" alt="Provoleta"><div class="plato-info"><div class="plato-top"><h4>Provoleta al orégano</h4><span class="precio">$9.500</span></div><p>Provolone fundido con orégano fresco, aceite de oliva y limón. Con pan de campo.</p><span class="badge-plato badge-destacado">⭐ Imperdible</span></div></div>
+      <div class="plato" data-aos="fade-up" data-aos-delay="60"><img src="https://picsum.photos/seed/entry2/200/200" alt="Empanadas"><div class="plato-info"><div class="plato-top"><h4>Empanadas de carne (x3)</h4><span class="precio">$8.200</span></div><p>Masa casera, carne cortada a cuchillo, huevo y aceitunas verdes. Al horno de barro.</p><span class="badge-plato badge-destacado">⭐ Imperdible</span></div></div>
+      <div class="plato" data-aos="fade-up" data-aos-delay="120"><img src="https://picsum.photos/seed/entry3/200/200" alt="Burrata"><div class="plato-info"><div class="plato-top"><h4>Burrata con tomates cherry</h4><span class="precio">$12.000</span></div><p>Burrata fresca, tomates cherry asados, albahaca del huerto y crujiente de pan.</p><span class="badge-plato badge-vegano">🌿 Vegano disponible</span></div></div>
+      <div class="plato" data-aos="fade-up" data-aos-delay="180"><img src="https://picsum.photos/seed/entry4/200/200" alt="Ceviche"><div class="plato-info"><div class="plato-top"><h4>Ceviche de corvina</h4><span class="precio">$14.500</span></div><p>Corvina fresca, leche de tigre criolla, maíz tostado y ají amarillo. Versión argentina.</p><span class="badge-plato badge-nuevo">🆕 Nuevo</span></div></div>
+    </div>
+  </div>
+
+  <div class="category" id="cat-principales">
+    <h3 class="cat-title">Principales</h3>
+    <div class="platos-grid">
+      <div class="plato" data-aos="fade-up"><img src="https://picsum.photos/seed/main1/200/200" alt="Bife"><div class="plato-info"><div class="plato-top"><h4>Bife de chorizo 400g</h4><span class="precio">$28.000</span></div><p>Novillo de pastura de Entre Ríos, con papas rústicas y chimichurri de la casa. Punto a elección.</p><span class="badge-plato badge-destacado">⭐ El más pedido</span></div></div>
+      <div class="plato" data-aos="fade-up" data-aos-delay="60"><img src="https://picsum.photos/seed/main2/200/200" alt="Cordero"><div class="plato-info"><div class="plato-top"><h4>Bondiola al malbec</h4><span class="precio">$22.500</span></div><p>Cocción lenta de 8 horas en Malbec patagónico, con puré rústico de papa y cebolla caramelizada.</p></div></div>
+      <div class="plato" data-aos="fade-up" data-aos-delay="120"><img src="https://picsum.photos/seed/main3/200/200" alt="Pasta"><div class="plato-info"><div class="plato-top"><h4>Tallarines caseros al pesto</h4><span class="precio">$18.000</span></div><p>Pasta fresca elaborada en el día, pesto de albahaca, piñones tostados y parmesano reggiano.</p><span class="badge-plato badge-vegano">🌿 Vegetariano</span></div></div>
+      <div class="plato" data-aos="fade-up" data-aos-delay="180"><img src="https://picsum.photos/seed/main4/200/200" alt="Pollo"><div class="plato-info"><div class="plato-top"><h4>Pollo de campo al horno</h4><span class="precio">$19.500</span></div><p>Pollo entero de campo, marinado en limón y hierbas de la Patagonia. Con ensalada de rúcula.</p></div></div>
+    </div>
+  </div>
+
+  <div class="category" id="cat-postres">
+    <h3 class="cat-title">Postres</h3>
+    <div class="platos-grid">
+      <div class="plato" data-aos="fade-up"><img src="https://picsum.photos/seed/dessert1/200/200" alt="Alfajor"><div class="plato-info"><div class="plato-top"><h4>Alfajor de maicena artesanal</h4><span class="precio">$7.500</span></div><p>Con dulce de leche repostero y coco rallado. Receta de la abuela de la chef Daniela.</p><span class="badge-plato badge-destacado">⭐ No te lo pierdas</span></div></div>
+      <div class="plato" data-aos="fade-up" data-aos-delay="60"><img src="https://picsum.photos/seed/dessert2/200/200" alt="Flan"><div class="plato-info"><div class="plato-top"><h4>Flan casero con dulce de leche</h4><span class="precio">$6.800</span></div><p>Flan de vainilla natural con dulce de leche San Ignacio y crema chantilly.</p></div></div>
+    </div>
+  </div>
+
+  <div class="category" id="cat-bebidas">
+    <h3 class="cat-title">Bebidas</h3>
+    <div class="platos-grid">
+      <div class="plato" data-aos="fade-up"><img src="https://picsum.photos/seed/drink1/200/200" alt="Vino"><div class="plato-info"><div class="plato-top"><h4>Malbec Rutini (copa)</h4><span class="precio">$6.200</span></div><p>Valle de Uco, Mendoza. Notas a ciruelas, chocolate amargo y especias. Suave al paladar.</p></div></div>
+      <div class="plato" data-aos="fade-up" data-aos-delay="60"><img src="https://picsum.photos/seed/drink2/200/200" alt="Limonada"><div class="plato-info"><div class="plato-top"><h4>Limonada de jengibre</h4><span class="precio">$4.500</span></div><p>Limón fresco, jengibre, menta y un toque de miel de campo. Sin gas o con gas.</p><span class="badge-plato badge-vegano">🌿 Sin alcohol</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ambiente" id="ambiente">
+  <div class="ambiente-header" data-aos="fade-up">
+    <h2>El espacio</h2>
+  </div>
+  <div class="galeria">
+    <img src="https://picsum.photos/seed/rest-amb1/500/500" alt="Interior" data-aos="fade-up" data-aos-delay="0">
+    <img src="https://picsum.photos/seed/rest-amb2/500/500" alt="Mesa" data-aos="fade-up" data-aos-delay="60">
+    <img src="https://picsum.photos/seed/rest-amb3/500/500" alt="Barra" data-aos="fade-up" data-aos-delay="120">
+    <img src="https://picsum.photos/seed/rest-amb4/500/500" alt="Patio" data-aos="fade-up" data-aos-delay="180">
+  </div>
+</section>
+
+<section class="reserva" id="reservar">
+  <div class="reserva-inner">
+    <div class="reserva-text" data-aos="fade-right">
+      <h2>Reservá tu mesa</h2>
+      <p>Completá el formulario y te confirmamos por WhatsApp en menos de 2 horas. Para grupos de más de 6 personas escribinos directamente.</p>
+      <ul class="reserva-datos">
+        <li>📍 Thames 1640, Palermo Soho, CABA</li>
+        <li>🕐 Martes a domingo · 20:00–00:30</li>
+        <li>🕐 Sáb y dom también 13:00–16:00</li>
+        <li>📞 +54 9 11 5823-4410</li>
+      </ul>
+    </div>
+    <div class="form-card" data-aos="fade-left">
+      <h3>Hacer reserva</h3>
+      <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+      <div class="fg"><label>WhatsApp</label><input type="tel" placeholder="+54 9 11 0000-0000"></div>
+      <div class="fg"><label>Fecha</label><input type="date"></div>
+      <div class="fg"><label>Horario</label>
+        <select>
+          <option>20:00</option><option>20:30</option><option>21:00</option>
+          <option>21:30</option><option>22:00</option><option>22:30</option>
+        </select>
       </div>
-    </div>
-
-    <div class="categoria">
-      <h3>Principales</h3>
-      <div class="platos">
-        <div class="plato">
-          <img src="https://picsum.photos/seed/plato3/200/200" alt="Principal 1">
-          <div class="info">
-            <div class="top"><h4>[Nombre del plato]</h4><span class="precio">$16.900</span></div>
-            <p>Breve descripción de los ingredientes principales del plato.</p>
-          </div>
-        </div>
-        <div class="plato">
-          <img src="https://picsum.photos/seed/plato4/200/200" alt="Principal 2">
-          <div class="info">
-            <div class="top"><h4>[Nombre del plato]</h4><span class="precio">$18.500</span></div>
-            <p>Breve descripción de los ingredientes principales del plato.</p>
-          </div>
-        </div>
+      <div class="fg"><label>Cantidad de personas</label>
+        <select>
+          <option>1–2 personas</option><option>3–4 personas</option>
+          <option>5–6 personas</option><option>+6 (escribir por WA)</option>
+        </select>
       </div>
+      <button class="btn-reservar" onclick="alert('¡Gracias! Te confirmamos la reserva por WhatsApp en breve. 🥂')">Confirmar reserva</button>
     </div>
+  </div>
+</section>
 
-    <div class="categoria">
-      <h3>Postres</h3>
-      <div class="platos">
-        <div class="plato">
-          <img src="https://picsum.photos/seed/plato5/200/200" alt="Postre 1">
-          <div class="info">
-            <div class="top"><h4>[Nombre del postre]</h4><span class="precio">$6.000</span></div>
-            <p>Breve descripción del postre.</p>
-          </div>
-        </div>
-        <div class="plato">
-          <img src="https://picsum.photos/seed/plato6/200/200" alt="Postre 2">
-          <div class="info">
-            <div class="top"><h4>[Nombre del postre]</h4><span class="precio">$5.500</span></div>
-            <p>Breve descripción del postre.</p>
-          </div>
-        </div>
-      </div>
+<section class="testimonios">
+  <h2 data-aos="fade-up">Qué dicen nuestros comensales</h2>
+  <div class="testi-grid">
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="stars">★★★★★</div>
+      <p>"El bife de chorizo fue el mejor que comí en mi vida, y eso que viví dos años en Santa Cruz. La carne, el punto, el chimichurri. Todo perfecto."</p>
+      <div class="testi-autor">Pablo Ríos</div><div class="testi-cargo">Google Review</div>
     </div>
-  </section>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="stars">★★★★★</div>
+      <p>"Un lugar especial. La chef sale a saludar las mesas y te explica los ingredientes. Comida honestas, sin cartas kilométricas ni pretensiones. Volveré seguro."</p>
+      <div class="testi-autor">Florencia Andrade</div><div class="testi-cargo">Google Review · Tripadvisor</div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="stars">★★★★★</div>
+      <p>"Fuimos de aniversario y el equipo lo hizo muy especial. El flan de postre fue mi perdición. Ya tenemos reserva para la próxima semana."</p>
+      <div class="testi-autor">Sebastián & Valeria</div><div class="testi-cargo">Google Review</div>
+    </div>
+  </div>
+</section>
 
-  <section class="reserva-banner" id="reservar">
-    <h2>Reservá tu mesa</h2>
-    <p>[Dirección] · [Horario] · [Teléfono]</p>
-    <a class="btn" href="https://wa.me/5491123456789" target="_blank">Reservar por WhatsApp</a>
-  </section>
+<footer>
+  <div class="copy">© 2026 El Origen · Thames 1640, Palermo Soho, CABA · +54 9 11 5823-4410</div>
+  <nav>
+    <a href="#">Instagram</a>
+    <a href="#">TripAdvisor</a>
+  </nav>
+</footer>
 
-  <footer>
-    © 2026 [Nombre del Restaurante]. Todos los derechos reservados.
-  </footer>
+<a href="https://wa.me/5491123456789" target="_blank" class="wabtn">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, offset:60 });
+
+  // Menu tabs
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.category').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('cat-' + tab.dataset.cat).classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>

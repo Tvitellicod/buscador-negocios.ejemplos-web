@@ -3,200 +3,294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estudio Lumen</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Caveat:wght@600&family=Lora&display=swap" rel="stylesheet">
+<title>La Molienda — Panadería Artesanal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Lora:ital@0;1&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
+  :root { --cream:#f5edd9; --brown:#5c3d28; --dark:#3a2518; --amber:#c97a3a; --light:#fffaf2; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Lora', serif;
-    background: #f3ead9;
-    color: #3e2c1c;
-    line-height: 1.7;
-  }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Lora',serif; background:var(--cream); color:var(--dark); line-height:1.7; }
+
+  /* NAV */
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 8%;
-    background: #5c3d28;
+    position:sticky; top:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 7%; background:var(--brown);
+    transition:box-shadow .3s;
   }
-  .logo {
-    font-family: 'Playfair Display', serif;
-    color: #f3ead9;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-  nav a {
-    color: #e8d9bf;
-    text-decoration: none;
-    margin-left: 30px;
-    font-size: .95rem;
-  }
-  nav a:hover { color: #fff; }
+  header.scrolled { box-shadow:0 4px 20px rgba(0,0,0,.25); }
+  .logo { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--cream); }
+  .logo em { font-style:italic; color:#e8c97a; }
+  nav a { color:#e8d9be; text-decoration:none; margin-left:28px; font-size:.9rem; font-family:'Lora',serif; transition:color .2s; }
+  nav a:hover { color:#fff; }
+  .nav-btn { margin-left:28px; padding:10px 22px; border:1px solid #e8c97a; border-radius:30px; color:#e8c97a !important; font-size:.85rem; transition:all .2s !important; }
+  .nav-btn:hover { background:#e8c97a; color:var(--dark) !important; }
 
+  /* HERO */
   .hero {
-    text-align: center;
-    padding: 110px 8% 90px;
-    background: linear-gradient(rgba(92,61,40,.55), rgba(92,61,40,.55)),
-                repeating-linear-gradient(45deg, #6b4226 0px, #6b4226 20px, #5c3a21 20px, #5c3a21 40px);
-    color: #fff;
+    position:relative; min-height:90vh; display:flex; align-items:center;
+    background:linear-gradient(rgba(58,37,24,.6),rgba(58,37,24,.6)),
+      url('https://picsum.photos/seed/bakery-hero/1600/900') center/cover;
+    padding:0 7%;
   }
-  .hero span.script {
-    font-family: 'Caveat', cursive;
-    font-size: 1.8rem;
-    color: #f0d9a8;
-    display: block;
-    margin-bottom: 6px;
+  .hero-content { max-width:620px; color:#fff; }
+  .hero-script { font-family:'Caveat',cursive; font-size:2rem; color:#e8c97a; display:block; margin-bottom:12px; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.4rem,5vw,3.8rem); line-height:1.15; margin-bottom:22px; }
+  .hero p { color:#e8d9be; font-size:1.05rem; max-width:480px; margin-bottom:38px; }
+  .hero-btns { display:flex; gap:18px; flex-wrap:wrap; }
+  .btn-amber {
+    padding:15px 34px; background:var(--amber); color:#fff; text-decoration:none;
+    border-radius:30px; font-weight:600; font-size:.9rem; font-family:'Lora',serif;
+    box-shadow:0 6px 20px rgba(201,122,58,.4); transition:transform .2s, box-shadow .2s;
   }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  .hero p {
-    max-width: 520px;
-    margin: 0 auto 35px;
-    color: #f3ead9;
-    font-size: 1.05rem;
-  }
-  .btn {
-    display: inline-block;
-    padding: 15px 36px;
-    background: #a9744f;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    box-shadow: 0 6px 16px rgba(0,0,0,.25);
-    transition: transform .2s;
-  }
-  .btn:hover { transform: translateY(-3px); }
+  .btn-amber:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(201,122,58,.5); }
+  .btn-outline-w { padding:15px 34px; border:1.5px solid rgba(255,255,255,.5); color:#fff; text-decoration:none; border-radius:30px; font-size:.9rem; font-family:'Lora',serif; transition:background .2s; }
+  .btn-outline-w:hover { background:rgba(255,255,255,.1); }
 
-  section.servicios {
-    padding: 90px 8%;
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  section.servicios h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.1rem;
-    margin-bottom: 14px;
-    color: #5c3d28;
-  }
-  section.servicios .script {
-    font-family: 'Caveat', cursive;
-    font-size: 1.4rem;
-    color: #a9744f;
-    display: block;
-    margin-bottom: 50px;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 35px;
-  }
-  .card {
-    background: #fffaf0;
-    border: 1px solid #e0cba8;
-    border-radius: 10px;
-    padding: 35px 24px;
-  }
-  .card h3 {
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 12px;
-    color: #5c3d28;
-  }
-  .card p { color: #6b5440; font-size: .95rem; }
+  /* BADGES HERO */
+  .hero-badges { position:absolute; bottom:40px; right:7%; display:flex; gap:16px; }
+  .hero-badge { background:rgba(255,255,255,.95); padding:16px 22px; border-radius:12px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.2); }
+  .hero-badge .num { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:var(--brown); display:block; }
+  .hero-badge .lbl { font-size:.72rem; color:#888; font-family:'Lora',serif; }
 
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 0 8% 90px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .galeria img {
-    aspect-ratio: 1;
-    width: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 8px;
-  }
+  /* FRANJA ANIMADA */
+  .franja { background:var(--brown); padding:18px 0; overflow:hidden; white-space:nowrap; }
+  .franja-inner { display:inline-block; animation:slide 18s linear infinite; }
+  .franja-inner span { color:#e8c97a; font-family:'Caveat',cursive; font-size:1.1rem; margin:0 40px; }
+  @keyframes slide { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-  .contacto {
-    text-align: center;
-    padding: 90px 8%;
-    background: #5c3d28;
-    color: #f3ead9;
-  }
-  .contacto h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    margin-bottom: 16px;
-  }
-  .contacto p { margin-bottom: 30px; color: #e8d9bf; }
+  /* NOSOTROS */
+  .nosotros { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; padding:100px 7%; max-width:1200px; margin:0 auto; }
+  .nosotros-img img { width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; display:block; }
+  .nosotros-text .tag { font-family:'Caveat',cursive; font-size:1.5rem; color:var(--amber); display:block; margin-bottom:14px; }
+  .nosotros-text h2 { font-family:'Playfair Display',serif; font-size:2.2rem; margin-bottom:22px; color:var(--brown); }
+  .nosotros-text p { color:#6b5440; margin-bottom:18px; }
+  .nosotros-text .firma { font-family:'Caveat',cursive; font-size:1.4rem; color:var(--amber); margin-top:28px; }
 
-  footer {
-    text-align: center;
-    padding: 25px;
-    font-size: .85rem;
-    background: #3e2c1c;
-    color: #c9b18d;
+  /* PRODUCTOS */
+  .productos { padding:80px 7%; background:var(--light); }
+  .productos h2 { font-family:'Playfair Display',serif; font-size:2.2rem; text-align:center; color:var(--brown); margin-bottom:12px; }
+  .productos .sub { text-align:center; font-style:italic; color:#9a7a5a; margin-bottom:56px; }
+  .prod-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:28px; max-width:1200px; margin:0 auto; }
+  .prod-card { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.06); transition:transform .3s, box-shadow .3s; }
+  .prod-card:hover { transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,.12); }
+  .prod-card img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+  .prod-info { padding:20px; }
+  .prod-info h3 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--brown); margin-bottom:6px; }
+  .prod-info p { font-size:.85rem; color:#9a7a5a; margin-bottom:10px; }
+  .prod-precio { font-weight:700; color:var(--amber); font-size:1rem; font-family:'Playfair Display',serif; }
+
+  /* HORARIOS */
+  .horarios { padding:80px 7%; display:grid; grid-template-columns:1fr 1fr; gap:60px; max-width:1100px; margin:0 auto; align-items:start; }
+  .horarios h2 { font-family:'Playfair Display',serif; font-size:2.1rem; color:var(--brown); margin-bottom:32px; }
+  .horario-fila { display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid #e8d9bf; }
+  .horario-fila .dia { font-weight:600; font-size:.92rem; }
+  .horario-fila .hora { color:var(--amber); font-size:.92rem; }
+  .mapa { border-radius:12px; overflow:hidden; height:280px; background:#d8c8a8; display:flex; align-items:center; justify-content:center; }
+  .mapa-placeholder { text-align:center; color:var(--brown); }
+  .mapa-placeholder .icon { font-size:2.5rem; margin-bottom:10px; }
+  .mapa-placeholder p { font-size:.9rem; color:#9a7a5a; }
+  .mapa-placeholder strong { display:block; font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--brown); margin-bottom:4px; }
+
+  /* TESTIMONIOS */
+  .testimonios { padding:80px 7%; background:var(--brown); }
+  .testimonios h2 { font-family:'Playfair Display',serif; font-size:2.1rem; color:var(--cream); text-align:center; margin-bottom:56px; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1100px; margin:0 auto; }
+  .testi-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:28px; }
+  .stars { color:#e8c97a; font-size:.85rem; margin-bottom:12px; }
+  .testi-card p { color:#e8d9be; font-style:italic; font-size:.9rem; line-height:1.75; margin-bottom:16px; }
+  .testi-autor { font-size:.82rem; color:#c9b090; font-weight:600; }
+
+  /* CTA */
+  .cta { padding:90px 7%; text-align:center; }
+  .cta h2 { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--brown); margin-bottom:16px; }
+  .cta p { color:#9a7a5a; margin-bottom:38px; font-size:1rem; }
+
+  /* FOOTER */
+  footer { background:var(--dark); padding:40px 7%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+  footer .copy { font-size:.82rem; color:#9a8070; }
+  footer nav a { color:#9a8070; text-decoration:none; font-size:.82rem; margin-left:22px; transition:color .2s; }
+  footer nav a:hover { color:var(--cream); }
+
+  /* WA */
+  .wabtn { position:fixed; bottom:28px; right:28px; z-index:200; width:56px; height:56px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(37,211,102,.4); text-decoration:none; transition:transform .2s; }
+  .wabtn:hover { transform:scale(1.1); }
+  .wabtn svg { width:28px; height:28px; fill:#fff; }
+
+  @media(max-width:900px) {
+    .hero-badges { display:none; }
+    .nosotros { grid-template-columns:1fr; }
+    .prod-grid { grid-template-columns:repeat(2,1fr); }
+    .horarios { grid-template-columns:1fr; }
+    .testi-grid { grid-template-columns:1fr; }
+    nav a:not(.nav-btn) { display:none; }
+    footer { flex-direction:column; }
   }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">Lumen</div>
-    <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#galeria">Galería</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+<header id="navbar">
+  <div class="logo">La <em>Molienda</em></div>
+  <nav>
+    <a href="#nosotros">Nuestra historia</a>
+    <a href="#productos">Productos</a>
+    <a href="#horarios">Horarios</a>
+    <a href="https://wa.me/5491123456789" target="_blank" class="nav-btn">Hacer un pedido</a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <span class="script">Diseño con tiempo y dedicación</span>
-    <h1>Estudio Lumen</h1>
-    <p>Creamos identidades visuales con cuidado artesanal, pensando cada detalle de tu marca.</p>
-    <a class="btn" href="https://wa.me/5491123456789" target="_blank">Escribinos por WhatsApp</a>
-  </section>
+<section class="hero">
+  <div class="hero-content" data-aos="fade-right">
+    <span class="hero-script">Hecho con tiempo y amor</span>
+    <h1>Pan artesanal como el de antes.</h1>
+    <p>Masas madre, factura de manteca y medialunas horneadas cada mañana. Sin conservantes, sin atajos.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5491123456789" target="_blank" class="btn-amber">Hacer un pedido 🍞</a>
+      <a href="#productos" class="btn-outline-w">Ver productos</a>
+    </div>
+  </div>
+  <div class="hero-badges">
+    <div class="hero-badge"><span class="num">1972</span><span class="lbl">Desde</span></div>
+    <div class="hero-badge"><span class="num">100%</span><span class="lbl">Artesanal</span></div>
+  </div>
+</section>
 
-  <section class="servicios" id="servicios">
-    <h2>Nuestros servicios</h2>
-    <span class="script">cada proyecto, una historia distinta</span>
-    <div class="cards">
-      <div class="card">
-        <h3>Identidad de marca</h3>
-        <p>Diseñamos el alma visual de tu negocio: logo, colores y personalidad.</p>
-      </div>
-      <div class="card">
-        <h3>Diseño web</h3>
-        <p>Sitios simples y cálidos que reflejan quién sos.</p>
-      </div>
-      <div class="card">
-        <h3>Piezas gráficas</h3>
-        <p>Diseño editorial y de redes hecho con dedicación.</p>
+<div class="franja">
+  <div class="franja-inner">
+    <span>Pan de campo</span><span>·</span>
+    <span>Medialunas de manteca</span><span>·</span>
+    <span>Factura de grasa</span><span>·</span>
+    <span>Masa madre</span><span>·</span>
+    <span>Tartas caseras</span><span>·</span>
+    <span>Empanadas al horno</span><span>·</span>
+    <span>Pan de campo</span><span>·</span>
+    <span>Medialunas de manteca</span><span>·</span>
+    <span>Factura de grasa</span><span>·</span>
+    <span>Masa madre</span><span>·</span>
+    <span>Tartas caseras</span><span>·</span>
+    <span>Empanadas al horno</span><span>·</span>
+  </div>
+</div>
+
+<section class="nosotros" id="nosotros">
+  <div class="nosotros-img" data-aos="fade-right">
+    <img src="https://picsum.photos/seed/bakery-old/700/900" alt="Interior de la panadería">
+  </div>
+  <div class="nosotros-text" data-aos="fade-left">
+    <span class="tag">Nuestra historia</span>
+    <h2>Tres generaciones amasando.</h2>
+    <p>La Molienda nació en 1972 cuando don Manuel Quiroga abrió su primera panadería en Villa del Parque. Lo que empezó como un pequeño horno familiar se convirtió en el lugar de desayuno de todo el barrio.</p>
+    <p>Hoy, su nieta Carla sigue con la misma receta de masa madre y los mismos tiempos de fermentación. Porque el buen pan no se apura.</p>
+    <div class="firma">— Carla Quiroga, 3.ª generación</div>
+  </div>
+</section>
+
+<section class="productos" id="productos">
+  <h2 data-aos="fade-up">Lo que sale del horno</h2>
+  <p class="sub" data-aos="fade-up" data-aos-delay="80">Horneamos en dos turnos: 6 AM y 2 PM.</p>
+  <div class="prod-grid">
+    <div class="prod-card" data-aos="fade-up" data-aos-delay="0">
+      <img src="https://picsum.photos/seed/pan1/500/500" alt="Pan de campo">
+      <div class="prod-info">
+        <h3>Pan de campo</h3>
+        <p>Masa madre, harina 000, 48 hs de fermentación.</p>
+        <div class="prod-precio">$2.800 · kg</div>
       </div>
     </div>
-  </section>
+    <div class="prod-card" data-aos="fade-up" data-aos-delay="80">
+      <img src="https://picsum.photos/seed/pan2/500/500" alt="Medialunas">
+      <div class="prod-info">
+        <h3>Medialunas de manteca</h3>
+        <p>Receta familiar desde 1972. Doradas, hojaldradas.</p>
+        <div class="prod-precio">$450 · c/u</div>
+      </div>
+    </div>
+    <div class="prod-card" data-aos="fade-up" data-aos-delay="160">
+      <img src="https://picsum.photos/seed/pan3/500/500" alt="Empanadas">
+      <div class="prod-info">
+        <h3>Empanadas al horno</h3>
+        <p>Carne cortada a cuchillo, humita y caprese.</p>
+        <div class="prod-precio">$850 · c/u</div>
+      </div>
+    </div>
+    <div class="prod-card" data-aos="fade-up" data-aos-delay="240">
+      <img src="https://picsum.photos/seed/pan4/500/500" alt="Tarta">
+      <div class="prod-info">
+        <h3>Tartas caseras</h3>
+        <p>Espinaca, verdura y jamón y queso. Tamaño familiar.</p>
+        <div class="prod-precio">desde $3.500</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="galeria" id="galeria">
-    <img src="https://picsum.photos/seed/lumen1/700/700" alt="Foto de referencia 1" loading="lazy">
-    <img src="https://picsum.photos/seed/lumen2/700/700" alt="Foto de referencia 2" loading="lazy">
-    <img src="https://picsum.photos/seed/lumen3/700/700" alt="Foto de referencia 3" loading="lazy">
-  </section>
+<section class="horarios" id="horarios">
+  <div data-aos="fade-right">
+    <h2>Horarios y local</h2>
+    <div class="horario-fila"><span class="dia">Lunes a viernes</span><span class="hora">6:30 — 13:00 · 16:00 — 19:30</span></div>
+    <div class="horario-fila"><span class="dia">Sábados</span><span class="hora">6:30 — 13:30</span></div>
+    <div class="horario-fila"><span class="dia">Domingos y feriados</span><span class="hora">7:00 — 12:00</span></div>
+    <div style="margin-top:28px;font-size:.9rem;color:#9a7a5a">
+      📍 Av. San Martín 4428, Villa del Parque, CABA<br>
+      📱 +54 9 11 4823-7651<br>
+      📱 Pedidos por WhatsApp hasta las 9 PM del día anterior.
+    </div>
+  </div>
+  <div class="mapa" data-aos="fade-left">
+    <div class="mapa-placeholder">
+      <div class="icon">📍</div>
+      <strong>La Molienda</strong>
+      <p>Av. San Martín 4428<br>Villa del Parque, CABA</p>
+    </div>
+  </div>
+</section>
 
-  <section class="contacto" id="contacto">
-    <h2>Vení a conocernos</h2>
-    <p>Av. Corrientes 1234, CABA · Lun a Vie 9 a 18 hs · +54 9 11 2345-6789</p>
-    <a class="btn" href="https://wa.me/5491123456789" target="_blank">Reservar / Consultar</a>
-  </section>
+<section class="testimonios">
+  <h2 data-aos="fade-up">Desde el barrio</h2>
+  <div class="testi-grid">
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="stars">★★★★★</div>
+      <p>"Las medialunas son un nivel. Vengo todos los sábados a las 7 AM para agarrarlas recién salidas del horno. No las encontré iguales en ningún lado."</p>
+      <div class="testi-autor">— Claudia M., vecina del barrio</div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="stars">★★★★★</div>
+      <p>"Le encargué 4 docenas de empanadas para el cumpleaños de mi viejo. Llegaron a tiempo, perfectas y riquísimas. La familia entera preguntó dónde las habíamos comprado."</p>
+      <div class="testi-autor">— Javier T., Villa Pueyrredón</div>
+    </div>
+    <div class="testi-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="stars">★★★★★</div>
+      <p>"El pan de campo es lo más rico que comí en mucho tiempo. Lo pido por kilo cada semana. En casa ya no compramos en otro lado."</p>
+      <div class="testi-autor">— Romina V., Devoto</div>
+    </div>
+  </div>
+</section>
 
-  <footer>© 2026 Estudio Lumen. Hecho con cariño.</footer>
+<section class="cta">
+  <h2 data-aos="fade-up">¿Querés hacer un pedido?</h2>
+  <p data-aos="fade-up" data-aos-delay="100">Escribinos por WhatsApp y coordinamos. Pedidos para eventos, cumpleaños y oficinas con 24 hs de anticipación.</p>
+  <a href="https://wa.me/5491123456789" target="_blank" class="btn-amber" data-aos="fade-up" data-aos-delay="200">Hacer pedido por WhatsApp 🍞</a>
+</section>
 
+<footer>
+  <div class="copy">© 2026 La Molienda · Panadería artesanal desde 1972</div>
+  <nav>
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+  </nav>
+</footer>
+
+<a href="https://wa.me/5491123456789" target="_blank" class="wabtn">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, offset:60 });
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+</script>
 </body>
 </html>
