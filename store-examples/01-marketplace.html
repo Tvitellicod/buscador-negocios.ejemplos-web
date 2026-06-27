@@ -3,331 +3,417 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClickPunto — Marketplace Demo</title>
+<title>MercaFácil — Tienda Online</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #f4f6f8;
-  color: #111;
+:root {
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --blue-light: #eff6ff;
+  --green: #16a34a;
+  --green-light: #f0fdf4;
+  --red: #dc2626;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --dark: #0f172a;
+  --mid: #64748b;
+  --border: #e2e8f0;
 }
 
-/* NAV */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--blue-dark);
+  color: rgba(255,255,255,.75);
+  font-size: .72rem;
+  text-align: center;
+  padding: 7px;
+  letter-spacing: .3px;
+}
+.topbar strong { color: #fff; }
+
+/* ── NAV ── */
 nav {
   background: #fff;
-  border-bottom: 1px solid #e8eaed;
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
 }
-.nav-top {
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 12px 32px;
+  padding: 14px 24px;
 }
-.nav-logo {
-  font-size: 1.3rem;
+.logo {
+  font-size: 1.4rem;
   font-weight: 900;
-  color: #1a56db;
+  letter-spacing: -1.2px;
   text-decoration: none;
-  letter-spacing: -1px;
-  margin-right: 8px;
+  color: var(--blue);
+  white-space: nowrap;
 }
-.nav-search {
+.logo span { color: var(--dark); }
+
+.search-bar {
   flex: 1;
   display: flex;
-  align-items: center;
-  background: #f4f6f8;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 8px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
   overflow: hidden;
-  max-width: 500px;
+  transition: border-color .15s;
+  max-width: 560px;
 }
-.nav-search input {
-  flex: 1;
+.search-bar:focus-within { border-color: var(--blue); }
+.search-select {
   border: none;
-  background: transparent;
-  padding: 9px 14px;
-  font-size: .85rem;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+  padding: 0 12px;
+  font-size: .78rem;
+  color: var(--mid);
+  cursor: pointer;
   outline: none;
   font-family: 'Inter', sans-serif;
 }
-.nav-search button {
-  background: #1a56db;
+.search-input {
+  flex: 1;
+  border: none;
+  background: #fff;
+  padding: 10px 14px;
+  font-size: .88rem;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+.search-btn {
+  background: var(--blue);
   border: none;
   color: #fff;
-  padding: 10px 16px;
-  cursor: pointer;
+  padding: 0 18px;
   font-size: .85rem;
+  cursor: pointer;
+  transition: background .15s;
   font-weight: 600;
 }
+.search-btn:hover { background: var(--blue-dark); }
+
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-left: auto;
+  flex-shrink: 0;
 }
-.btn-login {
-  font-size: .8rem;
-  font-weight: 600;
-  color: #1a56db;
-  text-decoration: none;
-  padding: 8px 16px;
-  border: 1.5px solid #1a56db;
-  border-radius: 7px;
-}
-.btn-register {
-  font-size: .8rem;
-  font-weight: 700;
-  color: #fff;
-  background: #1a56db;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 7px;
-}
-.cart-btn {
+.nav-btn {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: .82rem;
-  font-weight: 600;
-  color: #444;
   text-decoration: none;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--mid);
   padding: 8px 12px;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 7px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
   background: #fff;
-}
-
-.nav-cats {
-  display: flex;
-  gap: 0;
-  padding: 0 32px;
-  border-top: 1px solid #eee;
-  overflow-x: auto;
-}
-.nav-cats a {
-  font-size: .76rem;
-  font-weight: 600;
-  color: #555;
-  text-decoration: none;
-  padding: 10px 16px;
+  cursor: pointer;
   white-space: nowrap;
-  transition: color .15s;
-  border-bottom: 2px solid transparent;
+  transition: all .15s;
 }
-.nav-cats a:hover, .nav-cats a.active { color: #1a56db; border-bottom-color: #1a56db; }
+.nav-btn:hover { color: var(--blue); border-color: var(--blue); }
+.nav-btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+.nav-btn.primary:hover { background: var(--blue-dark); }
 
-/* HERO BANNER */
-.hero-banner {
-  background: linear-gradient(120deg, #0f2f80, #1a56db);
+.cart-count {
+  background: var(--red);
   color: #fff;
-  padding: 48px 32px;
+  font-size: .65rem;
+  font-weight: 800;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── CATEGORY BAR ── */
+.cat-bar {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.cat-bar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  padding: 0 24px;
+  overflow-x: auto;
+  gap: 0;
+  scrollbar-width: none;
+}
+.cat-bar-inner::-webkit-scrollbar { display: none; }
+.cat-link {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--mid);
+  text-decoration: none;
+  padding: 11px 16px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .12s, border-color .12s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cat-link:hover, .cat-link.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+/* ── LAYOUT ── */
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ── HERO BANNER ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.hero-main {
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f2460 0%, #1e40af 50%, #2563eb 100%);
+  padding: 48px 48px 48px 48px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 32px;
-  overflow: hidden;
+  gap: 24px;
+  min-height: 280px;
   position: relative;
 }
-.hero-banner::after {
+.hero-main::before {
   content: '';
   position: absolute;
-  right: -60px;
-  top: -60px;
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.05);
+  right: 0; top: 0; bottom: 0;
+  width: 50%;
+  background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,.06) 0%, transparent 70%);
 }
+
 .hero-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: rgba(255,255,255,.15);
+  color: rgba(255,255,255,.9);
   font-size: .68rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   padding: 5px 12px;
   border-radius: 20px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  width: fit-content;
 }
-.hero-banner h1 {
-  font-size: clamp(1.8rem, 3vw, 3rem);
+.hero-tag::before { content:''; width:6px;height:6px;border-radius:50%;background:#4ade80; }
+
+.hero-main h1 {
+  font-size: 2.2rem;
   font-weight: 900;
   letter-spacing: -1.5px;
+  color: #fff;
+  line-height: 1.05;
   margin-bottom: 12px;
 }
-.hero-banner p {
-  font-size: .9rem;
-  opacity: .8;
+.hero-main p {
+  font-size: .88rem;
+  color: rgba(255,255,255,.7);
   margin-bottom: 24px;
   line-height: 1.6;
 }
-.btn-white {
+.hero-cta {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   background: #fff;
-  color: #1a56db;
-  text-decoration: none;
+  color: var(--blue-dark);
   font-size: .83rem;
-  font-weight: 700;
-  padding: 11px 22px;
+  font-weight: 800;
+  padding: 12px 22px;
   border-radius: 8px;
+  text-decoration: none;
+  transition: transform .15s;
 }
-.hero-products {
+.hero-cta:hover { transform: scale(1.03); }
+
+.hero-visual {
   display: flex;
-  gap: 12px;
   justify-content: center;
-}
-.hero-product-card {
-  background: rgba(255,255,255,.12);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 12px;
-  padding: 16px;
-  text-align: center;
-  font-size: 2.5rem;
-  min-width: 90px;
-}
-.hero-product-card span {
-  display: block;
-  font-size: .68rem;
-  font-weight: 600;
-  margin-top: 6px;
-  opacity: .85;
+  align-items: center;
+  font-size: 7rem;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.3));
 }
 
-/* CONTENT */
-.content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px;
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.section-head {
+.promo-card {
+  border-radius: 14px;
+  padding: 24px 22px;
+  color: #fff;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+  text-decoration: none;
+  transition: filter .15s;
+}
+.promo-card:hover { filter: brightness(1.08); }
+.promo-card h3 { font-size: 1rem; font-weight: 800; letter-spacing: -.4px; margin-bottom: 4px; }
+.promo-card p { font-size: .75rem; opacity: .8; margin-bottom: 12px; }
+.promo-link { font-size: .72rem; font-weight: 700; color: rgba(255,255,255,.85); }
+
+/* ── CATEGORIES GRID ── */
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -.4px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
-.section-head h2 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -.5px;
-}
-.section-head a {
-  font-size: .78rem;
-  color: #1a56db;
-  text-decoration: none;
-  font-weight: 600;
-}
+.section-title a { font-size: .78rem; font-weight: 600; color: var(--blue); text-decoration: none; }
 
-/* CATEGORIES */
-.cats-grid {
+.cats {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-  margin-bottom: 40px;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  margin-bottom: 32px;
 }
-.cat-card {
+.cat-item {
   background: #fff;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 20px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 8px;
   text-align: center;
   text-decoration: none;
-  color: #111;
-  font-size: .78rem;
+  color: var(--dark);
+  font-size: .72rem;
   font-weight: 600;
-  transition: box-shadow .15s, transform .15s;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  transition: all .15s;
 }
-.cat-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); transform: translateY(-2px); }
-.cat-icon { font-size: 1.8rem; }
+.cat-item:hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 4px 12px rgba(37,99,235,.1); transform: translateY(-2px); }
+.cat-icon { font-size: 1.6rem; }
 
-/* PRODUCTS */
-.products-grid {
+/* ── PRODUCT GRID ── */
+.products {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 14px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
-.product-card {
+.pcard {
   background: #fff;
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  text-decoration: none;
-  color: #111;
-  transition: box-shadow .15s, transform .15s;
+  cursor: pointer;
+  transition: all .18s;
   display: flex;
   flex-direction: column;
 }
-.product-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); transform: translateY(-3px); }
+.pcard:hover { border-color: #cbd5e1; box-shadow: 0 8px 28px rgba(0,0,0,.09); transform: translateY(-3px); }
 
-.product-img {
-  background: #f8f9fa;
-  height: 180px;
+.pcard-img {
+  background: var(--bg);
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
-  border-bottom: 1px solid #f0f0f0;
+  font-size: 3.5rem;
+  position: relative;
 }
-
-.product-info { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-.product-brand { font-size: .68rem; font-weight: 600; color: #1a56db; text-transform: uppercase; letter-spacing: .5px; }
-.product-name { font-size: .88rem; font-weight: 700; line-height: 1.3; }
-.product-rating {
+.pcard-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  font-size: .62rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: .3px;
+}
+.badge-off { background: var(--red); color: #fff; }
+.badge-new { background: var(--green); color: #fff; }
+.badge-hot { background: #f97316; color: #fff; }
+.pcard-fav {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 30px; height: 30px;
+  background: #fff;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: .72rem;
-  color: #888;
+  justify-content: center;
+  font-size: .85rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  cursor: pointer;
 }
-.stars { color: #f5a623; }
 
-.product-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-top: 4px;
-}
-.price-main {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #111;
-}
-.price-old {
-  font-size: .78rem;
-  color: #bbb;
-  text-decoration: line-through;
-}
-.price-off {
-  font-size: .7rem;
-  font-weight: 700;
-  color: #16a34a;
-  background: #f0fdf4;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-.product-cta {
-  margin: 10px 0 0;
-  display: flex;
-  gap: 8px;
-}
-.btn-add {
+.pcard-body {
+  padding: 14px;
   flex: 1;
-  background: #1a56db;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pcard-brand { font-size: .65rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: .5px; }
+.pcard-name { font-size: .82rem; font-weight: 700; line-height: 1.3; color: var(--dark); }
+.pcard-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: .68rem;
+  color: var(--mid);
+}
+.stars { color: #f59e0b; font-size: .72rem; }
+
+.pcard-price { margin-top: 4px; }
+.price-now { font-size: 1.1rem; font-weight: 900; color: var(--dark); letter-spacing: -.5px; }
+.price-was { font-size: .72rem; color: #94a3b8; text-decoration: line-through; }
+.price-save { font-size: .68rem; font-weight: 700; color: var(--green); }
+
+.pcard-footer {
+  padding: 0 14px 14px;
+  display: flex;
+  gap: 8px;
+}
+.btn-cart {
+  flex: 1;
+  background: var(--blue);
   color: #fff;
   border: none;
   border-radius: 7px;
@@ -335,348 +421,439 @@ nav {
   font-size: .75rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background .15s;
+  transition: background .12s;
+  font-family: 'Inter', sans-serif;
 }
-.btn-add:hover { background: #1440b0; }
-.btn-fav {
-  background: #f4f6f8;
-  border: 1px solid #e0e0e0;
+.btn-cart:hover { background: var(--blue-dark); }
+.btn-wish {
+  width: 36px;
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 7px;
-  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   font-size: .9rem;
 }
 
-/* PROMO BANNERS */
-.promo-grid {
+/* ── BANNER STRIP ── */
+.banner-strip {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
-.promo-card {
+.strip-card {
   border-radius: 12px;
-  padding: 32px;
+  padding: 28px 24px;
   color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 160px;
-  justify-content: center;
+  gap: 8px;
 }
-.promo-card h3 { font-size: 1.3rem; font-weight: 900; letter-spacing: -.5px; }
-.promo-card p { font-size: .82rem; opacity: .85; }
-.promo-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: .78rem;
-  font-weight: 700;
-  color: #fff;
-  text-decoration: none;
-  background: rgba(255,255,255,.2);
-  padding: 7px 14px;
-  border-radius: 6px;
-  width: fit-content;
-  border: 1px solid rgba(255,255,255,.3);
-}
+.strip-card .label { font-size: .65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: .7; }
+.strip-card h3 { font-size: 1.15rem; font-weight: 900; letter-spacing: -.4px; }
+.strip-card p { font-size: .78rem; opacity: .8; }
+.strip-link { font-size: .75rem; font-weight: 700; color: rgba(255,255,255,.9); text-decoration: underline; margin-top: 4px; cursor: pointer; }
 
-/* FOOTER */
+/* ── FOOTER ── */
 footer {
-  background: #111;
-  color: #888;
-  padding: 40px 32px 24px;
+  background: var(--dark);
+  color: #94a3b8;
   margin-top: 40px;
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 24px 24px;
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 32px;
-  max-width: 1200px;
-  margin: 0 auto 32px;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
 }
-.footer-logo {
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: -1px;
-  margin-bottom: 10px;
-}
+.footer-logo { font-size: 1.4rem; font-weight: 900; letter-spacing: -1px; color: #fff; margin-bottom: 10px; }
+.footer-logo span { color: var(--blue); }
 .footer-desc { font-size: .78rem; line-height: 1.7; }
-.footer-col h4 { font-size: .8rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
+
+.footer-col h4 { font-size: .82rem; font-weight: 700; color: #fff; margin-bottom: 16px; }
 .footer-col a {
   display: block;
-  font-size: .76rem;
-  color: #888;
+  font-size: .75rem;
+  color: #94a3b8;
   text-decoration: none;
-  margin-bottom: 8px;
-  transition: color .15s;
+  margin-bottom: 10px;
+  transition: color .12s;
 }
 .footer-col a:hover { color: #fff; }
+
 .footer-bottom {
-  max-width: 1200px;
-  margin: 0 auto;
-  border-top: 1px solid #222;
+  border-top: 1px solid #1e293b;
   padding-top: 20px;
-  font-size: .73rem;
   display: flex;
   justify-content: space-between;
+  font-size: .72rem;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-/* DEMO BADGE */
+/* ── DEMO BADGE ── */
 .demo-badge {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #111;
+  bottom: 18px; right: 18px;
+  background: rgba(15,23,42,.9);
+  backdrop-filter: blur(8px);
   color: #fff;
   font-size: .72rem;
   font-weight: 700;
   padding: 8px 16px;
   border-radius: 20px;
   z-index: 999;
-  letter-spacing: .5px;
+  border: 1px solid rgba(255,255,255,.1);
 }
 
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .products { grid-template-columns: repeat(4, 1fr); }
+  .cats { grid-template-columns: repeat(4, 1fr); }
+}
 @media (max-width: 900px) {
-  .nav-top { padding: 12px 16px; flex-wrap: wrap; }
-  .nav-cats { padding: 0 16px; }
-  .hero-banner { grid-template-columns: 1fr; padding: 36px 16px; }
-  .hero-products { display: none; }
-  .content { padding: 20px 16px; }
-  .cats-grid { grid-template-columns: repeat(3, 1fr); }
-  .products-grid { grid-template-columns: repeat(2, 1fr); }
-  .promo-grid { grid-template-columns: 1fr; }
+  .nav-inner { flex-wrap: wrap; padding: 12px 16px; }
+  .search-bar { order: 3; max-width: 100%; width: 100%; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-side { flex-direction: row; }
+  .hero-main { padding: 32px 24px; }
+  .hero-main h1 { font-size: 1.7rem; }
+  .products { grid-template-columns: repeat(2, 1fr); }
+  .cats { grid-template-columns: repeat(4, 1fr); }
+  .banner-strip { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .main { padding: 16px; }
+}
+@media (max-width: 560px) {
+  .cats { grid-template-columns: repeat(3, 1fr); }
+  .hero-side { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<div class="demo-badge">Demo · Thiago Vitelli</div>
+<div class="demo-badge">Demo — Thiago Vitelli</div>
+
+<!-- TOPBAR -->
+<div class="topbar">🚚 <strong>Envío gratis</strong> en compras mayores a $20.000 · 12 cuotas sin interés</div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-top">
-    <a class="nav-logo" href="#">Click<span style="color:#111">Punto</span></a>
-    <div class="nav-search">
-      <input type="text" placeholder="Buscar productos, marcas y categorías...">
-      <button>🔍</button>
+  <div class="nav-inner">
+    <a class="logo" href="#">Merca<span>Fácil</span></a>
+    <div class="search-bar">
+      <select class="search-select">
+        <option>Todo</option>
+        <option>Electrónica</option>
+        <option>Moda</option>
+        <option>Hogar</option>
+      </select>
+      <input class="search-input" type="text" placeholder="Buscar productos, marcas...">
+      <button class="search-btn">Buscar</button>
     </div>
     <div class="nav-actions">
-      <a href="#" class="cart-btn">🛒 Carrito (0)</a>
-      <a href="#" class="btn-login">Ingresar</a>
-      <a href="#" class="btn-register">Registrarse</a>
+      <a href="#" class="nav-btn">
+        <span>👤</span> Ingresar
+      </a>
+      <a href="#" class="nav-btn">
+        <span>🛒</span> Carrito
+        <span class="cart-count">3</span>
+      </a>
+      <a href="#" class="nav-btn primary">Publicar</a>
     </div>
-  </div>
-  <div class="nav-cats">
-    <a href="#" class="active">Inicio</a>
-    <a href="#">Electrónica</a>
-    <a href="#">Ropa & Moda</a>
-    <a href="#">Hogar</a>
-    <a href="#">Deportes</a>
-    <a href="#">Juguetes</a>
-    <a href="#">Belleza</a>
-    <a href="#">Alimentos</a>
-    <a href="#">Ofertas</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero-banner">
-  <div>
-    <span class="hero-tag">🔥 Oferta de temporada</span>
-    <h1>Hasta 60% OFF en electrónica</h1>
-    <p>Miles de productos de las mejores marcas con envío gratis a todo el país y cuotas sin interés.</p>
-    <a href="#" class="btn-white">Ver ofertas →</a>
-  </div>
-  <div class="hero-products">
-    <div class="hero-product-card">📱<span>Celulares</span></div>
-    <div class="hero-product-card">💻<span>Notebooks</span></div>
-    <div class="hero-product-card">🎧<span>Audio</span></div>
+<!-- CAT BAR -->
+<div class="cat-bar">
+  <div class="cat-bar-inner">
+    <a href="#" class="cat-link active">⚡ Ofertas</a>
+    <a href="#" class="cat-link">📱 Electrónica</a>
+    <a href="#" class="cat-link">👗 Moda</a>
+    <a href="#" class="cat-link">🏠 Hogar</a>
+    <a href="#" class="cat-link">⚽ Deportes</a>
+    <a href="#" class="cat-link">🧸 Juguetes</a>
+    <a href="#" class="cat-link">💄 Belleza</a>
+    <a href="#" class="cat-link">🛠️ Herramientas</a>
+    <a href="#" class="cat-link">🍳 Cocina</a>
+    <a href="#" class="cat-link">📚 Libros</a>
   </div>
 </div>
 
-<!-- CONTENT -->
-<div class="content">
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-main">
+      <div>
+        <div class="hero-tag">Oferta de la semana</div>
+        <h1>Tech al mejor precio del país</h1>
+        <p>Celulares, notebooks y gadgets con hasta 50% OFF y cuotas sin interés en todas las tarjetas.</p>
+        <a href="#" class="hero-cta">Ver ofertas →</a>
+      </div>
+      <div class="hero-visual">📱</div>
+    </div>
+    <div class="hero-side">
+      <a class="promo-card" href="#" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);">
+        <div>
+          <h3>Moda Otoño 2026</h3>
+          <p>Las últimas tendencias con envío express.</p>
+        </div>
+        <span class="promo-link">Ver colección →</span>
+      </a>
+      <a class="promo-card" href="#" style="background:linear-gradient(135deg,#0f766e,#0891b2);">
+        <div>
+          <h3>Hogar & Deco</h3>
+          <p>Renová tu espacio con los mejores precios.</p>
+        </div>
+        <span class="promo-link">Explorar →</span>
+      </a>
+    </div>
+  </div>
 
   <!-- CATEGORÍAS -->
-  <div style="margin-bottom:24px;">
-    <div class="section-head"><h2>Categorías</h2><a href="#">Ver todas →</a></div>
-    <div class="cats-grid">
-      <a class="cat-card" href="#"><span class="cat-icon">📱</span>Electrónica</a>
-      <a class="cat-card" href="#"><span class="cat-icon">👗</span>Moda</a>
-      <a class="cat-card" href="#"><span class="cat-icon">🏠</span>Hogar</a>
-      <a class="cat-card" href="#"><span class="cat-icon">⚽</span>Deportes</a>
-      <a class="cat-card" href="#"><span class="cat-icon">🧸</span>Juguetes</a>
-      <a class="cat-card" href="#"><span class="cat-icon">💄</span>Belleza</a>
-    </div>
+  <div class="section-title">
+    Categorías populares
+    <a href="#">Ver todas</a>
+  </div>
+  <div class="cats">
+    <a class="cat-item" href="#"><span class="cat-icon">📱</span>Celulares</a>
+    <a class="cat-item" href="#"><span class="cat-icon">💻</span>Notebooks</a>
+    <a class="cat-item" href="#"><span class="cat-icon">👟</span>Calzado</a>
+    <a class="cat-item" href="#"><span class="cat-icon">🏠</span>Hogar</a>
+    <a class="cat-item" href="#"><span class="cat-icon">⚽</span>Deportes</a>
+    <a class="cat-item" href="#"><span class="cat-icon">🎮</span>Gaming</a>
+    <a class="cat-item" href="#"><span class="cat-icon">💄</span>Belleza</a>
+    <a class="cat-item" href="#"><span class="cat-icon">🛠️</span>Herramientas</a>
   </div>
 
   <!-- PRODUCTOS DESTACADOS -->
-  <div class="section-head"><h2>Productos destacados</h2><a href="#">Ver más →</a></div>
-  <div class="products-grid">
+  <div class="section-title">
+    🔥 Más vendidos esta semana
+    <a href="#">Ver todos</a>
+  </div>
+  <div class="products">
 
-    <div class="product-card">
-      <div class="product-img">📱</div>
-      <div class="product-info">
-        <div class="product-brand">Samsung</div>
-        <div class="product-name">Galaxy A55 5G 128GB</div>
-        <div class="product-rating"><span class="stars">★★★★★</span> (214)</div>
-        <div class="product-price-row">
-          <span class="price-main">$289.999</span>
-          <span class="price-old">$359.999</span>
-          <span class="price-off">−19%</span>
+    <div class="pcard">
+      <div class="pcard-img">
+        📱
+        <span class="pcard-badge badge-off">-22%</span>
+        <span class="pcard-fav">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-brand">Samsung</div>
+        <div class="pcard-name">Galaxy A55 5G 128GB Negro</div>
+        <div class="pcard-rating"><span class="stars">★★★★★</span> 4.9 (847)</div>
+        <div class="pcard-price">
+          <div class="price-now">$289.999</div>
+          <div class="price-was">$369.999</div>
+          <div class="price-save">Ahorrás $80.000</div>
         </div>
-        <div class="product-cta">
-          <button class="btn-add">Agregar al carrito</button>
-          <button class="btn-fav">♡</button>
-        </div>
+      </div>
+      <div class="pcard-footer">
+        <button class="btn-cart">Agregar al carrito</button>
+        <button class="btn-wish">♡</button>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">🎧</div>
-      <div class="product-info">
-        <div class="product-brand">Sony</div>
-        <div class="product-name">WH-1000XM5 Noise Cancelling</div>
-        <div class="product-rating"><span class="stars">★★★★★</span> (876)</div>
-        <div class="product-price-row">
-          <span class="price-main">$189.999</span>
-          <span class="price-old">$239.999</span>
-          <span class="price-off">−21%</span>
+    <div class="pcard">
+      <div class="pcard-img">
+        🎧
+        <span class="pcard-badge badge-hot">Popular</span>
+        <span class="pcard-fav">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-brand">Sony</div>
+        <div class="pcard-name">WH-1000XM5 Noise Cancelling</div>
+        <div class="pcard-rating"><span class="stars">★★★★★</span> 5.0 (1.204)</div>
+        <div class="pcard-price">
+          <div class="price-now">$179.999</div>
+          <div class="price-was">$229.999</div>
+          <div class="price-save">Ahorrás $50.000</div>
         </div>
-        <div class="product-cta">
-          <button class="btn-add">Agregar al carrito</button>
-          <button class="btn-fav">♡</button>
-        </div>
+      </div>
+      <div class="pcard-footer">
+        <button class="btn-cart">Agregar al carrito</button>
+        <button class="btn-wish">♡</button>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">👟</div>
-      <div class="product-info">
-        <div class="product-brand">Nike</div>
-        <div class="product-name">Air Max 270 React — Varios colores</div>
-        <div class="product-rating"><span class="stars">★★★★☆</span> (432)</div>
-        <div class="product-price-row">
-          <span class="price-main">$94.999</span>
-          <span class="price-old">$119.999</span>
-          <span class="price-off">−21%</span>
+    <div class="pcard">
+      <div class="pcard-img">
+        👟
+        <span class="pcard-badge badge-new">Nuevo</span>
+        <span class="pcard-fav">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-brand">Nike</div>
+        <div class="pcard-name">Air Max 270 React — Negro/Blanco</div>
+        <div class="pcard-rating"><span class="stars">★★★★☆</span> 4.6 (532)</div>
+        <div class="pcard-price">
+          <div class="price-now">$94.999</div>
+          <div class="price-was">$119.999</div>
+          <div class="price-save">Ahorrás $25.000</div>
         </div>
-        <div class="product-cta">
-          <button class="btn-add">Agregar al carrito</button>
-          <button class="btn-fav">♡</button>
-        </div>
+      </div>
+      <div class="pcard-footer">
+        <button class="btn-cart">Agregar al carrito</button>
+        <button class="btn-wish">♡</button>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">💻</div>
-      <div class="product-info">
-        <div class="product-brand">Lenovo</div>
-        <div class="product-name">IdeaPad 3 15" Intel i5 16GB RAM</div>
-        <div class="product-rating"><span class="stars">★★★★☆</span> (189)</div>
-        <div class="product-price-row">
-          <span class="price-main">$749.999</span>
-          <span class="price-old">$899.999</span>
-          <span class="price-off">−17%</span>
+    <div class="pcard">
+      <div class="pcard-img">
+        💻
+        <span class="pcard-badge badge-off">-15%</span>
+        <span class="pcard-fav">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-brand">Lenovo</div>
+        <div class="pcard-name">IdeaPad 3 15" i5 16GB SSD 512GB</div>
+        <div class="pcard-rating"><span class="stars">★★★★☆</span> 4.5 (289)</div>
+        <div class="pcard-price">
+          <div class="price-now">$749.999</div>
+          <div class="price-was">$879.999</div>
+          <div class="price-save">Ahorrás $130.000</div>
         </div>
-        <div class="product-cta">
-          <button class="btn-add">Agregar al carrito</button>
-          <button class="btn-fav">♡</button>
+      </div>
+      <div class="pcard-footer">
+        <button class="btn-cart">Agregar al carrito</button>
+        <button class="btn-wish">♡</button>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-img">
+        ⌚
+        <span class="pcard-fav">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-brand">Apple</div>
+        <div class="pcard-name">Watch Series 9 GPS 41mm Midnight</div>
+        <div class="pcard-rating"><span class="stars">★★★★★</span> 4.9 (2.110)</div>
+        <div class="pcard-price">
+          <div class="price-now">$449.999</div>
+          <div class="price-save">12 cuotas de $37.499</div>
         </div>
+      </div>
+      <div class="pcard-footer">
+        <button class="btn-cart">Agregar al carrito</button>
+        <button class="btn-wish">♡</button>
       </div>
     </div>
 
   </div>
 
-  <!-- PROMO BANNERS -->
-  <div class="promo-grid">
-    <div class="promo-card" style="background:linear-gradient(120deg,#7c3aed,#4f46e5);">
-      <h3>Cuotas sin interés con todas las tarjetas</h3>
-      <p>Hasta 12 cuotas en miles de productos seleccionados.</p>
-      <a href="#" class="promo-link">Ver productos →</a>
+  <!-- BANNER STRIP -->
+  <div class="banner-strip">
+    <div class="strip-card" style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);">
+      <span class="label">💳 Exclusivo</span>
+      <h3>12 cuotas sin interés</h3>
+      <p>Con todas las tarjetas en productos seleccionados.</p>
+      <span class="strip-link">Ver condiciones →</span>
     </div>
-    <div class="promo-card" style="background:linear-gradient(120deg,#0f766e,#0891b2);">
-      <h3>Envío gratis</h3>
-      <p>En compras mayores a $15.000 a todo el país.</p>
-      <a href="#" class="promo-link">Más info →</a>
+    <div class="strip-card" style="background:linear-gradient(135deg,#166534,#15803d);">
+      <span class="label">🚚 Logística</span>
+      <h3>Envío gratis al país</h3>
+      <p>En compras mayores a $20.000. Entrega en 24-72hs.</p>
+      <span class="strip-link">Ver zonas →</span>
+    </div>
+    <div class="strip-card" style="background:linear-gradient(135deg,#7c2d12,#c2410c);">
+      <span class="label">🔒 Protección</span>
+      <h3>Compra Protegida</h3>
+      <p>Devolvés sin costo si el producto no llega o no es lo que pediste.</p>
+      <span class="strip-link">Saber más →</span>
     </div>
   </div>
 
   <!-- MÁS PRODUCTOS -->
-  <div class="section-head"><h2>Más vendidos esta semana</h2><a href="#">Ver más →</a></div>
-  <div class="products-grid">
+  <div class="section-title">
+    ✨ Novedades de la semana
+    <a href="#">Ver todos</a>
+  </div>
+  <div class="products">
 
-    <div class="product-card">
-      <div class="product-img">⌚</div>
-      <div class="product-info">
-        <div class="product-brand">Apple</div>
-        <div class="product-name">Watch Series 9 GPS 41mm</div>
-        <div class="product-rating"><span class="stars">★★★★★</span> (1.204)</div>
-        <div class="product-price-row">
-          <span class="price-main">$449.999</span>
-        </div>
-        <div class="product-cta">
-          <button class="btn-add">Agregar al carrito</button>
-          <button class="btn-fav">♡</button>
+    <div class="pcard">
+      <div class="pcard-img">🎮<span class="pcard-badge badge-hot">Top ventas</span></div>
+      <div class="pcard-body">
+        <div class="pcard-brand">Sony</div>
+        <div class="pcard-name">DualSense PS5 — Blanco</div>
+        <div class="pcard-rating"><span class="stars">★★★★★</span> 5.0 (3.402)</div>
+        <div class="pcard-price">
+          <div class="price-now">$79.999</div>
+          <div class="price-was">$99.999</div>
+          <div class="price-save">Ahorrás $20.000</div>
         </div>
       </div>
+      <div class="pcard-footer"><button class="btn-cart">Agregar al carrito</button><button class="btn-wish">♡</button></div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">🏋️</div>
-      <div class="product-info">
-        <div class="product-brand">Adidas</div>
-        <div class="product-name">Mancuernas Ajustables 20kg Set</div>
-        <div class="product-rating"><span class="stars">★★★★☆</span> (328)</div>
-        <div class="product-price-row">
-          <span class="price-main">$64.999</span>
-          <span class="price-old">$79.999</span>
-          <span class="price-off">−19%</span>
-        </div>
-        <div class="product-cta">
-          <button class="btn-add">Agregar al carrito</button>
-          <button class="btn-fav">♡</button>
+    <div class="pcard">
+      <div class="pcard-img">📸<span class="pcard-badge badge-new">Nuevo</span></div>
+      <div class="pcard-body">
+        <div class="pcard-brand">Canon</div>
+        <div class="pcard-name">EOS R50 Mirrorless Kit 18-45mm</div>
+        <div class="pcard-rating"><span class="stars">★★★★★</span> 4.8 (167)</div>
+        <div class="pcard-price">
+          <div class="price-now">$899.999</div>
+          <div class="price-save">6 cuotas de $149.999</div>
         </div>
       </div>
+      <div class="pcard-footer"><button class="btn-cart">Agregar al carrito</button><button class="btn-wish">♡</button></div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">🎮</div>
-      <div class="product-info">
-        <div class="product-brand">Sony</div>
-        <div class="product-name">DualSense Controller PS5 — Negro</div>
-        <div class="product-rating"><span class="stars">★★★★★</span> (752)</div>
-        <div class="product-price-row">
-          <span class="price-main">$79.999</span>
-          <span class="price-old">$94.999</span>
-          <span class="price-off">−16%</span>
-        </div>
-        <div class="product-cta">
-          <button class="btn-add">Agregar al carrito</button>
-          <button class="btn-fav">♡</button>
+    <div class="pcard">
+      <div class="pcard-img">🏋️<span class="pcard-badge badge-off">-25%</span></div>
+      <div class="pcard-body">
+        <div class="pcard-brand">Adidas</div>
+        <div class="pcard-name">Set Mancuernas Ajustables 20kg</div>
+        <div class="pcard-rating"><span class="stars">★★★★☆</span> 4.4 (328)</div>
+        <div class="pcard-price">
+          <div class="price-now">$59.999</div>
+          <div class="price-was">$79.999</div>
+          <div class="price-save">Ahorrás $20.000</div>
         </div>
       </div>
+      <div class="pcard-footer"><button class="btn-cart">Agregar al carrito</button><button class="btn-wish">♡</button></div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">📸</div>
-      <div class="product-info">
-        <div class="product-brand">Canon</div>
-        <div class="product-name">EOS R50 Kit 18-45mm Mirrorless</div>
-        <div class="product-rating"><span class="stars">★★★★★</span> (167)</div>
-        <div class="product-price-row">
-          <span class="price-main">$899.999</span>
-          <span class="price-old">$1.099.999</span>
-          <span class="price-off">−18%</span>
-        </div>
-        <div class="product-cta">
-          <button class="btn-add">Agregar al carrito</button>
-          <button class="btn-fav">♡</button>
+    <div class="pcard">
+      <div class="pcard-img">🎵</div>
+      <div class="pcard-body">
+        <div class="pcard-brand">JBL</div>
+        <div class="pcard-name">Flip 6 Bluetooth Speaker Waterproof</div>
+        <div class="pcard-rating"><span class="stars">★★★★★</span> 4.9 (1.890)</div>
+        <div class="pcard-price">
+          <div class="price-now">$64.999</div>
+          <div class="price-was">$79.999</div>
+          <div class="price-save">Ahorrás $15.000</div>
         </div>
       </div>
+      <div class="pcard-footer"><button class="btn-cart">Agregar al carrito</button><button class="btn-wish">♡</button></div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-img">🖥️<span class="pcard-badge badge-new">Nuevo</span></div>
+      <div class="pcard-body">
+        <div class="pcard-brand">LG</div>
+        <div class="pcard-name">Monitor UltraWide 29" 2560x1080</div>
+        <div class="pcard-rating"><span class="stars">★★★★☆</span> 4.7 (204)</div>
+        <div class="pcard-price">
+          <div class="price-now">$349.999</div>
+          <div class="price-save">12 cuotas de $29.166</div>
+        </div>
+      </div>
+      <div class="pcard-footer"><button class="btn-cart">Agregar al carrito</button><button class="btn-wish">♡</button></div>
     </div>
 
   </div>
@@ -685,34 +862,38 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo">ClickPunto</div>
-      <div class="footer-desc">El marketplace argentino con los mejores precios, envío rápido y cuotas sin interés en miles de productos.</div>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Merca<span>Fácil</span></div>
+        <div class="footer-desc">El marketplace argentino con los mejores precios, envío rápido y compra 100% protegida.</div>
+      </div>
+      <div class="footer-col">
+        <h4>Compradores</h4>
+        <a href="#">Cómo comprar</a>
+        <a href="#">Medios de pago</a>
+        <a href="#">Seguir mi pedido</a>
+        <a href="#">Devoluciones</a>
+      </div>
+      <div class="footer-col">
+        <h4>Vendedores</h4>
+        <a href="#">Crear cuenta</a>
+        <a href="#">Publicar gratis</a>
+        <a href="#">Tarifas</a>
+        <a href="#">Centro de ayuda</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="#">Nosotros</a>
+        <a href="#">Prensa</a>
+        <a href="#">Trabaja con nosotros</a>
+        <a href="#">Contacto</a>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Ayuda</h4>
-      <a href="#">Cómo comprar</a>
-      <a href="#">Medios de pago</a>
-      <a href="#">Envíos</a>
-      <a href="#">Devoluciones</a>
+    <div class="footer-bottom">
+      <span>© 2026 MercaFácil · Todos los derechos reservados</span>
+      <span>Demo de página — Thiago Vitelli</span>
     </div>
-    <div class="footer-col">
-      <h4>Vendé con nosotros</h4>
-      <a href="#">Crear cuenta vendedor</a>
-      <a href="#">Publicar producto</a>
-      <a href="#">Tarifas</a>
-    </div>
-    <div class="footer-col">
-      <h4>Empresa</h4>
-      <a href="#">Quiénes somos</a>
-      <a href="#">Contacto</a>
-      <a href="#">Trabaja con nosotros</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 ClickPunto · Todos los derechos reservados</span>
-    <span>Demo de página — Thiago Vitelli</span>
   </div>
 </footer>
 
