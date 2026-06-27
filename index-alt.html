@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplos de Páginas Web — Thiago Vitelli</title>
+<link rel="icon" type="image/png" href="https://tvitellicod.github.io/portfolio/avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --white: #ffffff;
+  --bg: #fafafa;
+  --dark: #0e0e0e;
+  --mid: #666;
+  --light: #f0f0f0;
+  --border: #e5e5e5;
+  --green: #16c564;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--dark);
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1.5px solid var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 52px;
+}
+
+.nav-logo {
+  font-size: .88rem;
+  font-weight: 800;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: -.5px;
+}
+
+.nav-links { display: flex; align-items: center; gap: 0; }
+.nav-links a {
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--mid);
+  text-decoration: none;
+  padding: 0 16px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid var(--border);
+  transition: color .12s, background .12s;
+}
+.nav-links a:hover { color: var(--dark); background: var(--bg); }
+
+.nav-portfolio {
+  background: var(--dark) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-left: 1.5px solid var(--dark) !important;
+}
+.nav-portfolio:hover { opacity: .85; }
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1.5px solid var(--dark);
+}
+
+.hero-left {
+  padding: 72px 48px;
+  border-right: 1.5px solid var(--dark);
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 28px;
+}
+.hero-tag::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.hero-left h1 {
+  font-size: clamp(2.6rem, 4.5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -2.5px;
+  line-height: 1.02;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+
+.hero-left p {
+  font-size: .95rem;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 380px;
+  margin-bottom: 36px;
+}
+
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 700;
+  padding: 11px 20px;
+  border: 1.5px solid var(--dark);
+  transition: all .12s;
+}
+.btn-dark:hover { background: #333; }
+
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--dark);
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 600;
+  padding: 11px 20px;
+  border: 1.5px solid var(--dark);
+  transition: all .12s;
+}
+.btn-line:hover { background: var(--bg); }
+
+.hero-right {
+  padding: 72px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+  max-width: 320px;
+}
+
+.stat {
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+}
+
+.stat-num {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: .72rem;
+  color: var(--mid);
+  font-weight: 500;
+}
+
+/* SECTION */
+.section {
+  border-bottom: 1.5px solid var(--dark);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 48px;
+  height: 56px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-num {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--mid);
+  margin-right: 20px;
+  min-width: 28px;
+}
+
+.section-header h2 {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -.3px;
+  flex: 1;
+}
+
+.section-count {
+  font-size: .72rem;
+  color: var(--mid);
+}
+
+/* CARDS */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: none;
+}
+
+.cards-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.cards-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.ecard {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,.1);
+  transition: filter .15s;
+  overflow: hidden;
+}
+.ecard:last-child { border-right: none; }
+.ecard:hover { filter: brightness(1.1); }
+
+.ecard-color {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.ecard-info {
+  padding: 18px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ecard-num {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  opacity: .5;
+}
+
+.ecard-title {
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: -.2px;
+}
+
+.ecard-desc {
+  font-size: .73rem;
+  opacity: .65;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.ecard-cta {
+  margin-top: 10px;
+  font-size: .7rem;
+  font-weight: 700;
+  opacity: .7;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.live-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .62rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 2px;
+}
+.live-dot::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+/* PORTFOLIO */
+.portfolio-band {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1.5px solid var(--dark);
+  text-decoration: none;
+  color: var(--dark);
+  transition: background .12s;
+  padding: 0;
+  min-height: 80px;
+}
+.portfolio-band:hover { background: var(--bg); }
+
+.portfolio-band-label {
+  padding: 0 48px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--mid);
+  border-right: 1.5px solid var(--dark);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+}
+
+.portfolio-band-text {
+  padding: 24px 48px;
+}
+
+.portfolio-band-text h3 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -.8px;
+  margin-bottom: 4px;
+}
+
+.portfolio-band-text p {
+  font-size: .82rem;
+  color: var(--mid);
+}
+
+.portfolio-band-arrow {
+  padding: 0 48px;
+  font-size: 1.8rem;
+  border-left: 1.5px solid var(--dark);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* PROCESO */
+.proceso {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: none;
+}
+
+.step {
+  padding: 40px 36px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.step:last-child { border-right: none; }
+
+.step-num {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--light);
+  line-height: 1;
+}
+
+.step h4 {
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.step p {
+  font-size: .78rem;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 56px 48px;
+  border-top: 1.5px solid var(--dark);
+  gap: 40px;
+}
+
+.cta h2 {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  margin-bottom: 10px;
+}
+
+.cta p {
+  font-size: .9rem;
+  color: var(--mid);
+}
+
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 700;
+  padding: 14px 26px;
+  white-space: nowrap;
+  border: 1.5px solid #1aad52;
+  transition: opacity .12s;
+}
+.btn-wa:hover { opacity: .88; }
+
+/* FOOTER */
+footer {
+  border-top: 1.5px solid var(--dark);
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .76rem;
+  color: var(--mid);
+}
+footer a { color: var(--mid); text-decoration: none; }
+footer a:hover { color: var(--dark); }
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+  nav, .hero-left, .hero-right, .section-header, .portfolio-band-label,
+  .portfolio-band-text, .portfolio-band-arrow, .cta, footer { padding-left: 24px; padding-right: 24px; }
+  .cards-grid { grid-template-columns: repeat(3, 1fr); }
+  .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { border-right: none; }
+}
+
+@media (max-width: 700px) {
+  nav { padding: 0 20px; }
+  .nav-links a:not(.nav-portfolio) { display: none; }
+  .hero-left { padding: 48px 20px; }
+  .section-header { padding: 0 20px; }
+  .cards-grid, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr 1fr; }
+  .proceso { grid-template-columns: 1fr 1fr; }
+  .portfolio-band { grid-template-columns: 1fr auto; }
+  .portfolio-band-label { display: none; }
+  .portfolio-band-text { padding: 20px; }
+  .portfolio-band-arrow { padding: 0 20px; border-left: 1px solid var(--border); }
+  .cta { grid-template-columns: 1fr; padding: 40px 20px; }
+  footer { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .cards-grid, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
+  .proceso { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Thiago Vitelli</a>
+  <div class="nav-links">
+    <a href="#landings">Landings</a>
+    <a href="#tiendas">Tiendas</a>
+    <a href="#especiales">Especiales</a>
+    <a href="https://tvitellicod.github.io/portfolio/" target="_blank" class="nav-portfolio">Portfolio ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Disponibles · 2026</div>
+    <h1>Páginas web para tu negocio</h1>
+    <p>Mirá los ejemplos abajo, elegí el estilo y lo personalizamos con tu info. En 24–48 horas tenés la preview lista.</p>
+    <div class="hero-btns">
+      <a href="#landings" class="btn-dark">Ver ejemplos ↓</a>
+      <a href="https://wa.me/5491112345678?text=Hola%20Thiago%2C%20vi%20los%20ejemplos%20y%20quiero%20consultar." class="btn-line" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Demos disponibles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">48h</div>
+        <div class="stat-label">Entrega preview</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Años desarrollando</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Cambios incluidos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LANDINGS -->
+<div class="section" id="landings">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Landing Pages</h2>
+    <span class="section-count">5 estilos</span>
+  </div>
+  <div class="cards-grid">
+
+    <a class="ecard" href="landing-examples/01-minimalista.html" target="_blank" style="background:#1a1a1a;">
+      <div class="ecard-color" style="background:#111;">🖤</div>
+      <div class="ecard-info">
+        <div class="ecard-num">01</div>
+        <div class="ecard-title">Minimalista</div>
+        <div class="ecard-desc">Blanco y negro, foco total en el contenido.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="landing-examples/02-moderna.html" target="_blank" style="background:linear-gradient(160deg,#0f1020,#2a0f60);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#09090f,#1a0840);">🔮</div>
+      <div class="ecard-info">
+        <div class="ecard-num">02</div>
+        <div class="ecard-title">Moderna</div>
+        <div class="ecard-desc">Dark mode, gradientes, efectos de vidrio.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="landing-examples/03-rustica.html" target="_blank" style="background:linear-gradient(160deg,#5a2e12,#8c5a30);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#3d1a06,#6b3c1a);">🌿</div>
+      <div class="ecard-info">
+        <div class="ecard-num">03</div>
+        <div class="ecard-title">Rústica</div>
+        <div class="ecard-desc">Tonos tierra, cálida, artesanal.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="landing-examples/04-elegante.html" target="_blank" style="background:#0e0c08;">
+      <div class="ecard-color" style="background:#080604; border-bottom: 1px solid #c9a84c30;">✨</div>
+      <div class="ecard-info" style="border-top: 1px solid #c9a84c40;">
+        <div class="ecard-num" style="color:#c9a84c80;">04</div>
+        <div class="ecard-title">Elegante / Lujo</div>
+        <div class="ecard-desc">Negro y dorado, serif, marcas premium.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="landing-examples/05-bold.html" target="_blank" style="background:linear-gradient(160deg,#c0200e,#a01800);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#e03020,#c01808);">🔥</div>
+      <div class="ecard-info">
+        <div class="ecard-num">05</div>
+        <div class="ecard-title">Bold / Colorida</div>
+        <div class="ecard-desc">Vibrante, con impacto. Gym, eventos.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- TIENDAS -->
+<div class="section" id="tiendas">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Tiendas Online</h2>
+    <span class="section-count">3 ejemplos</span>
+  </div>
+  <div class="cards-grid cards-grid-3">
+
+    <a class="ecard" href="https://clickpuntoar.com.ar" target="_blank" style="background:linear-gradient(160deg,#0d1b2a,#1b3a5c);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#07101a,#0e2238);">🏪</div>
+      <div class="ecard-info">
+        <div class="live-dot">En producción</div>
+        <div class="ecard-num">01</div>
+        <div class="ecard-title">ClickPunto AR</div>
+        <div class="ecard-desc">Marketplace real con carrito, login, checkout y Mercado Pago.</div>
+        <div class="ecard-cta">Ver sitio ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="store-examples/02-boutique.html" target="_blank" style="background:#1c1c1a;">
+      <div class="ecard-color" style="background:#141412;">👗</div>
+      <div class="ecard-info">
+        <div class="ecard-num">02</div>
+        <div class="ecard-title">Boutique</div>
+        <div class="ecard-desc">Moda editorial, fotos grandes, crema y blanco.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="store-examples/03-tech.html" target="_blank" style="background:linear-gradient(160deg,#080810,#1a0840);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#040408,#0e0425);">⚡</div>
+      <div class="ecard-info">
+        <div class="ecard-num">03</div>
+        <div class="ecard-title">Tech / Gaming</div>
+        <div class="ecard-desc">Dark con acentos neón, flash sale.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- ESPECIALES -->
+<div class="section" id="especiales">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Casos Especiales</h2>
+    <span class="section-count">4 rubros</span>
+  </div>
+  <div class="cards-grid cards-grid-4">
+
+    <a class="ecard" href="ejemplos-especiales/01-reservas.html" target="_blank" style="background:linear-gradient(160deg,#6a1830,#a03050);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#3e0e1c,#6a2040);">📅</div>
+      <div class="ecard-info">
+        <div class="ecard-num">01</div>
+        <div class="ecard-title">Turnos</div>
+        <div class="ecard-desc">Servicios, precios y formulario de reserva.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="ejemplos-especiales/02-menu-restaurante.html" target="_blank" style="background:linear-gradient(160deg,#541e08,#8c3a10);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#2e0e04,#541a08);">🍽️</div>
+      <div class="ecard-info">
+        <div class="ecard-num">02</div>
+        <div class="ecard-title">Restaurante</div>
+        <div class="ecard-desc">Carta visual con categorías y reserva de mesa.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="ejemplos-especiales/03-leads.html" target="_blank" style="background:linear-gradient(160deg,#0a1840,#1a3070);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#060e28,#0e1e50);">🎯</div>
+      <div class="ecard-info">
+        <div class="ecard-num">03</div>
+        <div class="ecard-title">Captación de Leads</div>
+        <div class="ecard-desc">Una pantalla para conseguir el contacto.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+    <a class="ecard" href="ejemplos-especiales/04-portfolio-profesional.html" target="_blank" style="background:linear-gradient(160deg,#0a1020,#182040);">
+      <div class="ecard-color" style="background:linear-gradient(160deg,#060810,#0e1428);">💼</div>
+      <div class="ecard-info">
+        <div class="ecard-num">04</div>
+        <div class="ecard-title">Portfolio</div>
+        <div class="ecard-desc">Abogados, contadores, arquitectos.</div>
+        <div class="ecard-cta">Abrir ↗</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- PORTFOLIO BAND -->
+<a class="portfolio-band" href="https://tvitellicod.github.io/portfolio/" target="_blank">
+  <div class="portfolio-band-label">Mi portfolio</div>
+  <div class="portfolio-band-text">
+    <h3>Ver todo mi trabajo →</h3>
+    <p>Proyectos reales, tecnologías y experiencia. Entrá antes de contactarme.</p>
+  </div>
+  <div class="portfolio-band-arrow">↗</div>
+</a>
+
+<!-- PROCESO -->
+<div class="section" style="border-top: 1.5px solid var(--dark);">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>¿Cómo funciona?</h2>
+    <span class="section-count">4 pasos</span>
+  </div>
+  <div class="proceso">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Me escribís</h4>
+      <p>Me contás tu negocio y qué estilo te gustó de los ejemplos.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Mandás los datos</h4>
+      <p>Nombre, fotos, servicios, precios y contacto.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Te muestro la preview</h4>
+      <p>En 24-48 horas tenés la página para revisar y pedir cambios.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Se publica</h4>
+      <p>Queda online con tu dominio y aparece en Google.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <div>
+    <h2>¿Te interesó alguno?</h2>
+    <p>Sin compromiso — en menos de 24hs te mando presupuesto.</p>
+  </div>
+  <a href="https://wa.me/5491112345678?text=Hola%20Thiago%2C%20vi%20los%20ejemplos%20de%20p%C3%A1ginas%20web%20y%20quiero%20consultar." class="btn-wa" target="_blank">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    Hablar por WhatsApp
+  </a>
+</div>
+
+<footer>
+  <span>© 2026 Thiago Vitelli</span>
+  <a href="https://tvitellicod.github.io/portfolio/" target="_blank">Portfolio ↗</a>
+</footer>
+
+</body>
+</html>
