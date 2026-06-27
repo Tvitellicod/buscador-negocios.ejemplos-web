@@ -6,18 +6,19 @@
 <title>Ejemplos de Páginas Web — Thiago Vitelli</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #0e0e0e;
-  --surface: #161616;
-  --border: #222;
-  --text: #f0f0f0;
-  --muted: #666;
-  --dim: #333;
-  --accent: #f04e23;
+  --bg: #f8f8f6;
+  --white: #ffffff;
+  --dark: #111110;
+  --mid: #555550;
+  --light: #e8e8e4;
+  --border: #ddddd8;
+  --accent: #1a1a18;
+  --green: #18c964;
 }
 
 html { scroll-behavior: smooth; }
@@ -25,473 +26,386 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
-  color: var(--text);
+  color: var(--dark);
   overflow-x: hidden;
 }
 
 /* NAV */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
+  position: sticky;
+  top: 0;
   z-index: 100;
+  background: rgba(248,248,246,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 48px;
-  height: 58px;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  height: 56px;
 }
 
 .nav-logo {
   font-size: .9rem;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--dark);
+  text-decoration: none;
   letter-spacing: -.3px;
-  color: var(--text);
 }
 
-.nav-logo span { color: var(--accent); }
-
-.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 24px; }
 .nav-links a {
-  color: var(--muted);
-  text-decoration: none;
   font-size: .82rem;
   font-weight: 500;
+  color: var(--mid);
+  text-decoration: none;
   transition: color .15s;
 }
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { color: var(--dark); }
 
-.nav-cta {
-  background: var(--accent) !important;
+.nav-portfolio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--dark);
   color: #fff !important;
-  padding: 7px 16px;
-  border-radius: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
   font-size: .8rem !important;
   font-weight: 700 !important;
+  text-decoration: none;
+  transition: opacity .15s;
 }
-.nav-cta:hover { opacity: .88; }
+.nav-portfolio:hover { opacity: .85; }
 
 /* HERO */
 .hero {
-  padding: 140px 48px 100px;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: end;
-  max-width: 1200px;
+  padding: 80px 40px 72px;
+  max-width: 1160px;
   margin: 0 auto;
+  border-bottom: 1px solid var(--border);
 }
 
-.hero-left h1 {
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
-  font-weight: 900;
-  letter-spacing: -3px;
-  line-height: .95;
-  color: var(--text);
-}
-
-.hero-left h1 em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-.hero-right {
-  padding-bottom: 8px;
-}
-
-.hero-right p {
-  font-size: 1rem;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 32px;
-  max-width: 380px;
-}
-
-.hero-btns {
-  display: flex;
-  gap: 12px;
-}
-
-.btn-primary {
+.hero-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--accent);
+  gap: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 20px;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -2.5px;
+  line-height: 1;
+  color: var(--dark);
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: var(--mid);
+}
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--mid);
+  max-width: 460px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--dark);
   color: #fff;
   text-decoration: none;
-  font-size: .88rem;
+  font-size: .85rem;
   font-weight: 700;
-  padding: 12px 22px;
-  border-radius: 6px;
+  padding: 11px 20px;
+  border-radius: 8px;
   transition: opacity .15s;
 }
-.btn-primary:hover { opacity: .88; }
+.btn-dark:hover { opacity: .82; }
 
-.btn-secondary {
+.btn-outline {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   background: transparent;
-  color: var(--muted);
+  color: var(--mid);
   text-decoration: none;
-  font-size: .88rem;
-  font-weight: 500;
-  padding: 12px 22px;
-  border-radius: 6px;
+  font-size: .85rem;
+  font-weight: 600;
+  padding: 11px 20px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   transition: all .15s;
 }
-.btn-secondary:hover { color: var(--text); border-color: var(--dim); }
-
-/* TICKER */
-.ticker {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.ticker-inner {
-  display: inline-flex;
-  gap: 0;
-  animation: ticker 18s linear infinite;
-}
-
-.ticker-item {
-  font-size: .75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--dim);
-  padding: 0 32px;
-}
-
-.ticker-item span { color: var(--accent); margin-right: 8px; }
-
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
+.btn-outline:hover { border-color: var(--dark); color: var(--dark); }
 
 /* SECTION */
 .section {
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 80px 48px;
+  padding: 72px 40px;
+  border-bottom: 1px solid var(--border);
 }
 
-.section-header {
+.section-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
 }
 
-.section-header h2 {
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  font-weight: 900;
-  letter-spacing: -1px;
+.section-head h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -.8px;
 }
 
-.section-header a {
-  font-size: .8rem;
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
+.section-head span {
+  font-size: .78rem;
+  color: var(--mid);
+  font-weight: 500;
 }
 
-.section-num {
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
-
-/* CATEGORY LIST */
-.cat-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.cat-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  color: var(--text);
-  transition: padding-left .2s;
-  group: true;
-}
-
-.cat-row:hover { padding-left: 12px; }
-.cat-row:hover .cat-arrow { color: var(--accent); transform: translateX(4px); }
-.cat-row:first-child { border-top: 1px solid var(--border); }
-
-.cat-row-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.cat-num {
-  font-size: .72rem;
-  font-weight: 700;
-  color: var(--muted);
-  width: 24px;
-}
-
-.cat-icon-small {
-  font-size: 1.4rem;
-}
-
-.cat-info h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: -.3px;
-  margin-bottom: 3px;
-}
-
-.cat-info p {
-  font-size: .8rem;
-  color: var(--muted);
-}
-
-.cat-row-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.cat-count {
-  font-size: .75rem;
-  font-weight: 600;
-  color: var(--muted);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 4px 12px;
-  border-radius: 20px;
-}
-
-.cat-arrow {
-  color: var(--dim);
-  font-size: 1.2rem;
-  transition: all .2s;
-}
-
-/* EXAMPLES GRID */
-.examples-section {
-  border-top: 1px solid var(--border);
-}
-
-.tabs {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 48px;
-  display: flex;
-  gap: 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.tab {
-  padding: 18px 24px;
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--muted);
-  cursor: pointer;
-  border: none;
-  background: none;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all .15s;
-}
-
-.tab:hover { color: var(--text); }
-.tab.active { color: var(--text); border-bottom-color: var(--accent); }
-
-.tab-content {
-  display: none;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 48px;
-}
-
-.tab-content.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--border); }
-
-.ex-card {
-  background: var(--bg);
-  text-decoration: none;
-  color: var(--text);
-  padding: 32px 28px;
-  display: flex;
-  flex-direction: column;
+/* CARDS GRID */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  transition: background .15s;
 }
 
-.ex-card:hover { background: var(--surface); }
+.cards-2 { grid-template-columns: repeat(2, 1fr); }
+.cards-4 { grid-template-columns: repeat(4, 1fr); }
 
-.ex-thumb {
-  height: 120px;
-  border-radius: 8px;
+.card {
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: transform .18s, box-shadow .18s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.15);
+}
+
+.card-thumb {
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  margin-bottom: 4px;
-  border: 1px solid var(--border);
+  font-size: 2.8rem;
+  flex-shrink: 0;
 }
 
-.ex-label {
-  font-size: .68rem;
+.card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(2px);
+}
+
+.card-label {
+  font-size: .65rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--muted);
+  text-transform: uppercase;
+  opacity: .6;
 }
 
-.ex-name {
+.card-name {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -.3px;
 }
 
-.ex-desc {
-  font-size: .8rem;
-  color: var(--muted);
-  line-height: 1.55;
+.card-desc {
+  font-size: .78rem;
+  opacity: .75;
+  line-height: 1.5;
+  flex: 1;
 }
 
-.ex-tag {
-  display: inline-block;
-  font-size: .68rem;
+.card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .75rem;
   font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 4px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--muted);
+  margin-top: 8px;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.25);
+  padding: 6px 12px;
+  border-radius: 6px;
   width: fit-content;
+  transition: background .15s;
 }
+.card:hover .card-btn { background: rgba(255,255,255,.28); }
 
-/* PROCESS */
-.process-section {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
+/* LIVE BADGE */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .65rem;
+  font-weight: 700;
+  background: var(--green);
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 4px;
 }
+.live-badge::before { content:''; width:5px;height:5px;border-radius:50%;background:#fff; }
 
-.process-inner {
-  max-width: 1200px;
+/* PORTFOLIO SECTION */
+.portfolio-section {
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 80px 48px;
+  padding: 72px 40px;
+  border-bottom: 1px solid var(--border);
 }
 
-.process-grid {
+.portfolio-card {
+  background: var(--dark);
+  border-radius: 20px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+  text-decoration: none;
+  transition: transform .18s, box-shadow .18s;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.2);
+}
+
+.portfolio-card-tag {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.portfolio-card h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.portfolio-card p {
+  font-size: .9rem;
+  color: #888;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.portfolio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--dark);
+  font-size: .85rem;
+  font-weight: 800;
+  padding: 13px 24px;
+  border-radius: 10px;
+  white-space: nowrap;
+  transition: opacity .15s;
+}
+.portfolio-card:hover .portfolio-btn { opacity: .88; }
+
+/* PROCESO */
+.proceso-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 48px;
-  margin-top: 48px;
+  gap: 32px;
+  margin-top: 40px;
 }
 
-.process-step {}
+.paso {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
 
-.step-num {
-  font-size: 3rem;
+.paso-num {
+  font-size: 1.8rem;
   font-weight: 900;
-  color: var(--dim);
-  letter-spacing: -2px;
+  color: var(--light);
+  letter-spacing: -1px;
   line-height: 1;
-  margin-bottom: 16px;
 }
 
-.process-step h4 {
-  font-size: .92rem;
+.paso h4 {
+  font-size: .9rem;
   font-weight: 700;
-  margin-bottom: 8px;
+  color: var(--dark);
 }
 
-.process-step p {
-  font-size: .8rem;
-  color: var(--muted);
+.paso p {
+  font-size: .78rem;
+  color: var(--mid);
   line-height: 1.6;
 }
 
-/* CTA */
-.cta-section {
-  max-width: 1200px;
+/* CTA BOTTOM */
+.cta-bottom {
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 80px 48px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  padding: 72px 40px;
+  text-align: center;
 }
 
-.cta-left h2 {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
+.cta-bottom h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 900;
   letter-spacing: -2px;
-  line-height: 1;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
-.cta-left h2 em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-.cta-left p {
-  font-size: .9rem;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.cta-right {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.cta-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 20px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
-  transition: border-color .15s;
-}
-
-.cta-item:hover { border-color: var(--accent); }
-
-.cta-item-icon {
-  font-size: 1.4rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.cta-item strong {
-  font-size: .88rem;
-  font-weight: 700;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.cta-item span {
-  font-size: .78rem;
-  color: var(--muted);
-  line-height: 1.5;
+.cta-bottom p {
+  font-size: 1rem;
+  color: var(--mid);
+  margin-bottom: 32px;
 }
 
 .btn-wa {
@@ -501,357 +415,285 @@ nav {
   background: #25d366;
   color: #fff;
   text-decoration: none;
-  font-size: .9rem;
+  font-size: .92rem;
   font-weight: 700;
-  padding: 14px 24px;
-  border-radius: 6px;
+  padding: 14px 28px;
+  border-radius: 10px;
   transition: opacity .15s;
-  margin-top: 8px;
-  width: fit-content;
 }
 .btn-wa:hover { opacity: .88; }
 
 /* FOOTER */
 footer {
   border-top: 1px solid var(--border);
-  padding: 24px 48px;
+  padding: 24px 40px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  max-width: 100%;
+  align-items: center;
+  font-size: .78rem;
+  color: var(--mid);
 }
 
-footer p { font-size: .78rem; color: var(--muted); }
-footer a { font-size: .78rem; color: var(--muted); text-decoration: none; transition: color .15s; }
-footer a:hover { color: var(--text); }
-footer nav { display: flex; gap: 24px; }
-
-/* REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .5s ease, transform .5s ease;
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
+footer a { color: var(--mid); text-decoration: none; }
+footer a:hover { color: var(--dark); }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  nav { padding: 0 24px; }
-  .nav-links { gap: 20px; }
-  .hero { grid-template-columns: 1fr; gap: 40px; padding: 120px 24px 80px; }
-  .section { padding: 60px 24px; }
-  .process-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .cta-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
-  .tabs { padding: 0 24px; }
-  .tab-content { padding: 32px 24px; }
-  .tab-content.active { gap: 1px; }
+  nav { padding: 0 20px; }
+  .nav-links a:not(.nav-portfolio) { display: none; }
+  .hero { padding: 60px 20px 56px; }
+  .section, .portfolio-section, .cta-bottom { padding: 56px 20px; }
+  .cards { grid-template-columns: 1fr 1fr; }
+  .cards-4 { grid-template-columns: 1fr 1fr; }
+  .proceso-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .portfolio-card { grid-template-columns: 1fr; padding: 32px 24px; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
 }
 
-@media (max-width: 600px) {
-  .hero h1 { letter-spacing: -2px; }
-  .nav-links { display: none; }
-  .section-header { flex-direction: column; gap: 12px; }
-  .process-grid { grid-template-columns: 1fr; }
-  footer { flex-direction: column; gap: 12px; text-align: center; }
-  .tab { padding: 14px 16px; font-size: .75rem; }
-  .tab-content.active { grid-template-columns: 1fr; }
+@media (max-width: 560px) {
+  .hero h1 { letter-spacing: -1.5px; }
+  .cards, .cards-2, .cards-4 { grid-template-columns: 1fr; }
+  .proceso-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">Thiago Vitelli<span>.</span></div>
+  <a class="nav-logo" href="#">Thiago Vitelli</a>
   <div class="nav-links">
-    <a href="#ejemplos">Ejemplos</a>
-    <a href="#proceso">Cómo funciona</a>
-    <a href="#contacto" class="nav-cta">Contactar</a>
+    <a href="#landings">Landings</a>
+    <a href="#tiendas">Tiendas</a>
+    <a href="#especiales">Especiales</a>
+    <a href="https://tvitellicod.github.io/portfolio/" target="_blank" class="nav-portfolio">
+      Ver portfolio ↗
+    </a>
   </div>
 </nav>
 
 <!-- HERO -->
-<div style="max-width:1200px;margin:0 auto;">
-  <div class="hero">
-    <div class="hero-left">
-      <h1>Páginas<br>web que<br><em>funcionan.</em></h1>
-    </div>
-    <div class="hero-right">
-      <p>Soy Thiago Vitelli, desarrollador web. Acá podés ver ejemplos reales de distintos estilos — elegís el que más te gusta y lo personalizamos con tu negocio.</p>
-      <div class="hero-btns">
-        <a href="#ejemplos" class="btn-primary">Ver ejemplos</a>
-        <a href="#contacto" class="btn-secondary">Hablar conmigo</a>
-      </div>
-    </div>
+<div class="hero">
+  <div class="hero-tag">Ejemplos disponibles · 2026</div>
+  <h1>Páginas web <span>para tu negocio</span></h1>
+  <p class="hero-sub">Mirá los ejemplos, elegí el estilo que más te gusta y lo personalizamos con tu info, tus fotos y tu rubro.</p>
+  <div class="hero-actions">
+    <a href="#landings" class="btn-dark">Ver ejemplos ↓</a>
+    <a href="https://wa.me/5491112345678?text=Hola%20Thiago%2C%20vi%20los%20ejemplos%20y%20quiero%20consultar." class="btn-outline" target="_blank">Hablar por WhatsApp</a>
   </div>
 </div>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item"><span>→</span> Landing Pages</span>
-    <span class="ticker-item"><span>→</span> Tiendas Online</span>
-    <span class="ticker-item"><span>→</span> Menú Restaurante</span>
-    <span class="ticker-item"><span>→</span> Reserva de Turnos</span>
-    <span class="ticker-item"><span>→</span> Portfolio Profesional</span>
-    <span class="ticker-item"><span>→</span> Captación de Leads</span>
-    <span class="ticker-item"><span>→</span> Landing Pages</span>
-    <span class="ticker-item"><span>→</span> Tiendas Online</span>
-    <span class="ticker-item"><span>→</span> Menú Restaurante</span>
-    <span class="ticker-item"><span>→</span> Reserva de Turnos</span>
-    <span class="ticker-item"><span>→</span> Portfolio Profesional</span>
-    <span class="ticker-item"><span>→</span> Captación de Leads</span>
+<!-- LANDINGS -->
+<section class="section" id="landings">
+  <div class="section-head">
+    <h2>Landing Pages</h2>
+    <span>5 estilos · hacé clic para verlas</span>
   </div>
-</div>
+  <div class="cards">
 
-<!-- CATEGORIAS -->
-<section class="section" id="ejemplos">
-  <div class="section-num">Lo que ofrezco</div>
-  <div class="section-header reveal">
-    <h2>Tres tipos de página</h2>
-    <a href="#demos">Ver todos →</a>
-  </div>
-
-  <div class="cat-list reveal">
-    <a class="cat-row" href="landing-examples/index.html">
-      <div class="cat-row-left">
-        <span class="cat-num">01</span>
-        <span class="cat-icon-small">🎨</span>
-        <div class="cat-info">
-          <h3>Landing Pages</h3>
-          <p>Minimalista · Moderna · Rústica · Elegante · Bold</p>
-        </div>
-      </div>
-      <div class="cat-row-right">
-        <span class="cat-count">5 estilos</span>
-        <span class="cat-arrow">→</span>
+    <a class="card" href="landing-examples/01-minimalista.html" target="_blank">
+      <div class="card-thumb" style="background:#1a1a1a;">🖤</div>
+      <div class="card-body" style="background:#1a1a1a;">
+        <div class="card-label">Estilo 01</div>
+        <div class="card-name">Minimalista</div>
+        <div class="card-desc">Blanco y negro, tipografía limpia. Para cualquier rubro.</div>
+        <div class="card-btn">Abrir demo ↗</div>
       </div>
     </a>
 
-    <a class="cat-row" href="store-examples/index.html">
-      <div class="cat-row-left">
-        <span class="cat-num">02</span>
-        <span class="cat-icon-small">🛒</span>
-        <div class="cat-info">
-          <h3>Tiendas Online</h3>
-          <p>Boutique · Tech / Gaming · Marketplace funcional</p>
-        </div>
-      </div>
-      <div class="cat-row-right">
-        <span class="cat-count">3 ejemplos</span>
-        <span class="cat-arrow">→</span>
+    <a class="card" href="landing-examples/02-moderna.html" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#0f1020,#4a1db0);">🔮</div>
+      <div class="card-body" style="background:linear-gradient(180deg,#1a0f40,#0f0820);">
+        <div class="card-label">Estilo 02</div>
+        <div class="card-name">Moderna</div>
+        <div class="card-desc">Dark mode, gradientes y efectos de vidrio. Agencias, estudios, tech.</div>
+        <div class="card-btn">Abrir demo ↗</div>
       </div>
     </a>
 
-    <a class="cat-row" href="ejemplos-especiales/index.html">
-      <div class="cat-row-left">
-        <span class="cat-num">03</span>
-        <span class="cat-icon-small">⭐</span>
-        <div class="cat-info">
-          <h3>Casos Especiales</h3>
-          <p>Turnos · Restaurante · Leads · Portfolio</p>
-        </div>
-      </div>
-      <div class="cat-row-right">
-        <span class="cat-count">4 ejemplos</span>
-        <span class="cat-arrow">→</span>
+    <a class="card" href="landing-examples/03-rustica.html" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#5a2e12,#9e6840);">🌿</div>
+      <div class="card-body" style="background:linear-gradient(180deg,#6b3d1e,#4a2810);">
+        <div class="card-label">Estilo 03</div>
+        <div class="card-name">Rústica</div>
+        <div class="card-desc">Tonos tierra, cálida y artesanal. Gastronomía, productos naturales.</div>
+        <div class="card-btn">Abrir demo ↗</div>
       </div>
     </a>
+
+    <a class="card" href="landing-examples/04-elegante.html" target="_blank">
+      <div class="card-thumb" style="background:#0e0c08; border:1px solid #c9a84c;">✨</div>
+      <div class="card-body" style="background:#0e0c08; border-top: 1px solid #c9a84c40;">
+        <div class="card-label" style="color:#c9a84c;">Estilo 04</div>
+        <div class="card-name">Elegante / Lujo</div>
+        <div class="card-desc">Negro y dorado, tipografía serif. Marcas premium, joyerías, eventos.</div>
+        <div class="card-btn">Abrir demo ↗</div>
+      </div>
+    </a>
+
+    <a class="card" href="landing-examples/05-bold.html" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#e63946,#f77f00);">🔥</div>
+      <div class="card-body" style="background:linear-gradient(180deg,#c0392b,#a0280e);">
+        <div class="card-label">Estilo 05</div>
+        <div class="card-name">Bold / Colorida</div>
+        <div class="card-desc">Vibrante, con impacto. Gym, eventos, negocios jóvenes.</div>
+        <div class="card-btn">Abrir demo ↗</div>
+      </div>
+    </a>
+
   </div>
 </section>
 
-<!-- DEMOS CON TABS -->
-<div class="examples-section" id="demos">
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('landings', this)">Landing Pages</button>
-    <button class="tab" onclick="showTab('tiendas', this)">Tiendas</button>
-    <button class="tab" onclick="showTab('especiales', this)">Especiales</button>
+<!-- TIENDAS -->
+<section class="section" id="tiendas">
+  <div class="section-head">
+    <h2>Tiendas Online</h2>
+    <span>3 ejemplos · con carrito y checkout</span>
   </div>
+  <div class="cards">
 
-  <div class="tab-content active" id="tab-landings">
-    <a class="ex-card" href="landing-examples/01-minimalista.html">
-      <div class="ex-thumb" style="background:#111;">🖤</div>
-      <div class="ex-label">Landing · 01</div>
-      <div class="ex-name">Minimalista</div>
-      <div class="ex-desc">Blanco y negro, tipografía limpia. Funciona para cualquier rubro.</div>
-      <span class="ex-tag">Ver demo →</span>
+    <a class="card" href="https://clickpuntoar.com.ar" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#0d1b2a,#1b4080);">🏪</div>
+      <div class="card-body" style="background:linear-gradient(180deg,#0d1b2a,#091220);">
+        <div class="live-badge">En producción</div>
+        <div class="card-label">Tienda Real</div>
+        <div class="card-name">ClickPunto AR</div>
+        <div class="card-desc">Marketplace con carrito, login, checkout y Mercado Pago. Ya está en producción.</div>
+        <div class="card-btn">Ver sitio ↗</div>
+      </div>
     </a>
-    <a class="ex-card" href="landing-examples/02-moderna.html">
-      <div class="ex-thumb" style="background:linear-gradient(135deg,#0f1020,#2a1060);">🔮</div>
-      <div class="ex-label">Landing · 02</div>
-      <div class="ex-name">Moderna</div>
-      <div class="ex-desc">Dark, gradientes, efectos de vidrio. Para estudios, agencias o tech.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
-    <a class="ex-card" href="landing-examples/03-rustica.html">
-      <div class="ex-thumb" style="background:linear-gradient(135deg,#4a2c1a,#8b5e3c);">🌿</div>
-      <div class="ex-label">Landing · 03</div>
-      <div class="ex-name">Rústica</div>
-      <div class="ex-desc">Tonos tierra, cálida y artesanal. Ideal para gastronomía o productos naturales.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
-    <a class="ex-card" href="landing-examples/04-elegante.html">
-      <div class="ex-thumb" style="background:#0e0c08; border:1px solid #c9a84c;">✨</div>
-      <div class="ex-label">Landing · 04</div>
-      <div class="ex-name">Elegante</div>
-      <div class="ex-desc">Negro y dorado, tipografía serif. Para marcas premium, joyerías o eventos.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
-    <a class="ex-card" href="landing-examples/05-bold.html">
-      <div class="ex-thumb" style="background:linear-gradient(135deg,#c0392b,#e67e22);">🔥</div>
-      <div class="ex-label">Landing · 05</div>
-      <div class="ex-name">Bold</div>
-      <div class="ex-desc">Vibrante y con impacto visual. Gym, eventos, negocios jóvenes.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
-  </div>
 
-  <div class="tab-content" id="tab-tiendas">
-    <a class="ex-card" href="https://clickpuntoar.com.ar" target="_blank">
-      <div class="ex-thumb" style="background:#0d1b2a;">🏪</div>
-      <div class="ex-label">Tienda real · funcional</div>
-      <div class="ex-name">ClickPunto AR</div>
-      <div class="ex-desc">Marketplace con carrito, login, checkout y Mercado Pago. Ya está en producción.</div>
-      <span class="ex-tag" style="border-color:#25d366;color:#25d366;">En producción →</span>
+    <a class="card" href="store-examples/02-boutique.html" target="_blank">
+      <div class="card-thumb" style="background:#2a2a28;">👗</div>
+      <div class="card-body" style="background:#1c1c1a;">
+        <div class="card-label">Tienda 02</div>
+        <div class="card-name">Boutique</div>
+        <div class="card-desc">Moda editorial, blanco y crema, fotos grandes. Ropa y accesorios.</div>
+        <div class="card-btn">Abrir demo ↗</div>
+      </div>
     </a>
-    <a class="ex-card" href="store-examples/02-boutique.html">
-      <div class="ex-thumb" style="background:#1c1c1c;">👗</div>
-      <div class="ex-label">Tienda · 02</div>
-      <div class="ex-name">Boutique</div>
-      <div class="ex-desc">Moda editorial, blanco y crema, fotos grandes. Para ropa y accesorios.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
-    <a class="ex-card" href="store-examples/03-tech.html">
-      <div class="ex-thumb" style="background:linear-gradient(135deg,#080810,#2a0a60);">⚡</div>
-      <div class="ex-label">Tienda · 03</div>
-      <div class="ex-name">Tech / Gaming</div>
-      <div class="ex-desc">Dark con acentos neón, flash sale, diseño agresivo. Electrónica y gaming.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
-  </div>
 
-  <div class="tab-content" id="tab-especiales">
-    <a class="ex-card" href="ejemplos-especiales/01-reservas.html">
-      <div class="ex-thumb" style="background:#1a0a10;">📅</div>
-      <div class="ex-label">Especial · 01</div>
-      <div class="ex-name">Reserva de Turnos</div>
-      <div class="ex-desc">Servicios con precio, duración y formulario de turno. Peluquerías, consultorios, spas.</div>
-      <span class="ex-tag">Ver demo →</span>
+    <a class="card" href="store-examples/03-tech.html" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#080810,#2a0a60);">⚡</div>
+      <div class="card-body" style="background:linear-gradient(180deg,#0a0820,#060410);">
+        <div class="card-label">Tienda 03</div>
+        <div class="card-name">Tech / Gaming</div>
+        <div class="card-desc">Dark con acentos neón, flash sale, diseño agresivo. Electrónica y gaming.</div>
+        <div class="card-btn">Abrir demo ↗</div>
+      </div>
     </a>
-    <a class="ex-card" href="ejemplos-especiales/02-menu-restaurante.html">
-      <div class="ex-thumb" style="background:#1a0c06;">🍽️</div>
-      <div class="ex-label">Especial · 02</div>
-      <div class="ex-name">Menú de Restaurante</div>
-      <div class="ex-desc">Carta con categorías, fotos y reserva de mesa. Para bares y restaurantes.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
-    <a class="ex-card" href="ejemplos-especiales/03-leads.html">
-      <div class="ex-thumb" style="background:#0a0e1a;">🎯</div>
-      <div class="ex-label">Especial · 03</div>
-      <div class="ex-name">Captación de Leads</div>
-      <div class="ex-desc">Una sola pantalla enfocada en conseguir el contacto del cliente.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
-    <a class="ex-card" href="ejemplos-especiales/04-portfolio-profesional.html">
-      <div class="ex-thumb" style="background:#0a101a;">💼</div>
-      <div class="ex-label">Especial · 04</div>
-      <div class="ex-name">Portfolio Profesional</div>
-      <div class="ex-desc">Trayectoria, áreas de trabajo y formulario de consulta. Abogados, contadores, arquitectos.</div>
-      <span class="ex-tag">Ver demo →</span>
-    </a>
+
   </div>
+</section>
+
+<!-- ESPECIALES -->
+<section class="section" id="especiales">
+  <div class="section-head">
+    <h2>Casos Especiales</h2>
+    <span>4 formatos para rubros específicos</span>
+  </div>
+  <div class="cards cards-4">
+
+    <a class="card" href="ejemplos-especiales/01-reservas.html" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#8a2040,#c94070);">📅</div>
+      <div class="card-body" style="background:#6a1830;">
+        <div class="card-label">Especial 01</div>
+        <div class="card-name">Turnos</div>
+        <div class="card-desc">Servicios, precios y formulario de reserva. Peluquerías, consultorios.</div>
+        <div class="card-btn">Abrir demo ↗</div>
+      </div>
+    </a>
+
+    <a class="card" href="ejemplos-especiales/02-menu-restaurante.html" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#6b2a0a,#c05820);">🍽️</div>
+      <div class="card-body" style="background:#541e08;">
+        <div class="card-label">Especial 02</div>
+        <div class="card-name">Restaurante</div>
+        <div class="card-desc">Carta con categorías, fotos y reserva de mesa.</div>
+        <div class="card-btn">Abrir demo ↗</div>
+      </div>
+    </a>
+
+    <a class="card" href="ejemplos-especiales/03-leads.html" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#0e2060,#2048c0);">🎯</div>
+      <div class="card-body" style="background:#0a1840;">
+        <div class="card-label">Especial 03</div>
+        <div class="card-name">Captación de Leads</div>
+        <div class="card-desc">Una pantalla enfocada en conseguir el contacto del cliente.</div>
+        <div class="card-btn">Abrir demo ↗</div>
+      </div>
+    </a>
+
+    <a class="card" href="ejemplos-especiales/04-portfolio-profesional.html" target="_blank">
+      <div class="card-thumb" style="background:linear-gradient(145deg,#0c1828,#1a3050);">💼</div>
+      <div class="card-body" style="background:#0a1020;">
+        <div class="card-label">Especial 04</div>
+        <div class="card-name">Portfolio</div>
+        <div class="card-desc">Para abogados, contadores, arquitectos — trayectoria y consulta.</div>
+        <div class="card-btn">Abrir demo ↗</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- PORTFOLIO PERSONAL -->
+<div class="portfolio-section">
+  <a class="portfolio-card" href="https://tvitellicod.github.io/portfolio/" target="_blank">
+    <div>
+      <div class="portfolio-card-tag">Mi trabajo</div>
+      <h3>Ver mi portfolio completo</h3>
+      <p>Proyectos reales, tecnologías que uso y todo lo que puedo hacer. Si querés saber más sobre mí antes de contactarme, arrancá por acá.</p>
+    </div>
+    <div class="portfolio-btn">
+      Ver portfolio ↗
+    </div>
+  </a>
 </div>
 
 <!-- PROCESO -->
-<div class="process-section" id="proceso">
-  <div class="process-inner">
-    <div class="section-num">Cómo funciona</div>
-    <div class="section-header reveal" style="border-bottom:1px solid var(--border);margin-bottom:0;">
-      <h2>Del mensaje a la página publicada</h2>
+<section class="section">
+  <div class="section-head">
+    <h2>¿Cómo funciona?</h2>
+    <span>Simple y rápido</span>
+  </div>
+  <div class="proceso-grid">
+    <div class="paso">
+      <div class="paso-num">01</div>
+      <h4>Me escribís</h4>
+      <p>Me contás qué negocio tenés y qué estilo te gustó de los ejemplos.</p>
     </div>
-    <div class="process-grid reveal">
-      <div class="process-step">
-        <div class="step-num">01</div>
-        <h4>Me escribís</h4>
-        <p>Me contás qué tipo de negocio tenés y qué estilo te gustó de los ejemplos.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-num">02</div>
-        <h4>Me mandás los datos</h4>
-        <p>Nombre, fotos, servicios, precios y cómo querés que te contacten.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-num">03</div>
-        <h4>Te muestro una preview</h4>
-        <p>En 24-48 horas tenés la página para revisar y pedir los cambios que quieras.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-num">04</div>
-        <h4>Se publica</h4>
-        <p>Queda online con tu dominio propio y aparece en Google.</p>
-      </div>
+    <div class="paso">
+      <div class="paso-num">02</div>
+      <h4>Me mandás los datos</h4>
+      <p>Nombre, fotos, servicios, precios y cómo contactarte.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">03</div>
+      <h4>Te muestro la página</h4>
+      <p>En 24-48 horas tenés una preview para revisar y pedir cambios.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">04</div>
+      <h4>Se publica</h4>
+      <p>Queda online con tu dominio y aparece en Google.</p>
     </div>
   </div>
-</div>
+</section>
 
 <!-- CTA -->
-<div style="border-bottom:1px solid var(--border);">
-  <div class="cta-section" id="contacto">
-    <div class="cta-left reveal">
-      <h2>¿Te interesó<br><em>alguno?</em></h2>
-      <p style="margin-top:16px;">Escribime por WhatsApp y te mando un presupuesto. Sin vueltas.</p>
-      <a href="https://wa.me/5491112345678?text=Hola%20Thiago%2C%20vi%20los%20ejemplos%20y%20me%20interesa%20consultar." class="btn-wa" target="_blank" style="margin-top:28px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        Escribir por WhatsApp
-      </a>
-    </div>
-    <div class="cta-right reveal">
-      <div class="cta-item">
-        <div class="cta-item-icon">💸</div>
-        <div>
-          <strong>Costo de diseño bajo</strong>
-          <span>Sin cobros exagerados. Precio justo por un trabajo bien hecho.</span>
-        </div>
-      </div>
-      <div class="cta-item">
-        <div class="cta-item-icon">🔧</div>
-        <div>
-          <strong>Mantenimiento mensual accesible</strong>
-          <span>La página queda en mi servidor, actualizada y funcionando.</span>
-        </div>
-      </div>
-      <div class="cta-item">
-        <div class="cta-item-icon">📱</div>
-        <div>
-          <strong>100% adaptada al celular</strong>
-          <span>Se ve bien en cualquier dispositivo, siempre.</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="cta-bottom">
+  <h2>¿Te interesó alguno?</h2>
+  <p>Escribime y en menos de 24 horas te mando un presupuesto. Sin compromiso.</p>
+  <a href="https://wa.me/5491112345678?text=Hola%20Thiago%2C%20vi%20los%20ejemplos%20de%20p%C3%A1ginas%20web%20y%20quiero%20consultar." class="btn-wa" target="_blank">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    Escribir por WhatsApp
+  </a>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2026 Thiago Vitelli · Desarrollo web</p>
-  <nav>
-    <a href="landing-examples/index.html">Landings</a>
-    <a href="store-examples/index.html">Tiendas</a>
-    <a href="ejemplos-especiales/index.html">Especiales</a>
-  </nav>
+  <span>© 2026 Thiago Vitelli</span>
+  <a href="https://tvitellicod.github.io/portfolio/" target="_blank">Portfolio ↗</a>
 </footer>
 
-<script>
-function showTab(name, btn) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  btn.classList.add('active');
-}
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
