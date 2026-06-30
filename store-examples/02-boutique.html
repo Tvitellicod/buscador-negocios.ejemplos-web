@@ -82,6 +82,12 @@
     border: 1px solid #d8d0c2; padding: 8px 16px; border-radius: 6px; font-size: .8rem; color: #5c5c5c;
   }
   footer p.copy { font-size: .8rem; color: #999; margin-top: 20px; }
+
+  /* ── Enhancements ─────────────────────────────────────── */
+  [data-aos] { opacity: 0; }
+  * { -webkit-font-smoothing: antialiased; }
+  img { will-change: transform; }
+  a, button { transition: all .22s cubic-bezier(.25,.46,.45,.94) !important; }
 </style>
 </head>
 <body>
@@ -185,5 +191,79 @@
     <p class="copy">© 2026 NORA. Todos los derechos reservados.</p>
   </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js">
+
+  // ── Lenis smooth scroll ─────────────────────────────────
+  gsap.registerPlugin(ScrollTrigger);
+  const _lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+  _lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => _lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // ── Replace AOS with GSAP ───────────────────────────────
+  gsap.utils.toArray('[data-aos]').forEach(el => {
+    const type = el.dataset.aos || 'fade-up';
+    const delay = parseFloat(el.dataset.aosDelay || 0) / 1000;
+    const dur = parseFloat(el.dataset.aosDuration || 800) / 1000;
+    let from = { autoAlpha: 0, y: 48 };
+    if (type === 'fade-right') from = { autoAlpha: 0, x: -52, y: 0 };
+    else if (type === 'fade-left') from = { autoAlpha: 0, x: 52, y: 0 };
+    else if (type === 'fade-down') from = { autoAlpha: 0, y: -32 };
+    gsap.fromTo(el, from, {
+      autoAlpha: 1, x: 0, y: 0,
+      duration: Math.min(Math.max(dur, 0.6), 1.2),
+      delay,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
+  });
+
+  // ── Hero image parallax (if exists) ─────────────────────
+  const _heroImg = document.querySelector('.hero-img img');
+  if (_heroImg) {
+    gsap.to(_heroImg, {
+      yPercent: 12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+    });
+  }
+
+  // ── Stagger grids ───────────────────────────────────────
+  ['.servicios-grid > *', '.galeria > *', '.testi-grid > *',
+   '.stats > *', '.menu-grid > *', '.productos-grid > *',
+   '.cats > *', '.products > *', '.cards-grid > *',
+   '.propiedades-grid > *', '.areas-grid > *'].forEach(sel => {
+    const els = gsap.utils.toArray(sel);
+    if (!els.length) return;
+    gsap.fromTo(els,
+      { autoAlpha: 0, y: 36 },
+      { autoAlpha: 1, y: 0, duration: 0.75, ease: 'power3.out', stagger: 0.1,
+        scrollTrigger: { trigger: els[0].closest('section, div') || els[0], start: 'top 82%', once: true }
+      }
+    );
+  });
+
+
+  // ── Boutique entrance ───────────────────────────────────
+  gsap.fromTo('.logo', { autoAlpha:0, y:-16 }, { autoAlpha:1, y:0, duration:.8, ease:'power3.out' });
+  gsap.fromTo('.hero h1, .hero-title', { autoAlpha:0, y:56 }, { autoAlpha:1, y:0, duration:1.1, ease:'power3.out', delay:.2 });
+  gsap.fromTo('.hero p, .hero-sub', { autoAlpha:0, y:24 }, { autoAlpha:1, y:0, duration:.9, ease:'power3.out', delay:.4 });
+  gsap.fromTo('.hero-img, .hero-visual', { autoAlpha:0, scale:1.05 }, { autoAlpha:1, scale:1, duration:1.2, ease:'power3.out', delay:.15 });
+
+  // ── Product card hover ───────────────────────────────────
+  document.querySelectorAll('.producto-card, .product-card, .item-card').forEach(card => {
+    card.addEventListener('mouseenter', () => gsap.to(card, { y:-8, boxShadow:'0 20px 48px rgba(0,0,0,.12)', duration:.3, ease:'power2.out' }));
+    card.addEventListener('mouseleave', () => gsap.to(card, { y:0, boxShadow:'0 2px 12px rgba(0,0,0,.04)', duration:.3, ease:'power2.out' }));
+  });
+
+  // ── Product images zoom on hover ─────────────────────────
+  document.querySelectorAll('.producto-card img, .product-card img').forEach(img => {
+    const card = img.closest('.producto-card, .product-card');
+    if (!card) return;
+    card.addEventListener('mouseenter', () => gsap.to(img, { scale:1.06, duration:.6, ease:'power2.out' }));
+    card.addEventListener('mouseleave', () => gsap.to(img, { scale:1, duration:.5, ease:'power2.out' }));
+  });
+</script>
 </body>
 </html>

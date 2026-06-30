@@ -79,6 +79,12 @@
   .pago-icons { display: flex; justify-content: center; gap: 14px; margin: 22px 0; flex-wrap: wrap; }
   .pago-icons span { border: 1px solid #2a2a40; padding: 8px 16px; border-radius: 6px; font-size: .8rem; color: #a8a8c0; }
   footer p.copy { font-size: .8rem; color: #5e5e78; margin-top: 16px; }
+
+  /* ── Enhancements ─────────────────────────────────────── */
+  [data-aos] { opacity: 0; }
+  * { -webkit-font-smoothing: antialiased; }
+  img { will-change: transform; }
+  a, button { transition: all .22s cubic-bezier(.25,.46,.45,.94) !important; }
 </style>
 </head>
 <body>
@@ -183,5 +189,86 @@
     <p class="copy">© 2026 VOLT. Todos los derechos reservados.</p>
   </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js">
+
+  // ── Lenis smooth scroll ─────────────────────────────────
+  gsap.registerPlugin(ScrollTrigger);
+  const _lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+  _lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => _lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // ── Replace AOS with GSAP ───────────────────────────────
+  gsap.utils.toArray('[data-aos]').forEach(el => {
+    const type = el.dataset.aos || 'fade-up';
+    const delay = parseFloat(el.dataset.aosDelay || 0) / 1000;
+    const dur = parseFloat(el.dataset.aosDuration || 800) / 1000;
+    let from = { autoAlpha: 0, y: 48 };
+    if (type === 'fade-right') from = { autoAlpha: 0, x: -52, y: 0 };
+    else if (type === 'fade-left') from = { autoAlpha: 0, x: 52, y: 0 };
+    else if (type === 'fade-down') from = { autoAlpha: 0, y: -32 };
+    gsap.fromTo(el, from, {
+      autoAlpha: 1, x: 0, y: 0,
+      duration: Math.min(Math.max(dur, 0.6), 1.2),
+      delay,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
+  });
+
+  // ── Hero image parallax (if exists) ─────────────────────
+  const _heroImg = document.querySelector('.hero-img img');
+  if (_heroImg) {
+    gsap.to(_heroImg, {
+      yPercent: 12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+    });
+  }
+
+  // ── Stagger grids ───────────────────────────────────────
+  ['.servicios-grid > *', '.galeria > *', '.testi-grid > *',
+   '.stats > *', '.menu-grid > *', '.productos-grid > *',
+   '.cats > *', '.products > *', '.cards-grid > *',
+   '.propiedades-grid > *', '.areas-grid > *'].forEach(sel => {
+    const els = gsap.utils.toArray(sel);
+    if (!els.length) return;
+    gsap.fromTo(els,
+      { autoAlpha: 0, y: 36 },
+      { autoAlpha: 1, y: 0, duration: 0.75, ease: 'power3.out', stagger: 0.1,
+        scrollTrigger: { trigger: els[0].closest('section, div') || els[0], start: 'top 82%', once: true }
+      }
+    );
+  });
+
+
+  // ── Tech entrance ───────────────────────────────────────
+  gsap.fromTo('.hero h1, .hero-title', { autoAlpha:0, y:60 }, { autoAlpha:1, y:0, duration:1, ease:'power3.out', delay:.15 });
+  gsap.fromTo('.hero p, .hero-sub', { autoAlpha:0, y:24 }, { autoAlpha:1, y:0, duration:.9, ease:'power3.out', delay:.35 });
+  gsap.fromTo('.hero .btn, .hero-cta', { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.7, ease:'power3.out', delay:.5 });
+
+  // ── Product card neon hover ──────────────────────────────
+  document.querySelectorAll('.product-card, .producto-card, .tech-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { y:-10, duration:.3, ease:'power2.out' });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { y:0, duration:.3, ease:'power2.out' });
+    });
+  });
+
+  // ── Flash sale countdown (if exists) ────────────────────
+  const countdown = document.querySelector('.countdown, .flash-timer');
+  if (countdown) {
+    let secs = 3599;
+    setInterval(() => {
+      secs = Math.max(0, secs - 1);
+      const m = String(Math.floor(secs/60)).padStart(2,'0');
+      const s = String(secs%60).padStart(2,'0');
+      countdown.textContent = `${m}:${s}`;
+    }, 1000);
+  }
+</script>
 </body>
 </html>
