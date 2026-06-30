@@ -129,7 +129,6 @@
   }
 
   /* ── Enhancements ─────────────────────────────────────── */
-  [data-aos] { opacity: 0; }
   * { -webkit-font-smoothing: antialiased; }
   img { will-change: transform; }
   a, button { transition: all .22s cubic-bezier(.25,.46,.45,.94) !important; }
@@ -349,9 +348,8 @@
   
   // ── Lenis smooth scroll ─────────────────────────────────
   gsap.registerPlugin(ScrollTrigger);
-  const _lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
-  _lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(t => _lenis.raf(t * 1000));
+  let _lenis; try { _lenis = new Lenis({ lerp: 0.08, smoothWheel: true }); } catch(e) {}
+  if (_lenis) { _lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => _lenis.raf(t * 1000)); }
   gsap.ticker.lagSmoothing(0);
 
   // ── Replace AOS with GSAP ───────────────────────────────
@@ -414,7 +412,7 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js">
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js">
   // ── Profesional entrance ─────────────────────────────────
   gsap.fromTo('.hero h1, .abogado-nombre', { autoAlpha:0, y:48 }, { autoAlpha:1, y:0, duration:1.1, ease:'power3.out', delay:.15 });
   gsap.fromTo('.hero .cargo, .hero-cargo, .hero h2', { autoAlpha:0, y:24 }, { autoAlpha:1, y:0, duration:.9, ease:'power3.out', delay:.3 });
